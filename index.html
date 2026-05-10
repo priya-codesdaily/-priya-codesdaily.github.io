@@ -1,708 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Priya | Flutter Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <title>Anshu Priya | Flutter Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg: #060608;
-      --surface: #0f0f12;
-      --border: #1e1e24;
-      --green: #00ff94;
-      --cyan: #00f2ff;
-      --red: #ff3b3b;
-      --text: #f0f0f0;
-      --muted: #6b6b7a;
+      --bg: #050507;
+      --surface: #0c0c10;
       --card: #111116;
+      --border: #1c1c24;
+      --green: #00e87a;
+      --amber: #f5a623;
+      --cyan: #00d4ff;
+      --text: #efefef;
+      --muted: #5a5a6e;
+      --light: #9090a8;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Syne', sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* NOISE OVERLAY */
-    body::before {
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+    body::after {
       content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 999;
-      opacity: 0.4;
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 999;
     }
-
-    /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 1.2rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
       border-bottom: 1px solid var(--border);
-      background: rgba(6,6,8,0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(5,5,7,0.9); backdrop-filter: blur(16px);
     }
-
-    .nav-logo {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.9rem;
-      color: var(--green);
-      letter-spacing: 0.15em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      transition: color 0.2s;
-    }
-
+    .nav-logo { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--green); letter-spacing: 0.2em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--text); }
-
-    /* HERO */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 8rem 2.5rem 4rem;
-      position: relative;
-      overflow: hidden;
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 8rem 2.5rem 4rem; position: relative; overflow: hidden;
     }
-
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 80% 50%, rgba(0,232,122,0.04) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,212,255,0.03) 0%, transparent 60%);
+    }
     .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,255,148,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,148,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black, transparent);
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(0,232,122,0.025) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,232,122,0.025) 1px, transparent 1px);
+      background-size: 80px 80px;
     }
-
+    .hero-content { position: relative; max-width: 800px; }
     .hero-tag {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--green);
-      letter-spacing: 0.2em;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--green);
+      letter-spacing: 0.2em; margin-bottom: 1.5rem;
+      padding: 0.4rem 1rem; border: 1px solid rgba(0,232,122,0.2); border-radius: 2px;
     }
-
     .hero-tag::before {
-      content: '';
-      display: inline-block;
-      width: 8px; height: 8px;
-      background: var(--green);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
+      content: ''; width: 6px; height: 6px; background: var(--green);
+      border-radius: 50%; animation: blink 2s infinite;
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
-    }
-
-    .hero h1 {
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 .name-line {
-      display: block;
-      background: linear-gradient(135deg, #fff 40%, var(--green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero h1 .role-line {
-      display: block;
-      color: var(--muted);
-      font-size: 0.45em;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      -webkit-text-fill-color: var(--muted);
-      margin-top: 0.3em;
-    }
-
-    .hero-desc {
-      max-width: 480px;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+    .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 10vw, 9rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 1.5rem; }
+    .hero h1 .line1 { display: block; color: var(--text); }
+    .hero h1 .line2 { display: block; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.15); }
+    .hero-sub { font-size: 1.05rem; color: var(--light); line-height: 1.7; max-width: 520px; margin-bottom: 2.5rem; }
+    .hero-sub span { color: var(--green); }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.8rem 1.8rem;
-      background: var(--green);
-      color: #000;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      border-radius: 4px;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.8rem; background: var(--green); color: #000;
+      font-family: 'DM Mono', monospace; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.08em; text-decoration: none; border-radius: 2px;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,255,148,0.3);
-    }
-
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,232,122,0.25); }
     .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.8rem 1.8rem;
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      border-radius: 4px;
-      transition: border-color 0.2s, color 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.8rem; border: 1px solid var(--border); color: var(--light);
+      font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 0.08em;
+      text-decoration: none; border-radius: 2px; transition: border-color 0.2s, color 0.2s;
     }
-
-    .btn-outline:hover {
-      border-color: var(--green);
-      color: var(--green);
+    .btn-outline:hover { border-color: var(--green); color: var(--green); }
+    .hero-stats {
+      position: absolute; right: 2.5rem; bottom: 4rem;
+      display: flex; flex-direction: column; gap: 1.5rem; text-align: right;
     }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 2rem;
-      left: 2.5rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.15em;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
+    .stat-item .num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--green); line-height: 1; }
+    .stat-item .label { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; }
+    .section { padding: 6rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--green); letter-spacing: 0.25em; margin-bottom: 0.6rem; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: 0.03em; margin-bottom: 3rem; line-height: 1; }
+    hr.divider { border: none; border-top: 1px solid var(--border); }
+    .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: start; }
+    .about-text p { color: var(--light); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+    .about-text blockquote {
+      border-left: 2px solid var(--green); padding-left: 1.2rem; margin: 1.5rem 0;
+      font-style: italic; color: var(--green); font-size: 0.88rem; line-height: 1.6;
     }
-
-    .hero-scroll::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 1px;
-      background: var(--muted);
-      animation: expand 2s infinite;
-    }
-
-    @keyframes expand {
-      0%, 100% { width: 40px; opacity: 0.5; }
-      50% { width: 70px; opacity: 1; }
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 6rem 2.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--green);
-      letter-spacing: 0.25em;
-      margin-bottom: 0.8rem;
-      text-transform: uppercase;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 3rem;
-    }
-
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .about-text p {
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-    }
-
-    .about-text p span {
-      color: var(--text);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .stat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.2rem;
-    }
-
-    .stat-number {
-      font-family: 'Space Mono', monospace;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--green);
-      display: block;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
-    }
-
-    /* SKILLS */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 0.8rem;
-    }
-
-    .skill-chip {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.8rem 1rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .skill-chip:hover {
-      border-color: var(--green);
-      color: var(--green);
-    }
-
-    .skill-chip .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      flex-shrink: 0;
-    }
-
-    .skill-chip .dot.cyan { background: var(--cyan); }
-    .skill-chip .dot.red { background: var(--red); }
-
-    /* PROJECT */
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .project-card:hover {
-      border-color: var(--green);
-      transform: translateY(-4px);
-    }
-
-    .project-header {
-      padding: 2rem 2rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .project-badge {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      padding: 0.3rem 0.7rem;
-      background: rgba(0,255,148,0.1);
-      color: var(--green);
-      border: 1px solid rgba(0,255,148,0.2);
-      border-radius: 20px;
-      letter-spacing: 0.1em;
-    }
-
-    .project-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-subtitle {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .project-body {
-      padding: 1.5rem 2rem;
-    }
-
-    .project-desc {
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-    }
-
-    .feature-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .feature-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    .feature-item::before {
-      content: '→';
-      color: var(--green);
-      font-family: 'Space Mono', monospace;
-      flex-shrink: 0;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .tag {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      padding: 0.3rem 0.7rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      color: var(--muted);
-    }
-
-    .project-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    /* CONTACT */
-    .contact-wrapper {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 3rem;
-      text-align: center;
-    }
-
-    .contact-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-    }
-
-    .contact-desc {
-      color: var(--muted);
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 1.5rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    footer p {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
-    .footer-status {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--green);
-    }
-
-    .footer-status::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--green);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    /* ANIMATIONS */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* DIVIDER */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0;
-    }
-
+    .stat-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .stat-card { background: var(--card); border: 1px solid var(--border); padding: 1.2rem; border-radius: 2px; }
+    .stat-card .n { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--green); line-height: 1; }
+    .stat-card .l { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+    .project-card:hover { transform: translateY(-4px); }
+    .project-card.repshield:hover { border-color: #ff4444; }
+    .project-card.agro:hover { border-color: var(--green); }
+    .project-accent { height: 3px; width: 100%; }
+    .project-card.repshield .project-accent { background: linear-gradient(90deg, #ff4444, #ff8800); }
+    .project-card.agro .project-accent { background: linear-gradient(90deg, var(--green), var(--cyan)); }
+    .project-body { padding: 1.8rem; }
+    .project-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .project-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+    .project-card.repshield .project-name { color: #ff6644; }
+    .project-card.agro .project-name { color: var(--green); }
+    .project-tagline { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; font-family: 'DM Mono', monospace; }
+    .project-desc { color: var(--light); font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.2rem; }
+    .feature-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+    .pill { font-family: 'DM Mono', monospace; font-size: 0.68rem; padding: 0.25rem 0.6rem; background: var(--surface); border: 1px solid var(--border); border-radius: 2px; color: var(--muted); }
+    .project-links { display: flex; gap: 0.8rem; }
+    .proj-btn { font-family: 'DM Mono', monospace; font-size: 0.72rem; padding: 0.5rem 1rem; text-decoration: none; border-radius: 2px; letter-spacing: 0.05em; transition: all 0.2s; }
+    .proj-btn-primary { background: var(--green); color: #000; }
+    .proj-btn-primary:hover { opacity: 0.85; }
+    .proj-btn-outline { border: 1px solid var(--border); color: var(--light); }
+    .proj-btn-outline:hover { border-color: var(--green); color: var(--green); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 0.6rem; }
+    .skill { background: var(--card); border: 1px solid var(--border); padding: 0.8rem 1rem; border-radius: 2px; font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; transition: border-color 0.2s, color 0.2s; }
+    .skill:hover { border-color: var(--green); color: var(--green); }
+    .skill .dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .dot-green { background: var(--green); }
+    .dot-cyan { background: var(--cyan); }
+    .dot-amber { background: var(--amber); }
+    .contact-wrap { background: var(--card); border: 1px solid var(--border); padding: 3.5rem; border-radius: 2px; position: relative; overflow: hidden; }
+    .contact-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--green), var(--cyan), var(--amber)); }
+    .contact-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 0.8rem; }
+    .contact-sub { color: var(--light); margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.6; }
+    .contact-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+    footer { border-top: 1px solid var(--border); padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); }
+    .open-badge { display: flex; align-items: center; gap: 0.4rem; font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--green); }
+    .open-badge::before { content: ''; width: 5px; height: 5px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
       .hero { padding: 7rem 1.5rem 3rem; }
-      section { padding: 4rem 1.5rem; }
-      .about-grid { grid-template-columns: 1fr; }
-      .feature-list { grid-template-columns: 1fr; }
-      .project-header { flex-direction: column; gap: 1rem; }
-      .contact-wrapper { padding: 2rem 1.5rem; }
-      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .hero-stats { display: none; }
+      .section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contact-wrap { padding: 2rem 1.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <span class="nav-logo">ANSHU PRIYA.DEV</span>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#project">Project</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<nav>
+  <span class="nav-logo">ANSHU.PRIYA</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-grid"></div>
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
     <div class="hero-tag">AVAILABLE FOR WORK</div>
     <h1>
-      <span class="name-line">Anshu Priya</span>
-      <span class="role-line">Flutter Developer · BCA 2nd Year</span>
+      <span class="line1">ANSHU</span>
+      <span class="line2">PRIYA</span>
     </h1>
-    <p class="hero-desc">
-      I build real mobile applications that solve real problems.
-      Currently looking for my first Flutter developer role.
+    <p class="hero-sub">
+      Flutter Developer building <span>real apps for real problems</span> —
+      a safety app for women and a price intelligence tool
+      for 140 million Indian farmers.
+      Self-taught. Age 20. From Odisha.
     </p>
     <div class="hero-cta">
-      <a href="#project" class="btn-primary">↓ See My Work</a>
-      <a href="https://github.com/priya-codesdaily" target="_blank" class="btn-outline">GitHub →</a>
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="https://github.com/priya-codesdaily" target="_blank" class="btn-outline">GitHub</a>
     </div>
-    <div class="hero-scroll">SCROLL</div>
   </div>
-
-  <hr class="divider"/>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="fade-up">
-      <p class="section-label">// 01 — ABOUT</p>
-      <h2 class="section-title">Who I Am</h2>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="num">2</div>
+      <div class="label">REAL APPS BUILT</div>
     </div>
-    <div class="about-grid fade-up">
-      <div class="about-text">
-        <p>I'm <span>Anshu Priya</span>, a BCA 2nd year student and self-taught Flutter developer from Odisha, India.</p>
-        <p>I don't just follow tutorials — I build <span>real apps with real features</span>. My project REPSHIELD is a personal safety app with GPS-based SOS, shake detection, stealth mode, and trusted contacts — all built and deployed by me.</p>
-        <p>I'm actively looking for my <span>first Flutter developer role</span> where I can contribute from day one and keep growing fast.</p>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span class="stat-number">1</span>
-          <span class="stat-label">Real-World App Built</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">5+</span>
-          <span class="stat-label">Features Shipped</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">4+</span>
-          <span class="stat-label">Packages Integrated</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">∞</span>
-          <span class="stat-label">Drive to Learn</span>
-        </div>
-      </div>
+    <div class="stat-item">
+      <div class="num">140M</div>
+      <div class="label">FARMERS TARGETED</div>
     </div>
-  </section>
-
-  <hr class="divider"/>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="fade-up">
-      <p class="section-label">// 02 — SKILLS</p>
-      <h2 class="section-title">Tech Stack</h2>
+    <div class="stat-item">
+      <div class="num">0</div>
+      <div class="label">TUTORIAL PROJECTS</div>
     </div>
-    <div class="skills-grid fade-up">
-      <div class="skill-chip"><span class="dot"></span>Flutter</div>
-      <div class="skill-chip"><span class="dot"></span>Dart</div>
-      <div class="skill-chip"><span class="dot cyan"></span>Python</div>
-      <div class="skill-chip"><span class="dot"></span>Geolocator</div>
-      <div class="skill-chip"><span class="dot"></span>sensors_plus</div>
-      <div class="skill-chip"><span class="dot"></span>shared_prefs</div>
-      <div class="skill-chip"><span class="dot cyan"></span>Git & GitHub</div>
-      <div class="skill-chip"><span class="dot cyan"></span>Android Build</div>
-      <div class="skill-chip"><span class="dot red"></span>Firebase (learning)</div>
-      <div class="skill-chip"><span class="dot cyan"></span>REST APIs</div>
-      <div class="skill-chip"><span class="dot"></span>State Management</div>
-      <div class="skill-chip"><span class="dot cyan"></span>VS Code</div>
-    </div>
-  </section>
+  </div>
+</div>
 
-  <hr class="divider"/>
+<hr class="divider"/>
 
-  <!-- PROJECT -->
-  <section id="project">
-    <div class="fade-up">
-      <p class="section-label">// 03 — PROJECT</p>
-      <h2 class="section-title">What I've Built</h2>
+<section class="section fade-up" id="about">
+  <p class="section-eyebrow">// 01 — ABOUT</p>
+  <h2 class="section-title">WHO I AM</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm <strong>Anshu Priya</strong>, a self-taught Flutter developer and BCA student from Odisha, India. No placement cell. No family guidance in tech. Just curiosity, a laptop, and problems worth solving.</p>
+      <p>I don't build tutorial projects. I build apps from <strong>real pain points</strong> — a safety app because women need tools that work in actual emergencies, and an AgriTech app because my father grows mangoes and guesses crop prices every harvest.</p>
+      <blockquote>
+        "My mother made aamchur instead of selling fresh mangoes today. That's value addition. I built AgroPredict so every farmer can make the same smart decision."
+      </blockquote>
+      <p>I'm actively looking for my first Flutter developer role — <strong>remote preferred, open to Hyderabad</strong>. Ready from day one.</p>
     </div>
-    <div class="project-card fade-up">
-      <div class="project-header">
-        <div>
-          <h3 class="project-title">REPSHIELD 🔐</h3>
-          <p class="project-subtitle">Personal Safety Mobile Application</p>
-        </div>
-        <span class="project-badge">LIVE · v1.0.0</span>
-      </div>
+    <div class="stat-cards">
+      <div class="stat-card"><div class="n">20</div><div class="l">YEARS OLD</div></div>
+      <div class="stat-card"><div class="n">2</div><div class="l">REAL APPS LIVE</div></div>
+      <div class="stat-card"><div class="n">6+</div><div class="l">PACKAGES USED</div></div>
+      <div class="stat-card"><div class="n">∞</div><div class="l">DRIVE TO BUILD</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<section class="section fade-up" id="projects">
+  <p class="section-eyebrow">// 02 — PROJECTS</p>
+  <h2 class="section-title">WHAT I BUILT</h2>
+  <div class="projects-grid">
+
+    <div class="project-card repshield">
+      <div class="project-accent"></div>
       <div class="project-body">
-        <p class="project-desc">
-          A real-world Flutter safety app designed to protect users in emergencies.
-          Built end-to-end — from UI design to Android build configuration and APK release.
-          Every feature solves a real problem.
-        </p>
-        <div class="feature-list">
-          <div class="feature-item">SOS with real-time GPS location</div>
-          <div class="feature-item">Shake-to-SOS trigger</div>
-          <div class="feature-item">Trusted contacts manager</div>
-          <div class="feature-item">Evidence Locker vault</div>
-          <div class="feature-item">Stealth Mode (blank screen)</div>
-          <div class="feature-item">Safety Timer auto-trigger</div>
-          <div class="feature-item">Incident Journal</div>
-          <div class="feature-item">SMS with Google Maps link</div>
-        </div>
-        <div class="project-tags">
-          <span class="tag">Flutter</span>
-          <span class="tag">Dart</span>
-          <span class="tag">Geolocator</span>
-          <span class="tag">sensors_plus</span>
-          <span class="tag">shared_preferences</span>
-          <span class="tag">url_launcher</span>
-          <span class="tag">Android</span>
+        <div class="project-icon">🔐</div>
+        <div class="project-name">REPSHIELD</div>
+        <div class="project-tagline">Personal Safety App · Android · v1.0.0</div>
+        <p class="project-desc">In India, 1 woman is assaulted every 15 minutes. Most safety apps require unlocking first. REPSHIELD reduces emergency response to one shake — no unlock, no typing, no delay.</p>
+        <div class="feature-pills">
+          <span class="pill">Shake-to-SOS</span>
+          <span class="pill">Live GPS</span>
+          <span class="pill">Trusted Contacts</span>
+          <span class="pill">Stealth Mode</span>
+          <span class="pill">SHA-256 Journal</span>
+          <span class="pill">Safety Timer</span>
         </div>
         <div class="project-links">
-          <a href="https://github.com/priya-codesdaily/REAPSHIELD" target="_blank" class="btn-primary">View on GitHub →</a>
-          <a href="https://github.com/priya-codesdaily/REAPSHIELD/releases/tag/v1.0.0" target="_blank" class="btn-outline">Download APK</a>
+          <a href="https://github.com/priya-codesdaily/REPSHIELD" target="_blank" class="proj-btn proj-btn-primary">GitHub →</a>
+          <a href="https://github.com/priya-codesdaily/REPSHIELD/releases/tag/v1.0.0" target="_blank" class="proj-btn proj-btn-outline">Download APK</a>
         </div>
       </div>
     </div>
-  </section>
 
-  <hr class="divider"/>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-wrapper fade-up">
-      <p class="section-label" style="text-align:center">// 04 — CONTACT</p>
-      <h2 class="contact-title">Let's Work Together</h2>
-      <p class="contact-desc">
-        I'm actively looking for Flutter developer opportunities.<br/>
-        Open to full-time, internship, or freelance roles.
-      </p>
-      <div class="contact-links">
-        <a href="https://github.com/priya-codesdaily" target="_blank" class="btn-primary">GitHub →</a>
-        <a href="mailto:priyatech.logic@gmail.com" class="btn-outline">Email Me</a>
+    <div class="project-card agro">
+      <div class="project-accent"></div>
+      <div class="project-body">
+        <div class="project-icon">🌾</div>
+        <div class="project-name">AGROPREDICT</div>
+        <div class="project-tagline">AgriTech · Live Govt API · Hindi + Voice</div>
+        <p class="project-desc">My father grows mangoes and guesses prices every harvest. AgroPredict gives every farmer the same market intelligence that big traders already have — using free government AGMARKNET data.</p>
+        <div class="feature-pills">
+          <span class="pill">AGMARKNET API</span>
+          <span class="pill">Smart Sell Advice</span>
+          <span class="pill">Transport Calculator</span>
+          <span class="pill">Hindi UI</span>
+          <span class="pill">Voice Input</span>
+          <span class="pill">Price Chart</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/priya-codesdaily/agropredict" target="_blank" class="proj-btn proj-btn-primary">GitHub →</a>
+          <a href="https://github.com/priya-codesdaily/agropredict" target="_blank" class="proj-btn proj-btn-outline">View Code</a>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 Anshu Priya · Built with HTML & CSS</p>
-    <span class="footer-status">OPEN TO WORK</span>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    // Fade up on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
+<hr class="divider"/>
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  </script>
+<section class="section fade-up" id="skills">
+  <p class="section-eyebrow">// 03 — SKILLS</p>
+  <h2 class="section-title">TECH STACK</h2>
+  <div class="skills-grid">
+    <div class="skill"><span class="dot dot-green"></span>Flutter</div>
+    <div class="skill"><span class="dot dot-green"></span>Dart</div>
+    <div class="skill"><span class="dot dot-cyan"></span>Python</div>
+    <div class="skill"><span class="dot dot-green"></span>Geolocator</div>
+    <div class="skill"><span class="dot dot-green"></span>sensors_plus</div>
+    <div class="skill"><span class="dot dot-green"></span>speech_to_text</div>
+    <div class="skill"><span class="dot dot-cyan"></span>REST APIs</div>
+    <div class="skill"><span class="dot dot-cyan"></span>Firebase</div>
+    <div class="skill"><span class="dot dot-cyan"></span>Git & GitHub</div>
+    <div class="skill"><span class="dot dot-cyan"></span>Android Build</div>
+    <div class="skill"><span class="dot dot-amber"></span>fl_chart</div>
+    <div class="skill"><span class="dot dot-amber"></span>shared_prefs</div>
+    <div class="skill"><span class="dot dot-cyan"></span>Gradle / NDK</div>
+    <div class="skill"><span class="dot dot-green"></span>State Mgmt</div>
+    <div class="skill"><span class="dot dot-amber"></span>UI/UX Design</div>
+    <div class="skill"><span class="dot dot-cyan"></span>VS Code</div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<section class="section fade-up" id="contact">
+  <div class="contact-wrap">
+    <p class="section-eyebrow">// 04 — CONTACT</p>
+    <h2 class="contact-title">LET'S WORK TOGETHER</h2>
+    <p class="contact-sub">
+      I'm actively looking for Flutter developer opportunities — full-time, internship, or remote.<br/>
+      I build things that matter. If your team does too — let's talk.
+    </p>
+    <div class="contact-links">
+      <a href="https://github.com/priya-codesdaily" target="_blank" class="btn-primary">GitHub →</a>
+      <a href="https://linkedin.com/in/a-priya-dev" target="_blank" class="btn-outline">LinkedIn</a>
+      <a href="mailto:priyatech.logic@gmail.com" class="btn-outline">Email Me</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Anshu Priya · Flutter Developer · Odisha, India</p>
+  <span class="open-badge">OPEN TO WORK</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
