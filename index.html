@@ -4,412 +4,479 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Anshu Priya · Flutter Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --dark:#0A1F0A;--dark2:#122112;--mid:#1B3A1B;--card:#1E3D1E;
-  --border:#2D5A2D;--accent:#4CAF50;--bright:#76C442;--gold:#C8A84B;
-  --light:#E8F5E8;--cream:#F0F8F0;--text:#E8F5E8;--muted:#8DB88D;--white:#F5FFF5;
+  --dark:#0D1F0D;
+  --dark2:#111F11;
+  --card:#162416;
+  --border:#1E3A1E;
+  --accent:#4CAF50;
+  --bright:#76C442;
+  --gold:#C8A84B;
+  --gold2:#E8C86A;
+  --muted:#7A9A7A;
+  --text:#E8F0E8;
+  --white:#F5FFF5;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--dark);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden;}
- 
+
+/* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;
-  background:rgba(10,31,10,0.95);backdrop-filter:blur(16px);
+  padding:1.1rem 3rem;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(13,31,13,0.96);backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border);
 }
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--bright);font-weight:700;}
-.nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.06em;transition:color 0.2s;}
-.nav-links a:hover{color:var(--bright);}
- 
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);font-weight:700;letter-spacing:0.02em;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:var(--white);}
+.nav-cta{padding:0.55rem 1.4rem;background:var(--gold);color:var(--dark);font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:600;border-radius:30px;text-decoration:none;transition:all 0.2s;letter-spacing:0.04em;}
+.nav-cta:hover{background:var(--gold2);}
+
 /* HERO */
-.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;padding:8rem 2.5rem 5rem;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 50%,#1B4A1B 0%,#0A1F0A 60%,#061206 100%);}
-.hero-grid{
+.hero{
+  min-height:100vh;position:relative;overflow:hidden;
+  display:flex;align-items:center;
+  padding:8rem 3rem 5rem;
+}
+.hero-bg{
   position:absolute;inset:0;
-  background-image:linear-gradient(rgba(76,175,80,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(76,175,80,0.08) 1px,transparent 1px);
-  background-size:60px 60px;
-  transform:perspective(800px) rotateX(25deg) scale(1.5);transform-origin:50% 100%;opacity:0.6;
+  background:radial-gradient(ellipse 70% 80% at 70% 40%, #1A3A1A 0%, #0D1F0D 55%, #080F08 100%);
 }
-.hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(76,175,80,0.15) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:glow 4s ease-in-out infinite alternate;}
-@keyframes glow{0%{opacity:0.5;transform:translate(-50%,-50%) scale(1);}100%{opacity:1;transform:translate(-50%,-50%) scale(1.2);}}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.2;}}
- 
-.hero-content{position:relative;max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
-.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.15em;color:var(--bright);border:1px solid rgba(118,196,66,0.4);padding:0.35rem 0.9rem;border-radius:20px;margin-bottom:1.5rem;background:rgba(118,196,66,0.08);}
-.hero-tag::before{content:'';width:6px;height:6px;background:var(--bright);border-radius:50%;animation:pulse 2s infinite;}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,6vw,5.5rem);line-height:0.95;font-weight:900;color:var(--white);margin-bottom:0.8rem;}
-.hero h1 em{font-style:italic;color:var(--bright);}
-.hero-role{font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;color:var(--accent);margin-bottom:1.2rem;}
-.hero-desc{font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:2rem;}
-.hero-desc strong{color:var(--bright);font-weight:500;}
-.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn-bright{padding:0.75rem 1.8rem;background:var(--bright);color:var(--dark);font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-decoration:none;border-radius:4px;transition:all 0.2s;display:inline-block;box-shadow:0 0 20px rgba(118,196,66,0.3);}
-.btn-bright:hover{background:var(--accent);transform:translateY(-2px);}
-.btn-ghost{padding:0.75rem 1.8rem;border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.06em;text-decoration:none;border-radius:4px;transition:all 0.2s;display:inline-block;}
-.btn-ghost:hover{border-color:var(--bright);color:var(--bright);}
- 
-.hero-right{display:flex;flex-direction:column;gap:1rem;}
-.stat-3d{background:linear-gradient(135deg,#1B3A1B,#0F2810);border:1px solid var(--border);border-radius:12px;padding:1.5rem;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.4),inset 0 1px 0 rgba(118,196,66,0.1);transform:perspective(600px) rotateY(-5deg);transition:transform 0.3s;}
-.stat-3d:hover{transform:perspective(600px) rotateY(0deg);}
-.stat-3d::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--bright),transparent);}
-.stat-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--bright);line-height:1;}
-.stat-label{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:var(--muted);margin-top:0.3rem;}
-.stat-sub{font-size:0.85rem;color:var(--muted);margin-top:0.4rem;line-height:1.5;}
- 
-/* PROBLEM */
-.problem-section{background:linear-gradient(180deg,var(--dark) 0%,var(--dark2) 100%);padding:6rem 2.5rem;position:relative;overflow:hidden;}
-.problem-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 50%,rgba(76,175,80,0.05) 0%,transparent 70%);}
-.problem-inner{max-width:1100px;margin:0 auto;position:relative;}
-.big-quote{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);line-height:1.3;color:var(--white);border-left:4px solid var(--bright);padding-left:2rem;margin-bottom:2rem;}
-.big-quote em{color:var(--bright);font-style:italic;}
-.feedback-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2rem;}
-.fb-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s,border-color 0.2s;}
-.fb-card:hover{transform:translateY(-3px);border-color:var(--bright);}
-.fb-hindi{font-style:italic;color:var(--gold);font-size:0.95rem;margin-bottom:0.5rem;}
-.fb-result{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.05em;}
- 
-/* FATHER HERO PHOTO */
-.father-section{background:var(--dark2);padding:0;}
-.father-hero{
-  width:100%;max-height:600px;overflow:hidden;position:relative;
-}
-.father-hero img{
-  width:100%;height:600px;object-fit:cover;object-position:center 30%;
-  filter:brightness(0.85) saturate(0.9);
-  display:block;
-}
-.father-overlay{
+.hero-grain{
   position:absolute;inset:0;
-  background:linear-gradient(to right, rgba(10,31,10,0.85) 0%, rgba(10,31,10,0.3) 50%, transparent 100%);
-  display:flex;align-items:center;padding:4rem;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:0.4;
 }
-.father-text{}
-.father-label{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:var(--bright);margin-bottom:0.8rem;}
-.father-quote{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.5rem);color:var(--white);line-height:1.3;max-width:500px;}
-.father-quote em{color:var(--bright);font-style:italic;}
-.father-loc{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:var(--muted);margin-top:1rem;}
- 
-/* FARMERS GRID */
-.farmers-section{background:var(--dark2);padding:4rem 2.5rem;}
-.farmers-inner{max-width:1100px;margin:0 auto;}
-.farmers-title{font-family:'Playfair Display',serif;font-size:2rem;color:var(--white);margin-bottom:1.5rem;text-align:center;}
-.farmers-title span{color:var(--bright);}
-.farmers-subtitle{text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:var(--muted);margin-bottom:2rem;}
- 
-/* All farmer photos horizontal */
-.farmers-row-h{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1rem;}
-.farmers-row-h4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-.ph-h{border-radius:10px;overflow:hidden;position:relative;aspect-ratio:16/9;}
-.ph-h img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(0.88) saturate(0.9);transition:filter 0.3s;}
-.ph-h:hover img{filter:brightness(1) saturate(1);}
- 
-/* Father vertical card — sits beside about photo */
-.father-card{border-radius:12px;overflow:hidden;border:2px solid var(--border);box-shadow:8px 8px 0 var(--gold),12px 12px 0 rgba(200,168,75,0.2);aspect-ratio:3/4;position:relative;}
-.father-card img{width:100%;height:100%;object-fit:cover;object-position:center top;}
-.father-card .fc-caption{position:absolute;bottom:0;left:0;right:0;padding:1rem;background:linear-gradient(to top,rgba(10,31,10,0.95),transparent);font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;color:var(--gold);}
-.father-card .fc-name{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);margin-bottom:0.2rem;}
- 
-.photo-loc{
-  position:absolute;bottom:0.6rem;left:0.6rem;
-  font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;
-  color:var(--bright);background:rgba(10,31,10,0.88);padding:0.2rem 0.5rem;border-radius:3px;
+.hero-content{position:relative;max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.1fr 0.9fr;gap:5rem;align-items:center;}
+.hero-eyebrow{display:flex;align-items:center;gap:0.7rem;margin-bottom:1.4rem;}
+.hero-eyebrow-line{width:40px;height:1.5px;background:var(--gold);}
+.hero-eyebrow span{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:var(--gold);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,5.5vw,5rem);line-height:1.05;font-weight:900;color:var(--white);margin-bottom:1.2rem;}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:1.05rem;color:var(--muted);line-height:1.8;max-width:480px;margin-bottom:2rem;}
+.hero-sub strong{color:var(--text);}
+.hero-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+.btn-gold{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:var(--gold);color:var(--dark);font-family:'JetBrains Mono',monospace;font-size:0.75rem;font-weight:700;border-radius:30px;text-decoration:none;transition:all 0.2s;letter-spacing:0.04em;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-outline{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.8rem;border:1px solid rgba(255,255,255,0.15);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:0.75rem;border-radius:30px;text-decoration:none;transition:all 0.2s;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.hero-video-btn{display:inline-flex;align-items:center;gap:0.6rem;color:var(--muted);font-size:0.88rem;text-decoration:none;transition:color 0.2s;}
+.hero-video-btn:hover{color:var(--gold);}
+.play-icon{width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,168,75,0.4);display:flex;align-items:center;justify-content:center;font-size:0.8rem;}
+
+/* HERO RIGHT */
+.hero-right{position:relative;}
+.hero-father-img{
+  width:100%;border-radius:16px;overflow:hidden;
+  aspect-ratio:3/4;max-height:520px;position:relative;
 }
- 
+.hero-father-img img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(0.88) saturate(0.9);}
+.hero-img-placeholder{
+  width:100%;height:100%;background:linear-gradient(135deg,#1A3A1A,#0D1F0D);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;
+  border:2px dashed var(--border);border-radius:16px;
+}
+.hero-img-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.5rem;
+  background:linear-gradient(to top,rgba(8,15,8,0.95) 0%,transparent 100%);
+  border-radius:0 0 16px 16px;
+}
+.hero-img-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:var(--gold);margin-bottom:0.3rem;}
+.hero-img-caption{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);font-style:italic;}
+.hero-stat-chip{
+  position:absolute;top:2rem;right:-1.5rem;
+  background:var(--gold);color:var(--dark);
+  padding:0.8rem 1.1rem;border-radius:10px;
+  font-family:'JetBrains Mono',monospace;text-align:center;
+}
+.hero-stat-chip .n{font-size:1.6rem;font-weight:700;font-family:'Playfair Display',serif;display:block;line-height:1;}
+.hero-stat-chip .l{font-size:0.6rem;letter-spacing:0.1em;display:block;margin-top:0.2rem;}
+
+/* STATUS BANNER */
+.status-banner{
+  background:rgba(200,168,75,0.08);border-top:1px solid rgba(200,168,75,0.15);border-bottom:1px solid rgba(200,168,75,0.15);
+  padding:1rem 3rem;
+}
+.status-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem;}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--bright);flex-shrink:0;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.status-text{font-size:0.9rem;color:rgba(232,200,106,0.85);line-height:1.6;}
+.status-text strong{color:var(--gold2);}
+
+/* SECTION BASE */
+.section{max-width:1200px;margin:0 auto;padding:6rem 3rem;}
+.sec-eyebrow{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.8rem;}
+.sec-eyebrow-line{width:30px;height:1.5px;background:var(--gold);}
+.sec-eyebrow span{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;color:var(--gold);}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--white);margin-bottom:1rem;line-height:1.1;}
+.sec-title em{font-style:italic;color:var(--gold);}
+.sec-sub{color:var(--muted);font-size:0.97rem;line-height:1.8;max-width:580px;margin-bottom:3rem;}
+
+/* STORY SECTION */
+.story-section{background:var(--dark2);padding:6rem 0;}
+.story-inner{max-width:1200px;margin:0 auto;padding:0 3rem;}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.big-quote{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.3;color:var(--white);margin-bottom:1.5rem;}
+.big-quote em{color:var(--gold);font-style:italic;}
+.story-para{color:var(--muted);line-height:1.9;font-size:0.97rem;margin-bottom:1rem;}
+.story-para strong{color:var(--text);}
+
+/* FEEDBACK TABLE */
+.feedback-table{width:100%;border-collapse:collapse;margin-top:1.5rem;}
+.feedback-table th{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:var(--gold);padding:0.6rem 1rem;border-bottom:1px solid var(--border);text-align:left;}
+.feedback-table td{padding:0.85rem 1rem;font-size:0.88rem;border-bottom:1px solid rgba(255,255,255,0.05);color:var(--muted);}
+.feedback-table tr:hover td{background:rgba(118,196,66,0.04);}
+.feedback-table td:first-child{font-style:italic;color:var(--gold2);}
+.feedback-table td:last-child{color:var(--bright);}
+.feedback-table td:last-child::before{content:'→ ';}
+
+/* FARMER INSIGHTS */
+.insights-section{background:var(--dark);padding:6rem 0;}
+.insights-inner{max-width:1200px;margin:0 auto;padding:0 3rem;}
+.insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem;}
+.insight-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem;transition:border-color 0.2s,transform 0.2s;}
+.insight-card:hover{border-color:var(--gold);transform:translateY(-3px);}
+.insight-icon{font-size:1.5rem;margin-bottom:0.7rem;display:block;}
+.insight-text{font-size:0.9rem;color:var(--muted);line-height:1.6;}
+.insight-text strong{color:var(--text);display:block;margin-bottom:0.3rem;font-size:0.95rem;}
+.read-more{display:inline-flex;align-items:center;gap:0.4rem;color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.05em;text-decoration:none;transition:gap 0.2s;}
+.read-more:hover{gap:0.8rem;}
+
+/* FARMERS PHOTOS */
+.farmers-section{background:var(--dark2);padding:5rem 0;}
+.farmers-inner{max-width:1200px;margin:0 auto;padding:0 3rem;}
+.photo-row-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1rem;}
+.photo-row-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.ph{border-radius:10px;overflow:hidden;position:relative;}
+.ph.h{aspect-ratio:16/9;}
+.ph img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(0.85) saturate(0.88);transition:filter 0.3s;}
+.ph:hover img{filter:brightness(0.95) saturate(1);}
+.ph-loc{position:absolute;bottom:0.6rem;left:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;color:var(--gold);background:rgba(8,15,8,0.88);padding:0.2rem 0.5rem;border-radius:3px;}
+
+/* DEMO SECTION */
+.demo-section{background:var(--dark);padding:6rem 0;}
+.demo-inner{max-width:1200px;margin:0 auto;padding:0 3rem;}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.demo-video-wrap{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;cursor:pointer;
+}
+.demo-video-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(118,196,66,0.06),rgba(200,168,75,0.04));}
+.demo-play{
+  width:70px;height:70px;border-radius:50%;
+  background:var(--gold);display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;z-index:1;transition:transform 0.2s;
+  box-shadow:0 0 0 12px rgba(200,168,75,0.15);
+}
+.demo-video-wrap:hover .demo-play{transform:scale(1.1);}
+.demo-label{position:absolute;bottom:1rem;left:1rem;font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--muted);}
+.demo-coming{position:absolute;top:1rem;right:1rem;background:rgba(200,168,75,0.15);border:1px solid rgba(200,168,75,0.3);border-radius:20px;padding:0.3rem 0.8rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--gold);letter-spacing:0.08em;}
+.demo-text .sec-title{margin-bottom:0.8rem;}
+
 /* ABOUT */
-.about-section{background:var(--dark);padding:6rem 2.5rem;}
-.about-inner{max-width:1100px;margin:0 auto;}
-.about-grid{display:grid;grid-template-columns:0.35fr 1.65fr;gap:3rem;align-items:start;}
-.about-photo-wrap{position:relative;max-width:220px;}
-.photo-frame{border-radius:12px;overflow:hidden;border:2px solid var(--border);box-shadow:8px 8px 0 var(--bright),12px 12px 0 rgba(118,196,66,0.2);aspect-ratio:3/4;}
-.photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;}
-.about-badge{position:absolute;bottom:-1rem;right:-1rem;background:var(--bright);color:var(--dark);font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;padding:0.4rem 0.8rem;border-radius:4px;font-weight:600;}
+.about-section{background:var(--dark2);padding:6rem 0;}
+.about-inner{max-width:1200px;margin:0 auto;padding:0 3rem;}
+.about-grid{display:grid;grid-template-columns:280px 1fr;gap:4rem;align-items:start;}
+.about-photo{border-radius:12px;overflow:hidden;aspect-ratio:3/4;border:2px solid var(--border);box-shadow:6px 6px 0 var(--gold);}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
 .about-text p{color:var(--muted);line-height:1.9;margin-bottom:1rem;font-size:0.97rem;}
-.about-text p strong{color:var(--white);font-weight:500;}
+.about-text p strong{color:var(--text);}
 .about-chips{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;}
 .chip{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.3rem 0.9rem;font-size:0.82rem;color:var(--muted);transition:all 0.2s;}
-.chip:hover{border-color:var(--bright);color:var(--bright);}
- 
-/* PROJECTS */
-.projects-section{background:var(--dark2);padding:6rem 2.5rem;}
-.projects-inner{max-width:1100px;margin:0 auto;}
-.proj-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem;box-shadow:0 4px 24px rgba(0,0,0,0.3);transition:transform 0.25s,box-shadow 0.25s;}
-.proj-card:hover{transform:translateY(-4px);box-shadow:0 12px 48px rgba(0,0,0,0.5);}
-.proj-glow-top{height:3px;background:linear-gradient(90deg,var(--bright),var(--accent),transparent);}
-.proj-red-top{height:3px;background:linear-gradient(90deg,#E53935,#F4511E,transparent);}
-.proj-body{padding:2.2rem;}
-.proj-name-g{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--bright);margin-bottom:0.2rem;}
-.proj-name-r{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#EF5350;margin-bottom:0.2rem;}
+.chip:hover{border-color:var(--gold);color:var(--gold);}
+
+/* PROJECT */
+.projects-section{background:var(--dark);padding:6rem 0;}
+.projects-inner{max-width:1200px;margin:0 auto;padding:0 3rem;}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:2rem;transition:transform 0.25s;}
+.proj-card:hover{transform:translateY(-4px);}
+.proj-top-g{height:3px;background:linear-gradient(90deg,var(--bright),var(--accent),transparent);}
+.proj-top-r{height:3px;background:linear-gradient(90deg,#E53935,#F4511E,transparent);}
+.proj-body{padding:2.5rem;}
+.proj-name-g{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--bright);margin-bottom:0.2rem;}
+.proj-name-r{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:#EF5350;margin-bottom:0.2rem;}
 .proj-sub{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--muted);margin-bottom:1.2rem;}
-.proj-desc{color:var(--muted);font-size:0.95rem;line-height:1.8;margin-bottom:1.2rem;}
-.proj-desc strong{color:var(--white);font-weight:500;}
-.feat-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--accent);margin-bottom:0.6rem;}
-.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:1.2rem;}
-.feat-item{background:var(--mid);border:1px solid var(--border);border-radius:6px;padding:0.7rem 0.9rem;font-size:0.83rem;color:var(--muted);line-height:1.5;}
-.feat-item strong{display:block;color:var(--bright);font-size:0.7rem;font-family:'JetBrains Mono',monospace;margin-bottom:0.2rem;letter-spacing:0.05em;}
-.feedback-strip{background:linear-gradient(135deg,rgba(118,196,66,0.08),rgba(76,175,80,0.04));border:1px solid rgba(118,196,66,0.2);border-radius:8px;padding:1rem 1.2rem;margin:1.2rem 0;}
-.fs-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--accent);margin-bottom:0.6rem;}
-.fs-items{display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;}
-.fs-item{font-size:0.82rem;color:var(--muted);line-height:1.5;}
-.fs-item em{color:var(--gold);font-style:italic;}
+.proj-desc{color:var(--muted);font-size:0.97rem;line-height:1.8;margin-bottom:1.5rem;}
+.proj-desc strong{color:var(--text);}
+.feat-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--gold);margin-bottom:0.7rem;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-bottom:1.5rem;}
+.feat-item{background:var(--dark2);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;font-size:0.83rem;color:var(--muted);line-height:1.5;}
+.feat-item strong{display:block;color:var(--bright);font-size:0.68rem;font-family:'JetBrains Mono',monospace;margin-bottom:0.3rem;letter-spacing:0.05em;}
 .pills{display:flex;flex-wrap:wrap;gap:0.4rem;margin:1rem 0;}
-.pill{font-family:'JetBrains Mono',monospace;font-size:0.62rem;padding:0.22rem 0.6rem;background:var(--mid);border:1px solid var(--border);border-radius:3px;color:var(--muted);}
-.proj-links{display:flex;gap:0.7rem;flex-wrap:wrap;}
-.pl-p{font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:0.5rem 1.1rem;background:var(--bright);color:var(--dark);text-decoration:none;border-radius:4px;font-weight:600;transition:opacity 0.2s;}
-.pl-p:hover{opacity:0.85;}
-.pl-o{font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:0.5rem 1.1rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;border-radius:4px;transition:all 0.2s;}
-.pl-o:hover{border-color:var(--bright);color:var(--bright);}
- 
+.pill{font-family:'JetBrains Mono',monospace;font-size:0.62rem;padding:0.22rem 0.6rem;background:var(--dark2);border:1px solid var(--border);border-radius:3px;color:var(--muted);}
+.proj-links{display:flex;gap:0.7rem;flex-wrap:wrap;margin-top:1.2rem;}
+.pl-p{font-family:'JetBrains Mono',monospace;font-size:0.72rem;padding:0.6rem 1.3rem;background:var(--bright);color:var(--dark);text-decoration:none;border-radius:30px;font-weight:600;transition:all 0.2s;}
+.pl-p:hover{background:var(--accent);}
+.pl-o{font-family:'JetBrains Mono',monospace;font-size:0.72rem;padding:0.6rem 1.3rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;border-radius:30px;transition:all 0.2s;}
+.pl-o:hover{border-color:var(--gold);color:var(--gold);}
+
 /* ROADMAP */
-.roadmap-section{background:var(--dark);padding:6rem 2.5rem;}
-.roadmap-inner{max-width:1100px;margin:0 auto;}
-.rm-note{background:linear-gradient(135deg,rgba(118,196,66,0.08),rgba(76,175,80,0.04));border:1px solid rgba(118,196,66,0.2);border-left:3px solid var(--bright);border-radius:0 8px 8px 0;padding:1rem 1.2rem;margin-bottom:2rem;font-size:0.9rem;color:var(--muted);font-style:italic;}
-.rm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
-.rm-card{background:var(--card);border:1px solid var(--border);padding:1.2rem;border-radius:8px;transition:border-color 0.2s,transform 0.2s;}
-.rm-card:hover{border-color:var(--bright);transform:translateY(-2px);}
-.rm-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--bright);line-height:1;margin-bottom:0.4rem;}
-.rm-title{font-size:0.9rem;font-weight:600;color:var(--white);margin-bottom:0.3rem;}
+.roadmap-section{background:var(--dark2);padding:6rem 0;}
+.roadmap-inner{max-width:1200px;margin:0 auto;padding:0 3rem;}
+.rm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.rm-card{background:var(--card);border:1px solid var(--border);padding:1.3rem;border-radius:10px;transition:border-color 0.2s,transform 0.2s;}
+.rm-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.rm-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:0.4rem;}
+.rm-title{font-size:0.92rem;font-weight:600;color:var(--white);margin-bottom:0.3rem;}
 .rm-desc{font-size:0.78rem;color:var(--muted);line-height:1.5;font-family:'JetBrains Mono',monospace;}
-.rm-status{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;margin-top:0.6rem;padding:0.2rem 0.5rem;border-radius:3px;display:inline-block;}
-.s-done{background:rgba(76,175,80,0.2);color:var(--bright);border:1px solid rgba(118,196,66,0.3);}
-.s-build{background:rgba(200,168,75,0.15);color:var(--gold);border:1px solid rgba(200,168,75,0.3);}
-.s-plan{background:var(--mid);color:var(--muted);border:1px solid var(--border);}
- 
+.rm-status{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;margin-top:0.7rem;padding:0.2rem 0.5rem;border-radius:3px;display:inline-block;}
+.s-done{background:rgba(76,175,80,0.15);color:var(--bright);border:1px solid rgba(118,196,66,0.25);}
+.s-build{background:rgba(200,168,75,0.12);color:var(--gold);border:1px solid rgba(200,168,75,0.25);}
+.s-plan{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--border);}
+
 /* SKILLS */
-.skills-section{background:var(--dark2);padding:6rem 2.5rem;}
-.skills-inner{max-width:1100px;margin:0 auto;}
-.skills-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:0.5rem;}
-.sk{background:var(--card);border:1px solid var(--border);padding:0.75rem 1rem;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;transition:all 0.2s;}
-.sk:hover{border-color:var(--bright);color:var(--bright);}
+.skills-section{background:var(--dark);padding:6rem 0;}
+.skills-inner{max-width:1200px;margin:0 auto;padding:0 3rem;}
+.skills-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0.6rem;}
+.sk{background:var(--card);border:1px solid var(--border);padding:0.8rem 1rem;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;transition:all 0.2s;}
+.sk:hover{border-color:var(--gold);color:var(--gold);}
 .sk-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
- 
+
 /* CONTACT */
-.contact-section{background:linear-gradient(135deg,var(--dark) 0%,#0D2A0D 50%,var(--dark2) 100%);padding:6rem 2.5rem;position:relative;overflow:hidden;}
-.contact-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(118,196,66,0.08) 0%,transparent 70%);}
-.contact-inner{max-width:1100px;margin:0 auto;position:relative;}
-.contact-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:var(--white);margin-bottom:1rem;line-height:1;}
-.contact-title em{color:var(--bright);font-style:italic;}
-.contact-sub{color:var(--muted);font-size:0.97rem;line-height:1.8;max-width:520px;margin-bottom:2rem;}
+.contact-section{background:var(--dark2);padding:6rem 0;}
+.contact-inner{max-width:1200px;margin:0 auto;padding:0 3rem;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.contact-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;color:var(--white);line-height:1.05;margin-bottom:1rem;}
+.contact-title em{color:var(--gold);font-style:italic;}
+.contact-sub{color:var(--muted);font-size:0.97rem;line-height:1.8;margin-bottom:2rem;}
 .contact-links{display:flex;gap:0.8rem;flex-wrap:wrap;}
- 
-footer{background:#061206;border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;justify-content:space-between;align-items:center;}
+.contact-info{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;}
+.ci-row{display:flex;align-items:center;gap:1rem;padding:0.8rem 0;border-bottom:1px solid var(--border);}
+.ci-row:last-child{border-bottom:none;}
+.ci-icon{width:36px;height:36px;border-radius:8px;background:rgba(200,168,75,0.1);border:1px solid rgba(200,168,75,0.2);display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;}
+.ci-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.2rem;}
+.ci-value{font-size:0.88rem;color:var(--text);}
+
+footer{background:#080F08;border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;}
 footer p{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted);}
 .open-dot{display:flex;align-items:center;gap:0.4rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--bright);}
-.open-dot::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--bright);animation:pulse 2s infinite;}
- 
-.eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:var(--accent);margin-bottom:0.5rem;}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--white);margin-bottom:2.5rem;line-height:1.1;}
- 
+.open-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--bright);animation:pulse 2s infinite;}
+
 .fade{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .fade.in{opacity:1;transform:none;}
- 
-@media(max-width:768px){
-  nav{padding:0.8rem 1.2rem;}
+
+@media(max-width:900px){
+  nav{padding:0.8rem 1.5rem;}
   .nav-links{display:none;}
-  .hero-content{grid-template-columns:1fr;}
+  .hero-content,.story-grid,.demo-grid,.about-grid,.contact-grid{grid-template-columns:1fr;}
   .hero-right{display:none;}
-  .about-grid{grid-template-columns:1fr;}
-  .feat-grid,.fs-items{grid-template-columns:1fr;}
-  .farmers-row-h{grid-template-columns:1fr 1fr;}
-  .farmers-row-h4{grid-template-columns:1fr 1fr;}
-  .father-hero img{height:350px;}
+  .section,.story-inner,.insights-inner,.farmers-inner,.demo-inner,.about-inner,.projects-inner,.roadmap-inner,.skills-inner,.contact-inner{padding:3.5rem 1.5rem;}
+  .feat-grid{grid-template-columns:1fr 1fr;}
+  .rm-grid{grid-template-columns:1fr 1fr;}
+  .photo-row-3{grid-template-columns:1fr 1fr;}
+  .photo-row-4{grid-template-columns:1fr 1fr;}
+  .insights-grid{grid-template-columns:1fr 1fr;}
   footer{flex-direction:column;gap:0.5rem;}
 }
 </style>
 </head>
 <body>
- 
+
 <nav>
-  <span class="nav-logo">Anshu Priya</span>
+  <span class="nav-logo">Anshu <span>Priya</span></span>
   <ul class="nav-links">
     <li><a href="#story">Story</a></li>
-    <li><a href="#about">About</a></li>
+    <li><a href="#demo">Demo</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <a href="mailto:priyatech.logic@gmail.com" class="nav-cta">Hire Me</a>
 </nav>
- 
+
 <!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
+  <div class="hero-grain"></div>
   <div class="hero-content">
     <div class="hero-left">
-      <div class="hero-tag">● OPEN TO WORK</div>
-      <h1>ANSHU<br/><em>PRIYA</em></h1>
-      <p class="hero-role">FLUTTER DEVELOPER · AGRITECH & SAFETY APPS</p>
-      <p class="hero-desc">
-        From the <strong>Jharkhand–Odisha border</strong>. Grew up in a farming family.
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>FLUTTER DEVELOPER · OPEN TO WORK</span>
+      </div>
+      <h1>Where Farmers<br/>Find Their<br/><em>Best Price.</em></h1>
+      <p class="hero-sub">
+        I grew up on the <strong>Jharkhand–Odisha border</strong> in a farming family.
         My father grows the crops. My mother handles the selling decisions.
-        Every harvest — the same question. <strong>So I built something about it.</strong>
+        Every harvest, the same question — <strong>where do we sell for a better price?</strong>
+        So I built something about it.
       </p>
       <div class="hero-cta">
-        <a href="#projects" class="btn-bright">See What I Built →</a>
-        <a href="https://github.com/priya-codesdaily" target="_blank" class="btn-ghost">GitHub</a>
-        <a href="mailto:priyatech.logic@gmail.com" class="btn-ghost">Email</a>
+        <a href="#projects" class="btn-gold">▶️ See What I Built</a>
+        <a href="https://youtu.be/2PWweDEcCpc" target="_blank" class="hero-video-btn">
+          <span class="play-icon">▶️</span>
+          Watch Documentary
+        </a>
       </div>
     </div>
     <div class="hero-right">
-      <div class="stat-3d">
-        <div class="stat-num">2</div>
-        <div class="stat-label">REAL APPS LIVE</div>
-        <div class="stat-sub">AgroPredict + REPSHIELD — both on GitHub with downloadable APKs</div>
+      <div class="hero-stat-chip">
+        <span class="n">24h</span>
+        <span class="l">FEEDBACK<br/>TO FEATURE</span>
       </div>
-      <div class="stat-3d">
-        <div class="stat-num">0</div>
-        <div class="stat-label">TUTORIAL PROJECTS</div>
-        <div class="stat-sub">Every app built for a real problem I personally experienced</div>
-      </div>
-      <div class="stat-3d">
-        <div class="stat-num">24h</div>
-        <div class="stat-label">FEEDBACK → FEATURE</div>
-        <div class="stat-sub">Farmer said "which rice?" — variety selector shipped next day</div>
+      <div class="hero-father-img">
+        <img src="father.jpeg" alt="My father in our mango farm" onerror="this.parentNode.classList.add('no-img')"/>
+        <div class="hero-img-overlay">
+          <div class="hero-img-tag">📍 OUR FARM · JHARKHAND</div>
+          <div class="hero-img-caption">My father — where AgroPredict started.</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
- 
-<!-- FATHER PHOTO — right after hero intro -->
-<div style="background:var(--dark);padding:0 2.5rem 4rem;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:340px 1fr;gap:3rem;align-items:center;">
-      <div class="father-card">
-        <img src="father.jpeg" alt="My father in our mango farm"/>
-        <div class="fc-caption">
-          <div class="fc-name">My Father</div>
-          📍 Our farm · Jharkhand–Odisha Border
+
+<!-- STATUS BANNER -->
+<div class="status-banner">
+  <div class="status-inner">
+    <div class="status-dot"></div>
+    <p class="status-text">
+      <strong>AgroPredict is actively being tested and improved.</strong>
+      Current focus areas include calculation accuracy, accessibility, and farmer-driven feature development.
+    </p>
+  </div>
+</div>
+
+<!-- STORY -->
+<div class="story-section" id="story">
+  <div class="story-inner fade">
+    <div class="story-grid">
+      <div>
+        <div class="sec-eyebrow"><div class="sec-eyebrow-line"></div><span>THE PROBLEM</span></div>
+        <div class="big-quote">
+          Farmers don't lose money<br/>growing crops.<br/>
+          <em>They lose it selling them.</em>
         </div>
+        <p class="story-para">I visited farms across Odisha and Jharkhand. Sat with farmers. Asked where they sell, how much profit they make, whether they know a better price exists nearby.</p>
+        <p class="story-para">Almost every farmer sells locally by default — not because it's the best price. Because they have <strong>no easy way to compare.</strong></p>
+        <p class="story-para">Every harvest season, the same question came up at home — where should we sell? Different mandis offered different prices, but comparing them was difficult. AgroPredict started as an attempt to make that decision easier for my family and nearby farmers.</p>
       </div>
       <div>
-        <p style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--white);line-height:1.4;margin-bottom:1rem;">
-          He grows the mangoes.<br/>
-          My mother decides<br/>
-          <em style="color:var(--bright);font-style:italic;">where to sell them.</em>
-        </p>
-        <p style="color:var(--muted);font-size:0.97rem;line-height:1.8;">
-          Every harvest season, the same question came up at home — where should we sell? Different mandis offered different prices, but comparing them was difficult. AgroPredict started as an attempt to make that decision easier for my family and nearby farmers.
-        </p>
-        <div style="margin-top:1.5rem;background:rgba(118,196,66,0.07);border:1px solid rgba(118,196,66,0.2);border-radius:10px;padding:1.2rem 1.5rem;">
-          <p style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--accent);margin-bottom:0.8rem;">BUILT FROM</p>
-          <div style="display:flex;flex-direction:column;gap:0.5rem;">
-            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:var(--muted);">
-              <span style="color:var(--bright);font-weight:600;">✓</span> Family farming experience — Jharkhand–Odisha border
-            </div>
-            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:var(--muted);">
-              <span style="color:var(--bright);font-weight:600;">✓</span> Farmer conversations across Odisha &amp; Jharkhand
-            </div>
-            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:var(--muted);">
-              <span style="color:var(--bright);font-weight:600;">✓</span> AGMARKNET — Government of India mandi price data
-            </div>
-            <div style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:var(--muted);">
-              <span style="color:var(--bright);font-weight:600;">✓</span> Continuous user feedback — features shipped within 24 hours
-            </div>
-          </div>
-        </div>
+        <div class="sec-eyebrow"><div class="sec-eyebrow-line"></div><span>FEEDBACK → FEATURE</span></div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--white);margin-bottom:1.2rem;">Every feature has a real origin.</h3>
+        <table class="feedback-table">
+          <thead>
+            <tr>
+              <th>Farmer Feedback</th>
+              <th>What I Built</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>"Which variety?"</td><td>Added variety selector</td></tr>
+            <tr><td>"Padhne mein dikkat hota hai"</td><td>Started voice support</td></tr>
+            <tr><td>"Profit nahi hota"</td><td>Built transport profit calculator</td></tr>
+            <tr><td>Farmers compare markets</td><td>Added mandi comparison</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
- 
-<!-- PROBLEM -->
-<div class="problem-section" id="story">
-  <div class="problem-inner fade">
-    <p class="eyebrow">01 — THE PROBLEM</p>
-    <div class="big-quote">
-      Farmers don't lose money growing crops.<br/>
-      <em>They lose it selling them.</em>
+
+<!-- FARMER INSIGHTS -->
+<div class="insights-section">
+  <div class="insights-inner fade">
+    <div class="sec-eyebrow"><div class="sec-eyebrow-line"></div><span>WHAT I LEARNED</span></div>
+    <h2 class="sec-title">What Farmers <em>Taught Me</em></h2>
+    <p class="sec-sub">Key insights from conversations with farmers across Jharkhand and Odisha — not assumptions, real observations.</p>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <span class="insight-icon">💰</span>
+        <div class="insight-text"><strong>Profit matters more than price</strong>Farmers care about what they take home after transport — not just the mandi rate.</div>
+      </div>
+      <div class="insight-card">
+        <span class="insight-icon">🌾</span>
+        <div class="insight-text"><strong>Variety matters more than crop name</strong>"Rice" is not enough — Basmati, Sona Masuri, Common are completely different decisions.</div>
+      </div>
+      <div class="insight-card">
+        <span class="insight-icon">🔊</span>
+        <div class="insight-text"><strong>Voice beats typing</strong>Many farmers prefer to speak the crop name rather than type — especially in Hindi.</div>
+      </div>
+      <div class="insight-card">
+        <span class="insight-icon">📊</span>
+        <div class="insight-text"><strong>Information creates profit</strong>Knowing one better mandi exists can change the selling decision entirely.</div>
+      </div>
+      <div class="insight-card">
+        <span class="insight-icon">🤝</span>
+        <div class="insight-text"><strong>Buyer discovery is harder than price discovery</strong>Finding who is buying at a good rate is often the bigger problem.</div>
+      </div>
+      <div class="insight-card">
+        <span class="insight-icon">🏘️</span>
+        <div class="insight-text"><strong>Small farmers lack market connections</strong>Large farmers have contacts. Small farmers rely on whoever shows up first.</div>
+      </div>
     </div>
-    <p style="color:var(--muted);max-width:600px;line-height:1.9;margin-bottom:2rem;">
-      I visited farms across Odisha and Jharkhand. Sat with farmers. Asked where they sell, how much profit they make, whether they know a better price exists nearby. Almost every farmer sells locally by default — not because it's best. Because they have no way to compare.
-    </p>
-    <div class="feedback-grid">
-      <div class="fb-card">
-        <div class="fb-hindi">"Which rice?"</div>
-        <div class="fb-result">→ Crop variety selector added in 24 hours</div>
-      </div>
-      <div class="fb-card">
-        <div class="fb-hindi">"Padhne me dikkat hota hai"</div>
-        <div class="fb-result">→ Voice output added on advice screen</div>
-      </div>
-      <div class="fb-card">
-        <div class="fb-hindi">"Mehnat ka faal nahi milta"</div>
-        <div class="fb-result">→ Transport profit calculator built</div>
-      </div>
-      <div class="fb-card">
-        <div class="fb-hindi">"Kitna kg mein?"</div>
-        <div class="fb-result">→ ₹/quintal ↔ ₹/kg toggle added</div>
-      </div>
+    <div style="margin-top:1.5rem;">
+      <a href="https://github.com/priya-codesdaily/agropredict/blob/main/FIELD_RESEARCH.md" target="_blank" class="read-more">
+        📖 Read Full Field Research Notes →
+      </a>
     </div>
   </div>
 </div>
- 
-<!-- FARMERS PHOTOS -->
+
+<!-- FARMER PHOTOS -->
 <div class="farmers-section fade">
   <div class="farmers-inner">
-    <h2 class="farmers-title">Built With <span>Farmer Feedback</span></h2>
-    <p class="farmers-subtitle">CONVERSATIONS WITH FARMERS ACROSS JHARKHAND AND ODISHA</p>
- 
-    <!-- Odisha farmers 5, 6, 7 — horizontal -->
-    <div class="farmers-row-h" style="margin-bottom:1rem;">
-      <div class="ph-h">
-        <img src="farmer5.jpg.jpeg" alt="Farmer in Odisha"/>
-        <div class="photo-loc">📍 ODISHA</div>
-      </div>
-      <div class="ph-h">
-        <img src="farmer6.jpg.jpeg" alt="Farmer in Odisha"/>
-        <div class="photo-loc">📍 ODISHA</div>
-      </div>
-      <div class="ph-h">
-        <img src="farmer7.jpg.jpeg" alt="Farmer in Odisha"/>
-        <div class="photo-loc">📍 ODISHA</div>
-      </div>
+    <div class="sec-eyebrow" style="margin-bottom:1rem;"><div class="sec-eyebrow-line"></div><span>BUILT WITH FARMER FEEDBACK</span></div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--white);margin-bottom:1.5rem;">Conversations across <em style="color:var(--gold);font-style:italic;">Jharkhand & Odisha</em></h2>
+    <div class="photo-row-3" style="margin-bottom:1rem;">
+      <div class="ph h"><img src="farmer5.jpg.jpeg" alt="Farmer Odisha"/><div class="ph-loc">📍 ODISHA</div></div>
+      <div class="ph h"><img src="farmer6.jpg.jpeg" alt="Farmer Odisha"/><div class="ph-loc">📍 ODISHA</div></div>
+      <div class="ph h"><img src="farmer7.jpg.jpeg" alt="Farmer Odisha"/><div class="ph-loc">📍 ODISHA</div></div>
     </div>
- 
-    <!-- Jharkhand farmers 1, 2, 3, 4 — horizontal -->
-    <div class="farmers-row-h4">
-      <div class="ph-h">
-        <img src="farmer1.jpg.jpeg" alt="Farmer in Jharkhand"/>
-        <div class="photo-loc">📍 JHARKHAND</div>
+    <div class="photo-row-4">
+      <div class="ph h"><img src="farmer1.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
+      <div class="ph h"><img src="farmer2.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
+      <div class="ph h"><img src="farmer3.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
+      <div class="ph h"><img src="farmer4.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DEMO -->
+<div class="demo-section" id="demo">
+  <div class="demo-inner fade">
+    <div class="demo-grid">
+      <div>
+        <div class="sec-eyebrow"><div class="sec-eyebrow-line"></div><span>DOCUMENTARY + APP DEMO</span></div>
+        <h2 class="sec-title">See the <em>Problem. See the App.</em></h2>
+        <p style="color:var(--muted);line-height:1.9;margin-bottom:1.5rem;">The documentary shows the real problem — farmers speaking in their own words across Jharkhand and Odisha. The app demo shows what I built to solve it.</p>
+        <a href="https://youtu.be/2PWweDEcCpc" target="_blank" class="btn-gold" style="margin-bottom:1rem;">▶️ Watch Documentary</a>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);margin-top:0.8rem;letter-spacing:0.05em;">App demo coming soon — currently fixing final screens.</p>
       </div>
-      <div class="ph-h">
-        <img src="farmer2.jpg.jpeg" alt="Farmer in Jharkhand"/>
-        <div class="photo-loc">📍 JHARKHAND</div>
-      </div>
-      <div class="ph-h">
-        <img src="farmer3.jpg.jpeg" alt="Farmer in Jharkhand"/>
-        <div class="photo-loc">📍 JHARKHAND</div>
-      </div>
-      <div class="ph-h">
-        <img src="farmer4.jpg.jpeg" alt="Farmer in Jharkhand"/>
-        <div class="photo-loc">📍 JHARKHAND</div>
+      <div>
+        <a href="https://youtu.be/2PWweDEcCpc" target="_blank" class="demo-video-wrap" style="display:flex;text-decoration:none;">
+          <div class="demo-play">▶️</div>
+          <div class="demo-label">FARMER DOCUMENTARY · JHARKHAND & ODISHA</div>
+          <div class="demo-coming">APP DEMO COMING SOON</div>
+        </a>
       </div>
     </div>
   </div>
 </div>
- 
+
 <!-- ABOUT -->
 <div class="about-section" id="about">
   <div class="about-inner fade">
-    <p class="eyebrow">02 — ABOUT ME</p>
-    <h2 class="sec-title">Who I Am</h2>
+    <div class="sec-eyebrow"><div class="sec-eyebrow-line"></div><span>ABOUT ME</span></div>
+    <h2 class="sec-title">Who <em>I Am</em></h2>
     <div class="about-grid">
-      <div class="about-photo-wrap">
-        <div class="photo-frame">
+      <div>
+        <div class="about-photo">
           <img src="me.jpeg" alt="Anshu Priya"/>
         </div>
-        <div class="about-badge">FLUTTER DEV</div>
       </div>
       <div class="about-text">
         <p>I'm a self-taught Flutter developer and BCA student from the <strong>Jharkhand–Odisha border</strong>. I build mobile apps around real problems — not just to fill a portfolio.</p>
-        <p>AgroPredict came from watching my parents face the same decision every harvest — my father on the farm, my mother figuring out where to sell. I also built REPSHIELD — one shake sends your live GPS location to trusted contacts. No unlock needed.</p>
+        <p>AgroPredict came from watching my parents face the same decision every harvest — my father on the farm, my mother figuring out where to sell. I also built REPSHIELD — a safety app where one shake sends your live GPS location to trusted contacts. No unlock needed.</p>
         <p>I taught English for almost a year. Teaching kids who aren't technical taught me the same thing building for farmers did — <strong>if someone can use it without asking for help, you got it right.</strong></p>
-        <p>I'm 20, paying my own fees. I want to build things that reach people who actually need them.</p>
+        <p>I'm 20, paying my own fees, and ready to work. I want to build things that reach people who actually need them.</p>
         <div class="about-chips">
           <span class="chip">Real problems</span>
           <span class="chip">User research</span>
@@ -422,36 +489,27 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--mu
     </div>
   </div>
 </div>
- 
+
 <!-- PROJECTS -->
 <div class="projects-section" id="projects">
   <div class="projects-inner fade">
-    <p class="eyebrow">03 — PROJECTS</p>
-    <h2 class="sec-title">What I Built</h2>
- 
+    <div class="sec-eyebrow"><div class="sec-eyebrow-line"></div><span>PROJECTS</span></div>
+    <h2 class="sec-title">What <em>I Built</em></h2>
+
     <div class="proj-card">
-      <div class="proj-glow-top"></div>
+      <div class="proj-top-g"></div>
       <div class="proj-body">
         <div class="proj-name-g">AgroPredict</div>
         <div class="proj-sub">AGRITECH · FLUTTER · AGMARKNET API · GPS · HINDI + VOICE</div>
-        <p class="proj-desc">A crop price decision-support app that helps farmers decide <strong>where and when to sell</strong> for better profit. Connects to India's AGMARKNET government data. Full Hindi interface. Tested with farmers across Odisha and Jharkhand.</p>
+        <p class="proj-desc">A crop price decision-support app that helps farmers decide <strong>where and when to sell</strong> for better profit. Connects to India's AGMARKNET government data. Full Hindi interface. Tested with farmers across Odisha and Jharkhand through field visits and feedback conversations.</p>
         <div class="feat-label">WHAT IT DOES</div>
         <div class="feat-grid">
           <div class="feat-item"><strong>GPS MANDI</strong>Nearest mandi with approximate distance and travel time</div>
           <div class="feat-item"><strong>PROFIT CALC</strong>Net profit after estimated transport cost before the trip</div>
           <div class="feat-item"><strong>SELL / WAIT</strong>Rule-based advice with plain reasoning — no ML model</div>
           <div class="feat-item"><strong>VOICE OUTPUT</strong>Reads advice aloud in Hindi — farmer hears without reading</div>
-          <div class="feat-item"><strong>VARIETIES</strong>Basmati vs Common — farmers think in varieties</div>
-          <div class="feat-item"><strong>HINDI UI</strong>Full Hindi interface + ₹/quintal ↔ ₹/kg toggle</div>
-        </div>
-        <div class="feedback-strip">
-          <div class="fs-label">REAL FEEDBACK THAT CHANGED THE APP</div>
-          <div class="fs-items">
-            <div class="fs-item"><em>"Which rice?"</em> → varieties in 24hrs</div>
-            <div class="fs-item"><em>"Padhne me dikkat"</em> → voice output</div>
-            <div class="fs-item"><em>"Faal nahi milta"</em> → profit calculator</div>
-            <div class="fs-item"><em>"Kitna kg mein?"</em> → kg toggle</div>
-          </div>
+          <div class="feat-item"><strong>VARIETIES</strong>Basmati vs Common — because farmers think in varieties</div>
+          <div class="feat-item"><strong>HINDI UI</strong>Full Hindi interface + ₹/quintal ↔️ ₹/kg toggle</div>
         </div>
         <div class="pills">
           <span class="pill">AGMARKNET API</span><span class="pill">GPS</span>
@@ -461,13 +519,14 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--mu
         </div>
         <div class="proj-links">
           <a href="https://github.com/priya-codesdaily/agropredict" target="_blank" class="pl-p">GitHub →</a>
+          <a href="https://youtu.be/2PWweDEcCpc" target="_blank" class="pl-o">▶️ Documentary</a>
           <a href="#roadmap" class="pl-o">V2 Roadmap</a>
         </div>
       </div>
     </div>
- 
-    <div class="proj-card" style="margin-top:1.5rem;">
-      <div class="proj-red-top"></div>
+
+    <div class="proj-card">
+      <div class="proj-top-r"></div>
       <div class="proj-body">
         <div class="proj-name-r">REPSHIELD</div>
         <div class="proj-sub">SAFETY APP · FLUTTER · ANDROID · v1.0.0</div>
@@ -492,17 +551,17 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--mu
     </div>
   </div>
 </div>
- 
+
 <!-- ROADMAP -->
 <div class="roadmap-section" id="roadmap">
   <div class="roadmap-inner fade">
-    <p class="eyebrow">04 — V2 ROADMAP</p>
-    <h2 class="sec-title">What's Next</h2>
-    <div class="rm-note">Every feature below came from real farmer feedback. Not a wishlist — a response to real problems people told me about.</div>
+    <div class="sec-eyebrow"><div class="sec-eyebrow-line"></div><span>AGROPREDICT V2</span></div>
+    <h2 class="sec-title">What's <em>Next</em></h2>
+    <p class="sec-sub">Every feature came from real farmer feedback — not a wishlist.</p>
     <div class="rm-grid">
       <div class="rm-card"><div class="rm-num">01</div><div class="rm-title">Price Date</div><div class="rm-desc">Show actual data date — not just "today"</div><span class="rm-status s-done">DONE ✓</span></div>
       <div class="rm-card"><div class="rm-num">02</div><div class="rm-title">Voice Output</div><div class="rm-desc">Advice read aloud in Hindi on advice screen</div><span class="rm-status s-done">DONE ✓</span></div>
-      <div class="rm-card"><div class="rm-num">03</div><div class="rm-title">Selling Score</div><div class="rm-desc">🟢 Good · 🟡 Average · 🔴 Wait — one glance</div><span class="rm-status s-build">BUILDING</span></div>
+      <div class="rm-card"><div class="rm-num">03</div><div class="rm-title">Selling Score</div><div class="rm-desc">🟢 Good · 🟡 Average · 🔴 Wait</div><span class="rm-status s-build">BUILDING</span></div>
       <div class="rm-card"><div class="rm-num">04</div><div class="rm-title">Shared Transport</div><div class="rm-desc">Split cost between neighbouring farmers</div><span class="rm-status s-plan">PLANNED</span></div>
       <div class="rm-card"><div class="rm-num">05</div><div class="rm-title">Price History</div><div class="rm-desc">30-day trend — rising or falling?</div><span class="rm-status s-plan">PLANNED</span></div>
       <div class="rm-card"><div class="rm-num">06</div><div class="rm-title">Offline Mode</div><div class="rm-desc">Cache prices — works without internet</div><span class="rm-status s-plan">PLANNED</span></div>
@@ -511,12 +570,12 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--mu
     </div>
   </div>
 </div>
- 
+
 <!-- SKILLS -->
-<div class="skills-section" id="skills">
+<div class="skills-section">
   <div class="skills-inner fade">
-    <p class="eyebrow">05 — SKILLS</p>
-    <h2 class="sec-title">Tech Stack</h2>
+    <div class="sec-eyebrow"><div class="sec-eyebrow-line"></div><span>TECH STACK</span></div>
+    <h2 class="sec-title">Skills &amp; <em>Tools</em></h2>
     <div class="skills-wrap">
       <div class="sk"><span class="sk-dot" style="background:var(--bright)"></span>Flutter</div>
       <div class="sk"><span class="sk-dot" style="background:var(--bright)"></span>Dart</div>
@@ -537,47 +596,55 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--mu
     </div>
   </div>
 </div>
- 
+
 <!-- CONTACT -->
 <div class="contact-section" id="contact">
   <div class="contact-inner fade">
-    <p class="eyebrow">06 — CONTACT</p>
-    <h2 class="contact-title">Let's Work<br/><em>Together</em></h2>
-    <p class="contact-sub">Looking for a Flutter developer role — internship, full-time, or remote. I care about building things that reach people who actually need them. If your team does that, let's talk.</p>
-    <div class="contact-links">
-      <a href="mailto:priyatech.logic@gmail.com" class="btn-bright">Email Me →</a>
-      <a href="https://github.com/priya-codesdaily" target="_blank" class="btn-ghost">GitHub</a>
-      <a href="https://linkedin.com/in/a-priya-dev" target="_blank" class="btn-ghost">LinkedIn</a>
+    <div class="contact-grid">
+      <div>
+        <div class="sec-eyebrow"><div class="sec-eyebrow-line"></div><span>CONTACT</span></div>
+        <h2 class="contact-title">Let's Work<br/><em>Together.</em></h2>
+        <p class="contact-sub">Looking for a Flutter developer role — internship, full-time, or remote. I care about building things that reach people who actually need them. If your team does that, let's talk.</p>
+        <div class="contact-links">
+          <a href="mailto:priyatech.logic@gmail.com" class="btn-gold">Email Me →</a>
+          <a href="https://github.com/priya-codesdaily" target="_blank" class="btn-outline">GitHub</a>
+          <a href="https://linkedin.com/in/a-priya-dev" target="_blank" class="btn-outline">LinkedIn</a>
+        </div>
+      </div>
+      <div class="contact-info">
+        <div class="ci-row">
+          <div class="ci-icon">✉️</div>
+          <div><div class="ci-label">EMAIL</div><div class="ci-value">priyatech.logic@gmail.com</div></div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">📱</div>
+          <div><div class="ci-label">PHONE</div><div class="ci-value">7327950897</div></div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">📍</div>
+          <div><div class="ci-label">LOCATION</div><div class="ci-value">Jharkhand–Odisha Border, India</div></div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">💼</div>
+          <div><div class="ci-label">AVAILABILITY</div><div class="ci-value">Remote / Hybrid / Onsite — Open Now</div></div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">🌐</div>
+          <div><div class="ci-label">PORTFOLIO</div><div class="ci-value">priya-codesdaily.github.io</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
- 
+
 <footer>
   <p>© 2026 Anshu Priya · Flutter Developer · Jharkhand–Odisha Border, India</p>
   <span class="open-dot">Open to Work</span>
 </footer>
- 
+
 <script>
 const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('in');});},{threshold:0.08});
 document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
