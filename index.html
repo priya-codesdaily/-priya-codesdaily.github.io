@@ -4,232 +4,297 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Anshu Priya · Flutter Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-:root{
-  --dark:#0D1F0D;--dark2:#111F11;--card:#162416;--border:#1E3A1E;
-  --accent:#4CAF50;--bright:#76C442;--gold:#C8A84B;--gold2:#E8C86A;
-  --muted:#7A9A7A;--text:#E8F0E8;--white:#F5FFF5;
-}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--dark);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden;}
+body{background:#0C0C0C;color:#E8E8E8;font-family:'Outfit',sans-serif;overflow-x:hidden;}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(13,31,13,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);font-weight:700;}
-.nav-logo span{color:var(--gold);}
+/* ── TOKENS ── */
+:root{
+  --canvas:#0C0C0C;
+  --surface:#141414;
+  --border:#222;
+  --text:#E8E8E8;
+  --muted:#666;
+  --ag-dark:#0F2010;
+  --ag-mid:#1A3A1A;
+  --ag-green:#76C442;
+  --ag-gold:#C8A84B;
+  --rs-dark:#080E1A;
+  --rs-navy:#0D1B2A;
+  --rs-red:#EF4444;
+  --rs-blue:#3B82F6;
+  --sp-white:#F5F5F5;
+  --sp-black:#0A0A0A;
+  --sp-green:#10B981;
+  --sp-amber:#F59E0B;
+}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(12,12,12,0.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:0.85rem;color:#fff;letter-spacing:0.08em;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;transition:color 0.2s;}
-.nav-links a:hover{color:var(--white);}
-.nav-cta{padding:0.55rem 1.4rem;background:var(--gold);color:var(--dark);font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:600;border-radius:30px;text-decoration:none;letter-spacing:0.04em;transition:all 0.2s;}
-.nav-cta:hover{background:var(--gold2);}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:0.05em;transition:color 0.2s;}
+.nav-links a:hover{color:#fff;}
+.nav-hire{font-family:'JetBrains Mono',monospace;font-size:0.72rem;padding:0.5rem 1.2rem;border:1px solid #444;color:#E8E8E8;border-radius:4px;text-decoration:none;transition:all 0.2s;letter-spacing:0.05em;}
+.nav-hire:hover{background:#fff;color:#000;}
 
-/* HERO */
-.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;padding:8rem 3rem 5rem;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 70% 40%,#1A3A1A 0%,#0D1F0D 55%,#080F08 100%);}
-.hero-content{position:relative;max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.1fr 0.9fr;gap:5rem;align-items:center;}
-.eyebrow-row{display:flex;align-items:center;gap:0.7rem;margin-bottom:1.4rem;}
-.eyebrow-line{width:40px;height:1.5px;background:var(--gold);}
-.eyebrow-text{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:var(--gold);}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.1;font-weight:900;color:var(--white);margin-bottom:1.2rem;}
-.hero h1 em{font-style:italic;color:var(--gold);}
-.hero-sub{font-size:1rem;color:var(--muted);line-height:1.8;max-width:480px;margin-bottom:2rem;}
-.hero-sub strong{color:var(--text);}
-.hero-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
-.btn-gold{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:var(--gold);color:var(--dark);font-family:'JetBrains Mono',monospace;font-size:0.75rem;font-weight:700;border-radius:30px;text-decoration:none;transition:all 0.2s;letter-spacing:0.04em;}
-.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
-.btn-outline{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 1.8rem;border:1px solid rgba(255,255,255,0.15);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:0.75rem;border-radius:30px;text-decoration:none;transition:all 0.2s;}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
-.video-btn{display:inline-flex;align-items:center;gap:0.6rem;color:var(--muted);font-size:0.88rem;text-decoration:none;transition:color 0.2s;}
-.video-btn:hover{color:var(--gold);}
-.play-circle{width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,168,75,0.4);display:flex;align-items:center;justify-content:center;font-size:0.8rem;}
+/* ── BENTO HERO ── */
+.hero{padding:7rem 2.5rem 3rem;max-width:1200px;margin:0 auto;}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:1rem;}
 
-.hero-right{position:relative;}
-.hero-photo-wrap{border-radius:16px;overflow:hidden;aspect-ratio:3/4;max-height:520px;position:relative;border:1px solid var(--border);}
-.hero-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(0.88) saturate(0.9);}
-.hero-photo-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(8,15,8,0.95) 0%,transparent 100%);}
-.hero-photo-tag{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--gold);margin-bottom:0.3rem;}
-.hero-photo-cap{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);font-style:italic;line-height:1.4;}
-.stat-chip{position:absolute;top:1.5rem;right:-1rem;background:var(--gold);color:var(--dark);padding:0.7rem 1rem;border-radius:10px;font-family:'JetBrains Mono',monospace;text-align:center;z-index:2;}
-.stat-chip .n{font-size:1.4rem;font-weight:700;font-family:'Playfair Display',serif;display:block;line-height:1;}
-.stat-chip .l{font-size:0.58rem;letter-spacing:0.1em;display:block;margin-top:0.2rem;}
+/* NAME BLOCK — spans 7 cols */
+.b-name{grid-column:1/8;grid-row:1;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2.5rem;position:relative;overflow:hidden;}
+.b-name::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ag-green),var(--rs-blue),var(--sp-green));}
+.b-name h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,4vw,3.8rem);font-weight:900;color:#fff;line-height:1;margin-bottom:0.5rem;}
+.b-name h1 em{font-style:italic;color:var(--ag-green);}
+.b-name p{color:var(--muted);font-size:0.9rem;line-height:1.6;max-width:420px;}
+.b-name p strong{color:#E8E8E8;}
 
-/* STATUS BANNER */
-.status-banner{background:rgba(200,168,75,0.07);border-top:1px solid rgba(200,168,75,0.15);border-bottom:1px solid rgba(200,168,75,0.15);padding:0.9rem 3rem;}
-.status-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:0.8rem;}
-.status-dot{width:7px;height:7px;border-radius:50%;background:var(--bright);flex-shrink:0;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.status-text{font-size:0.88rem;color:rgba(232,200,106,0.8);line-height:1.5;}
-.status-text strong{color:var(--gold2);}
+/* TAGLINE BLOCK — spans 5 cols */
+.b-tag{grid-column:8/13;grid-row:1;background:var(--ag-green);border-radius:12px;padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;}
+.b-tag .tag-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;color:rgba(0,0,0,0.5);margin-bottom:0.5rem;}
+.b-tag .tag-text{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#0C0C0C;line-height:1.3;}
+.b-tag .tag-bottom{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:rgba(0,0,0,0.6);letter-spacing:0.08em;}
 
-/* SECTION */
-.sec-wrap{max-width:1200px;margin:0 auto;padding:6rem 3rem;}
-.eyebrow-row{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.8rem;}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--white);margin-bottom:1rem;line-height:1.1;}
-.sec-title em{font-style:italic;color:var(--gold);}
-.sec-sub{color:var(--muted);font-size:0.97rem;line-height:1.8;max-width:580px;margin-bottom:2.5rem;}
+/* STAT BLOCKS */
+.b-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between;}
+.b-stat-1{grid-column:1/4;grid-row:2;}
+.b-stat-2{grid-column:4/7;grid-row:2;}
+.b-stat-3{grid-column:7/10;grid-row:2;}
+.b-stat .s-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:#fff;line-height:1;}
+.b-stat .s-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--muted);margin-top:0.3rem;}
+.b-stat .s-sub{font-size:0.8rem;color:var(--muted);margin-top:0.5rem;line-height:1.4;}
 
-/* STORY */
-.story-bg{background:var(--dark2);}
-.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
-.big-quote{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.5rem);line-height:1.3;color:var(--white);margin-bottom:1.5rem;}
-.big-quote em{color:var(--gold);font-style:italic;}
-.sp{color:var(--muted);line-height:1.9;font-size:0.97rem;margin-bottom:1rem;}
-.sp strong{color:var(--text);}
-.feedback-table{width:100%;border-collapse:collapse;margin-top:1.5rem;}
-.feedback-table th{font-family:'JetBrains Mono',monospace;font-size:0.63rem;letter-spacing:0.15em;color:var(--gold);padding:0.6rem 1rem;border-bottom:1px solid var(--border);text-align:left;}
-.feedback-table td{padding:0.85rem 1rem;font-size:0.88rem;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--muted);}
-.feedback-table tr:hover td{background:rgba(118,196,66,0.04);}
-.feedback-table td:first-child{font-style:italic;color:var(--gold2);}
-.feedback-table td:last-child{color:var(--bright);}
-.feedback-table td:last-child::before{content:'→ ';}
+/* OPEN TO WORK BLOCK */
+.b-open{grid-column:10/13;grid-row:2;background:#111;border:1px solid #333;border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between;}
+.b-open .pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--ag-green);animation:pulse 2s infinite;margin-bottom:0.8rem;}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(118,196,66,0.4);}50%{opacity:0.8;box-shadow:0 0 0 6px rgba(118,196,66,0);}}
+.b-open .open-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;margin-bottom:0.3rem;}
+.b-open .open-sub{font-size:0.8rem;color:var(--muted);line-height:1.4;}
+.b-open .open-links{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.8rem;}
+.b-open .open-link{font-family:'JetBrains Mono',monospace;font-size:0.6rem;padding:0.25rem 0.6rem;border:1px solid #333;border-radius:3px;color:var(--muted);text-decoration:none;transition:all 0.2s;letter-spacing:0.05em;}
+.b-open .open-link:hover{border-color:var(--ag-green);color:var(--ag-green);}
 
-/* FATHER SECTION */
-.father-section{background:var(--dark);padding:5rem 3rem;}
-.father-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:300px 1fr;gap:4rem;align-items:center;}
-.father-photo{border-radius:14px;overflow:hidden;aspect-ratio:3/4;border:2px solid var(--border);box-shadow:8px 8px 0 var(--gold);}
-.father-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(0.88) saturate(0.9);}
-.father-caption{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,2.5vw,2rem);color:var(--white);line-height:1.4;margin-bottom:1.2rem;font-style:italic;}
-.father-caption em{color:var(--gold);font-style:normal;}
-.father-desc{color:var(--muted);line-height:1.9;font-size:0.97rem;margin-bottom:1.5rem;}
-.impact-box{background:rgba(118,196,66,0.06);border:1px solid rgba(118,196,66,0.18);border-radius:10px;padding:1.2rem 1.5rem;}
-.impact-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--accent);margin-bottom:0.8rem;}
-.impact-items{display:flex;flex-direction:column;gap:0.45rem;}
-.impact-item{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--muted);}
-.impact-item span{color:var(--bright);font-weight:600;flex-shrink:0;}
+/* PROJECT PREVIEW BLOCKS */
+.b-ag{grid-column:1/5;grid-row:3;background:var(--ag-dark);border:1px solid #1E3A1E;border-radius:12px;padding:1.5rem;cursor:pointer;transition:transform 0.2s,border-color 0.2s;text-decoration:none;display:block;}
+.b-ag:hover{transform:translateY(-3px);border-color:var(--ag-green);}
+.b-rs{grid-column:5/9;grid-row:3;background:var(--rs-dark);border:1px solid #1a2a40;border-radius:12px;padding:1.5rem;cursor:pointer;transition:transform 0.2s,border-color 0.2s;text-decoration:none;display:block;}
+.b-rs:hover{transform:translateY(-3px);border-color:var(--rs-blue);}
+.b-sp{grid-column:9/13;grid-row:3;background:#0A0A0A;border:1px solid #222;border-radius:12px;padding:1.5rem;cursor:pointer;transition:transform 0.2s,border-color 0.2s;text-decoration:none;display:block;}
+.b-sp:hover{transform:translateY(-3px);border-color:var(--sp-green);}
+.proj-chip{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;padding:0.2rem 0.6rem;border-radius:20px;margin-bottom:0.8rem;display:inline-block;}
+.chip-ag{background:rgba(118,196,66,0.15);color:var(--ag-green);border:1px solid rgba(118,196,66,0.25);}
+.chip-rs{background:rgba(239,68,68,0.15);color:var(--rs-red);border:1px solid rgba(239,68,68,0.25);}
+.chip-sp{background:rgba(16,185,129,0.15);color:var(--sp-green);border:1px solid rgba(16,185,129,0.25);}
+.chip-wip{background:rgba(245,158,11,0.12);color:var(--sp-amber);border:1px solid rgba(245,158,11,0.2);}
+.proj-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:0.4rem;line-height:1.1;}
+.proj-title-ag{color:var(--ag-green);}
+.proj-title-rs{color:var(--rs-blue);}
+.proj-title-sp{color:#fff;}
+.proj-desc{font-size:0.8rem;color:var(--muted);line-height:1.5;margin-bottom:0.8rem;}
+.proj-stack{display:flex;flex-wrap:wrap;gap:0.3rem;}
+.stack-tag{font-family:'JetBrains Mono',monospace;font-size:0.58rem;padding:0.15rem 0.4rem;background:rgba(255,255,255,0.05);border:1px solid #333;border-radius:2px;color:#555;}
 
-/* INSIGHTS */
-.insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem;}
-.insight-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem;transition:border-color 0.2s,transform 0.2s;}
-.insight-card:hover{border-color:var(--gold);transform:translateY(-3px);}
-.insight-icon{font-size:1.4rem;margin-bottom:0.6rem;display:block;}
-.insight-text strong{color:var(--text);display:block;margin-bottom:0.3rem;font-size:0.93rem;}
-.insight-text{font-size:0.88rem;color:var(--muted);line-height:1.6;}
-.read-more-link{display:inline-flex;align-items:center;gap:0.4rem;color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.05em;text-decoration:none;transition:gap 0.2s;}
-.read-more-link:hover{gap:0.8rem;}
+/* ── SECTION COMMON ── */
+.full-section{width:100%;padding:6rem 2.5rem;}
+.sec-inner{max-width:1200px;margin:0 auto;}
+.sec-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;margin-bottom:0.6rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:700;line-height:1.05;margin-bottom:1.5rem;}
+.sec-sub{font-size:1rem;line-height:1.8;max-width:620px;margin-bottom:3rem;}
 
-/* FARMERS PHOTOS */
-.photo-row-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1rem;}
-.photo-row-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-.ph{border-radius:10px;overflow:hidden;position:relative;aspect-ratio:16/9;}
-.ph img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(0.85) saturate(0.88);transition:filter 0.3s;}
+/* ── AGROPREDICT SECTION ── */
+.ag-section{background:linear-gradient(180deg,#0A1A0A 0%,#0C0C0C 100%);}
+.ag-section .sec-eyebrow{color:var(--ag-green);}
+.ag-section .sec-title{color:#fff;}
+.ag-section .sec-title em{color:var(--ag-green);font-style:italic;}
+.ag-section .sec-sub{color:#666;}
+.ag-section .sec-sub strong{color:#E8E8E8;}
+
+/* father photo + story */
+.ag-story{display:grid;grid-template-columns:280px 1fr;gap:4rem;align-items:start;margin-bottom:4rem;}
+.ag-father-photo{border-radius:12px;overflow:hidden;aspect-ratio:3/4;border:2px solid #1E3A1E;box-shadow:8px 8px 0 var(--ag-gold);}
+.ag-father-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(0.88) saturate(0.9);}
+.ag-father-caption{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;color:var(--ag-gold);margin-top:0.8rem;line-height:1.5;}
+.story-p{color:#666;line-height:1.9;font-size:0.97rem;margin-bottom:1rem;}
+.story-p strong{color:#E8E8E8;}
+.big-pull{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,2.5vw,2rem);color:#fff;line-height:1.3;border-left:3px solid var(--ag-green);padding-left:1.5rem;margin:1.5rem 0;}
+.big-pull em{color:var(--ag-green);font-style:italic;}
+
+/* impact box */
+.impact-box{background:rgba(118,196,66,0.06);border:1px solid rgba(118,196,66,0.15);border-radius:10px;padding:1.2rem 1.5rem;margin-top:1.5rem;}
+.impact-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;color:var(--ag-green);margin-bottom:0.7rem;}
+.impact-item{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.87rem;color:#666;margin-bottom:0.4rem;line-height:1.5;}
+.impact-item span{color:var(--ag-green);flex-shrink:0;font-weight:600;}
+
+/* feedback table */
+.fb-table{width:100%;border-collapse:collapse;margin:2rem 0;}
+.fb-table th{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--ag-gold);padding:0.6rem 1rem;border-bottom:1px solid #1E3A1E;text-align:left;}
+.fb-table td{padding:0.8rem 1rem;font-size:0.87rem;border-bottom:1px solid rgba(255,255,255,0.04);color:#666;}
+.fb-table tr:hover td{background:rgba(118,196,66,0.03);}
+.fb-table td:first-child{font-style:italic;color:var(--ag-gold);}
+.fb-table td:last-child{color:var(--ag-green);}
+.fb-table td:last-child::before{content:'→ ';}
+
+/* feature grid */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;margin:2rem 0;}
+.feat-card{background:#0F1A0F;border:1px solid #1E3A1E;border-radius:8px;padding:1rem 1.1rem;}
+.feat-card .fc-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;color:var(--ag-green);margin-bottom:0.4rem;}
+.feat-card .fc-text{font-size:0.83rem;color:#666;line-height:1.5;}
+
+/* progress + lessons */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:2rem 0;}
+.progress-box{background:#0F1A0F;border:1px solid #1E3A1E;border-radius:8px;padding:1.2rem;}
+.box-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--ag-gold);margin-bottom:0.8rem;}
+.check-item{display:flex;gap:0.6rem;font-size:0.84rem;color:#666;margin-bottom:0.45rem;line-height:1.5;}
+.check-item .ck{color:var(--ag-green);flex-shrink:0;}
+.dot-item{display:flex;gap:0.6rem;font-size:0.84rem;color:#666;margin-bottom:0.45rem;line-height:1.5;align-items:flex-start;}
+.dot-item::before{content:'·';color:var(--ag-gold);flex-shrink:0;font-size:1rem;line-height:1.2;}
+
+/* farmer photos */
+.photo-row{display:grid;gap:0.8rem;margin:1.5rem 0;}
+.photo-row-3{grid-template-columns:repeat(3,1fr);}
+.photo-row-4{grid-template-columns:repeat(4,1fr);}
+.ph{border-radius:8px;overflow:hidden;position:relative;aspect-ratio:16/9;}
+.ph img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(0.82) saturate(0.85);transition:filter 0.3s;}
 .ph:hover img{filter:brightness(0.95) saturate(1);}
-.ph-loc{position:absolute;bottom:0.6rem;left:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;color:var(--gold);background:rgba(8,15,8,0.88);padding:0.2rem 0.5rem;border-radius:3px;}
+.ph-loc{position:absolute;bottom:0.5rem;left:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.56rem;letter-spacing:0.08em;color:var(--ag-gold);background:rgba(0,0,0,0.85);padding:0.18rem 0.45rem;border-radius:2px;}
 
-/* BUILDING IN PUBLIC */
-.public-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
-.public-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.3rem;text-decoration:none;transition:border-color 0.2s,transform 0.2s;display:block;}
-.public-card:hover{border-color:var(--gold);transform:translateY(-3px);}
-.public-icon{font-size:1.5rem;margin-bottom:0.7rem;display:block;}
-.public-title{font-size:0.95rem;font-weight:600;color:var(--white);margin-bottom:0.3rem;}
-.public-desc{font-size:0.82rem;color:var(--muted);line-height:1.5;}
-.public-link{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--gold);margin-top:0.6rem;display:block;letter-spacing:0.05em;}
-
-/* DEMO */
-.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
-.demo-box{background:var(--card);border:1px solid var(--border);border-radius:16px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;cursor:pointer;text-decoration:none;}
-.demo-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(118,196,66,0.06),rgba(200,168,75,0.04));}
-.demo-play{width:65px;height:65px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.3rem;z-index:1;transition:transform 0.2s;box-shadow:0 0 0 12px rgba(200,168,75,0.12);}
-.demo-box:hover .demo-play{transform:scale(1.1);}
-.demo-box-label{position:absolute;bottom:1rem;left:1rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;color:var(--muted);}
-.demo-badge{position:absolute;top:1rem;right:1rem;background:rgba(200,168,75,0.15);border:1px solid rgba(200,168,75,0.3);border-radius:20px;padding:0.3rem 0.8rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--gold);letter-spacing:0.08em;}
-
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:240px 1fr;gap:4rem;align-items:start;}
-.about-photo{border-radius:12px;overflow:hidden;aspect-ratio:3/4;border:2px solid var(--border);box-shadow:6px 6px 0 var(--gold);}
-.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
-.about-p{color:var(--muted);line-height:1.9;margin-bottom:1rem;font-size:0.97rem;}
-.about-p strong{color:var(--text);}
-.about-chips{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;}
-.chip{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:0.3rem 0.9rem;font-size:0.82rem;color:var(--muted);transition:all 0.2s;}
-.chip:hover{border-color:var(--gold);color:var(--gold);}
-
-/* AGROPREDICT */
-.proj-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:2rem;transition:transform 0.25s;}
-.proj-card:hover{transform:translateY(-4px);}
-.proj-top-g{height:3px;background:linear-gradient(90deg,var(--bright),var(--accent),transparent);}
-.proj-top-r{height:3px;background:linear-gradient(90deg,#E53935,#F4511E,transparent);}
-.proj-body{padding:2.5rem;}
-.proj-name-g{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--bright);margin-bottom:0.2rem;}
-.proj-name-r{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:#EF5350;margin-bottom:0.2rem;}
-.proj-sub{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;color:var(--muted);margin-bottom:1.2rem;}
-.proj-desc{color:var(--muted);font-size:0.97rem;line-height:1.8;margin-bottom:1.5rem;}
-.proj-desc strong{color:var(--text);}
-.feat-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--gold);margin-bottom:0.7rem;}
-.feat-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin-bottom:1.5rem;}
-.feat-item{background:var(--dark2);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;font-size:0.83rem;color:var(--muted);line-height:1.5;}
-.feat-item strong{display:block;color:var(--bright);font-size:0.68rem;font-family:'JetBrains Mono',monospace;margin-bottom:0.3rem;letter-spacing:0.05em;}
-
-/* PROGRESS + LESSONS */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0;}
-.progress-box{background:var(--dark2);border:1px solid var(--border);border-radius:10px;padding:1.3rem;}
-.box-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--gold);margin-bottom:0.8rem;}
-.progress-item{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem;line-height:1.5;}
-.progress-item .tick{color:var(--bright);flex-shrink:0;}
-.lesson-item{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.85rem;color:var(--muted);margin-bottom:0.5rem;line-height:1.5;}
-.lesson-item .dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:0.5rem;}
-
+/* pills + links */
 .pills{display:flex;flex-wrap:wrap;gap:0.4rem;margin:1rem 0;}
-.pill{font-family:'JetBrains Mono',monospace;font-size:0.62rem;padding:0.22rem 0.6rem;background:var(--dark2);border:1px solid var(--border);border-radius:3px;color:var(--muted);}
-.proj-links{display:flex;gap:0.7rem;flex-wrap:wrap;margin-top:1.2rem;}
-.pl-p{font-family:'JetBrains Mono',monospace;font-size:0.72rem;padding:0.6rem 1.3rem;background:var(--bright);color:var(--dark);text-decoration:none;border-radius:30px;font-weight:600;transition:all 0.2s;}
-.pl-p:hover{background:var(--accent);}
-.pl-o{font-family:'JetBrains Mono',monospace;font-size:0.72rem;padding:0.6rem 1.3rem;border:1px solid var(--border);color:var(--muted);text-decoration:none;border-radius:30px;transition:all 0.2s;}
-.pl-o:hover{border-color:var(--gold);color:var(--gold);}
+.pill{font-family:'JetBrains Mono',monospace;font-size:0.6rem;padding:0.2rem 0.55rem;border-radius:2px;border:1px solid #1E3A1E;color:#555;}
+.proj-links{display:flex;gap:0.7rem;flex-wrap:wrap;margin-top:1.5rem;}
+.pl-primary{font-family:'JetBrains Mono',monospace;font-size:0.7rem;padding:0.6rem 1.4rem;border-radius:4px;text-decoration:none;font-weight:600;transition:all 0.2s;}
+.pl-ag{background:var(--ag-green);color:#0C0C0C;}
+.pl-ag:hover{background:#8ED451;}
+.pl-rs{background:var(--rs-red);color:#fff;}
+.pl-rs:hover{background:#DC2626;}
+.pl-sp{background:#fff;color:#0C0C0C;}
+.pl-sp:hover{background:#E5E5E5;}
+.pl-ghost{font-family:'JetBrains Mono',monospace;font-size:0.7rem;padding:0.6rem 1.4rem;border:1px solid #333;color:#666;border-radius:4px;text-decoration:none;transition:all 0.2s;}
+.pl-ghost:hover{border-color:#666;color:#E8E8E8;}
 
-/* REPSHIELD — compact */
-.repshield-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:0;}
-.repshield-left{padding:2rem;border-right:1px solid var(--border);}
-.repshield-right{padding:2rem;}
-.feat-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;}
+/* ── REPSHIELD SECTION ── */
+.rs-section{background:linear-gradient(180deg,#050D18 0%,#0C0C0C 100%);}
+.rs-section .sec-eyebrow{color:var(--rs-red);}
+.rs-section .sec-title{color:#fff;}
+.rs-section .sec-title em{color:var(--rs-blue);font-style:italic;}
+.rs-section .sec-sub{color:#555;}
+.rs-section .sec-sub strong{color:#E8E8E8;}
 
-/* ROADMAP */
-.rm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-.rm-card{background:var(--card);border:1px solid var(--border);padding:1.2rem;border-radius:10px;transition:border-color 0.2s,transform 0.2s;}
-.rm-card:hover{border-color:var(--gold);transform:translateY(-2px);}
-.rm-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:0.4rem;}
-.rm-title{font-size:0.9rem;font-weight:600;color:var(--white);margin-bottom:0.3rem;}
-.rm-desc{font-size:0.75rem;color:var(--muted);line-height:1.5;font-family:'JetBrains Mono',monospace;}
-.rm-status{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;margin-top:0.6rem;padding:0.2rem 0.5rem;border-radius:3px;display:inline-block;}
-.s-done{background:rgba(76,175,80,0.15);color:var(--bright);border:1px solid rgba(118,196,66,0.25);}
-.s-build{background:rgba(200,168,75,0.12);color:var(--gold);border:1px solid rgba(200,168,75,0.25);}
-.s-plan{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--border);}
+.rs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem;margin:2rem 0;}
+.rs-card{background:#070E1A;border:1px solid #0D1B2A;border-radius:8px;padding:1.1rem;transition:border-color 0.2s;}
+.rs-card:hover{border-color:var(--rs-blue);}
+.rs-card .rc-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;margin-bottom:0.4rem;}
+.rs-card .rc-text{font-size:0.83rem;color:#555;line-height:1.5;}
+.rs-sos{color:var(--rs-red);}
+.rs-gps{color:var(--rs-blue);}
+.rs-stealth{color:#8B5CF6;}
+.rs-sha{color:#10B981;}
 
-/* SKILLS */
-.skills-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:0.6rem;}
-.sk{background:var(--card);border:1px solid var(--border);padding:0.8rem 1rem;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;transition:all 0.2s;}
-.sk:hover{border-color:var(--gold);color:var(--gold);}
-.sk-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+/* ── SENTINELPAY SECTION ── */
+.sp-section{background:linear-gradient(180deg,#050505 0%,#0C0C0C 100%);}
+.sp-section .sec-eyebrow{color:var(--sp-green);}
+.sp-section .sec-title{color:#fff;}
+.sp-section .sec-title em{color:var(--sp-green);font-style:italic;}
+.sp-section .sec-sub{color:#555;}
+.sp-section .sec-sub strong{color:#E8E8E8;}
 
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
-.contact-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,3.8rem);font-weight:700;color:var(--white);line-height:1.05;margin-bottom:1rem;}
-.contact-title em{color:var(--gold);font-style:italic;}
-.contact-sub{color:var(--muted);font-size:0.97rem;line-height:1.8;margin-bottom:2rem;}
-.contact-links{display:flex;gap:0.8rem;flex-wrap:wrap;}
-.contact-info{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;}
-.ci-row{display:flex;align-items:center;gap:1rem;padding:0.8rem 0;border-bottom:1px solid var(--border);}
+/* how it works — numbered steps */
+.sp-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:2rem 0;position:relative;}
+.sp-steps::before{content:'';position:absolute;top:1.2rem;left:10%;right:10%;height:1px;background:linear-gradient(90deg,var(--sp-green),var(--sp-amber),var(--sp-green));opacity:0.3;}
+.sp-step{text-align:center;padding:0 0.5rem;position:relative;}
+.sp-step-num{width:2.4rem;height:2.4rem;border-radius:50%;background:#0A0A0A;border:1px solid #333;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--sp-green);display:flex;align-items:center;justify-content:center;margin:0 auto 0.8rem;}
+.sp-step-title{font-size:0.8rem;font-weight:600;color:#E8E8E8;margin-bottom:0.3rem;}
+.sp-step-desc{font-size:0.74rem;color:#555;line-height:1.4;}
+
+.sp-feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;margin:2rem 0;}
+.sp-card{background:#0A0A0A;border:1px solid #1A1A1A;border-radius:8px;padding:1.1rem;transition:border-color 0.2s;}
+.sp-card:hover{border-color:var(--sp-green);}
+.sp-card .sc-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;color:var(--sp-green);margin-bottom:0.4rem;}
+.sp-card .sc-text{font-size:0.83rem;color:#555;line-height:1.5;}
+
+/* risk score widget */
+.sp-demo{background:#0A0A0A;border:1px solid #1A1A1A;border-radius:12px;padding:2rem;margin:2rem 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;align-items:center;}
+.verdict{text-align:center;}
+.verdict .v-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:#555;margin-bottom:0.5rem;}
+.verdict .v-status{font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:600;padding:0.4rem 1rem;border-radius:4px;display:inline-block;}
+.v-approved{background:rgba(16,185,129,0.15);color:var(--sp-green);border:1px solid rgba(16,185,129,0.3);}
+.v-flagged{background:rgba(245,158,11,0.12);color:var(--sp-amber);border:1px solid rgba(245,158,11,0.25);}
+.v-blocked{background:rgba(239,68,68,0.12);color:#EF4444;border:1px solid rgba(239,68,68,0.25);}
+.score-bar-wrap{text-align:center;}
+.score-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:#555;margin-bottom:0.5rem;}
+.score-bar{height:6px;background:#1A1A1A;border-radius:3px;overflow:hidden;margin:0.5rem 0;}
+.score-fill{height:100%;border-radius:3px;}
+.fill-low{width:20%;background:var(--sp-green);}
+.fill-mid{width:55%;background:var(--sp-amber);}
+.fill-high{width:85%;background:#EF4444;}
+.score-num{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#888;}
+.reasons-box{}
+.reasons-box .r-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;color:#555;margin-bottom:0.5rem;}
+.reason-item{font-size:0.78rem;color:#666;margin-bottom:0.3rem;line-height:1.4;display:flex;gap:0.4rem;}
+.reason-item::before{content:'·';color:var(--sp-green);}
+
+/* roadmap strip */
+.roadmap-strip{display:flex;gap:0.6rem;flex-wrap:wrap;margin:1.5rem 0;}
+.rm-item{font-family:'JetBrains Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;border-radius:3px;letter-spacing:0.05em;}
+.rm-done{background:rgba(16,185,129,0.1);color:var(--sp-green);border:1px solid rgba(16,185,129,0.2);}
+.rm-next{background:rgba(245,158,11,0.08);color:var(--sp-amber);border:1px solid rgba(245,158,11,0.15);}
+
+/* ── ABOUT ── */
+.about-section{background:#0C0C0C;padding:6rem 2.5rem;}
+.about-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.about-text p{color:#555;line-height:1.9;font-size:0.97rem;margin-bottom:1rem;}
+.about-text p strong{color:#E8E8E8;}
+.about-chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem;}
+.a-chip{font-family:'JetBrains Mono',monospace;font-size:0.62rem;padding:0.25rem 0.7rem;border:1px solid #222;border-radius:20px;color:#555;transition:all 0.2s;}
+.a-chip:hover{border-color:var(--ag-green);color:var(--ag-green);}
+.about-skills{}
+.skills-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.18em;color:#444;margin-bottom:0.8rem;}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;}
+.sk{background:#111;border:1px solid var(--border);padding:0.7rem 0.9rem;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:#555;display:flex;align-items:center;gap:0.5rem;transition:all 0.2s;}
+.sk:hover{border-color:#444;color:#E8E8E8;}
+.sk-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0;}
+
+/* ── CONTACT ── */
+.contact-section{background:#080808;border-top:1px solid var(--border);padding:6rem 2.5rem;}
+.contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.contact-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,4vw,3.8rem);font-weight:700;color:#fff;line-height:1.05;margin-bottom:1rem;}
+.contact-title em{color:var(--ag-green);font-style:italic;}
+.contact-sub{color:#555;font-size:0.97rem;line-height:1.8;margin-bottom:2rem;}
+.contact-links{display:flex;gap:0.7rem;flex-wrap:wrap;}
+.contact-info{background:#111;border:1px solid var(--border);border-radius:12px;padding:2rem;}
+.ci-row{display:flex;align-items:center;gap:1rem;padding:0.75rem 0;border-bottom:1px solid #1A1A1A;}
 .ci-row:last-child{border-bottom:none;}
-.ci-icon{width:34px;height:34px;border-radius:8px;background:rgba(200,168,75,0.08);border:1px solid rgba(200,168,75,0.18);display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;}
-.ci-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.2rem;}
-.ci-value{font-size:0.87rem;color:var(--text);}
+.ci-icon{width:32px;height:32px;border-radius:6px;background:#1A1A1A;display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;}
+.ci-label{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;color:#444;margin-bottom:0.18rem;}
+.ci-value{font-size:0.85rem;color:#E8E8E8;}
 
-footer{background:#080F08;border-top:1px solid var(--border);padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;}
-footer p{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted);}
-.open-dot{display:flex;align-items:center;gap:0.4rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--bright);}
-.open-dot::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--bright);animation:pulse 2s infinite;}
+footer{background:#050505;border-top:1px solid #111;padding:1.4rem 2.5rem;display:flex;justify-content:space-between;align-items:center;}
+footer p{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#333;}
+.footer-dot{display:flex;align-items:center;gap:0.4rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--ag-green);}
+.footer-dot::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--ag-green);animation:pulse 2s infinite;}
 
-.fade{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+/* fade in */
+.fade{opacity:0;transform:translateY(20px);transition:opacity 0.65s ease,transform 0.65s ease;}
 .fade.in{opacity:1;transform:none;}
 
 @media(max-width:900px){
-  nav{padding:0.8rem 1.5rem;}.nav-links{display:none;}
-  .hero-content,.story-grid,.father-inner,.demo-grid,.about-grid,.contact-grid,.repshield-card{grid-template-columns:1fr;}
-  .hero-right{display:none;}
-  .sec-wrap,.story-bg .sec-wrap{padding:3.5rem 1.5rem;}
-  .father-section{padding:3.5rem 1.5rem;}
-  .status-banner{padding:0.9rem 1.5rem;}
-  .feat-grid-3,.feat-grid-2,.two-col,.rm-grid,.public-grid,.insights-grid{grid-template-columns:1fr 1fr;}
+  .bento{grid-template-columns:1fr 1fr;}
+  .b-name{grid-column:1/3;grid-row:auto;}
+  .b-tag{grid-column:1/3;grid-row:auto;}
+  .b-stat-1,.b-stat-2{grid-column:auto;grid-row:auto;}
+  .b-stat-3,.b-open{grid-column:auto;grid-row:auto;}
+  .b-ag,.b-rs,.b-sp{grid-column:1/3;grid-row:auto;}
+  .nav-links{display:none;}
+  .full-section{padding:4rem 1.5rem;}
+  .ag-story{grid-template-columns:1fr;gap:2rem;}
+  .feat-grid,.two-col,.rs-grid,.sp-feat-grid{grid-template-columns:1fr 1fr;}
+  .sp-steps{grid-template-columns:1fr 1fr;gap:1rem;}
+  .sp-steps::before{display:none;}
+  .sp-demo{grid-template-columns:1fr;}
+  .about-inner,.contact-inner{grid-template-columns:1fr;}
   .photo-row-3,.photo-row-4{grid-template-columns:1fr 1fr;}
   footer{flex-direction:column;gap:0.5rem;}
 }
@@ -237,405 +302,549 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--mu
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <span class="nav-logo">Anshu <span>Priya</span></span>
+  <span class="nav-logo">anshu_priya.dev</span>
   <ul class="nav-links">
-    <li><a href="#story">Story</a></li>
-    <li><a href="#demo">Demo</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#agropredict">AgroPredict</a></li>
+    <li><a href="#repshield">REPSHIELD</a></li>
+    <li><a href="#sentinelpay">SentinelPay</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:priyatech.logic@gmail.com" class="nav-cta">Hire Me</a>
+  <div style="display:flex;gap:0.7rem;align-items:center;">
+    <a href="https://github.com/priya-codesdaily/priya-codesdaily/raw/main/Anshu_Priya_Resume.pdf" target="_blank" class="nav-hire" style="background:#222;border-color:#444;">Resume ↓</a>
+    <a href="mailto:priyatech.logic@gmail.com" class="nav-hire">Hire Me</a>
+  </div>
 </nav>
 
-<!-- HERO -->
+<!-- BENTO HERO -->
 <div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div>
-      <div class="eyebrow-row">
-        <div class="eyebrow-line"></div>
-        <span class="eyebrow-text">Flutter Developer who builds products using real user research · Open to Work</span>
-      </div>
-      <h1>Built From a<br/>Farmer's Question:<br/><em>"Where Should<br/>We Sell?"</em></h1>
-      <p class="hero-sub">
-        I grew up on the <strong>Jharkhand–Odisha border</strong> in a farming family.
-        My father grows the crops. My mother handles the selling decisions.
-        Every harvest, the same question came up — where do we sell for a better price?
-        So I started building AgroPredict.
-      </p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn-gold">▶ See What I Built</a>
-        <a href="https://youtu.be/2PWweDEcCpc" target="_blank" class="video-btn">
-          <span class="play-circle">▶</span>Watch Documentary
-        </a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div style="display:flex;flex-direction:column;gap:1rem;">
-        <div style="background:rgba(118,196,66,0.06);border:1px solid rgba(118,196,66,0.18);border-left:3px solid var(--bright);border-radius:8px;padding:1.2rem 1.4rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--bright);line-height:1;">2</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--muted);margin-top:0.3rem;">REAL APPS LIVE ON GITHUB</div>
-          <div style="font-size:0.85rem;color:var(--muted);margin-top:0.4rem;">AgroPredict + REPSHIELD — both with downloadable APKs</div>
-        </div>
-        <div style="background:rgba(118,196,66,0.06);border:1px solid rgba(118,196,66,0.18);border-left:3px solid var(--gold);border-radius:8px;padding:1.2rem 1.4rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1;">24h</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--muted);margin-top:0.3rem;">FEEDBACK → FEATURE</div>
-          <div style="font-size:0.85rem;color:var(--muted);margin-top:0.4rem;">Farmer said "which rice?" — variety selector shipped next day</div>
-        </div>
-        <div style="background:rgba(118,196,66,0.06);border:1px solid rgba(118,196,66,0.18);border-left:3px solid var(--bright);border-radius:8px;padding:1.2rem 1.4rem;">
-          <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--bright);line-height:1;">10+</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;color:var(--muted);margin-top:0.3rem;">FARMER CONVERSATIONS</div>
-          <div style="font-size:0.85rem;color:var(--muted);margin-top:0.4rem;">Across Odisha &amp; Jharkhand — still visiting, still learning</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <div class="bento">
 
-<!-- STATUS BANNER -->
-<div class="status-banner">
-  <div class="status-inner">
-    <div class="status-dot"></div>
-    <p class="status-text">
-      <strong>AgroPredict is actively being tested and improved.</strong>
-      Current focus: calculation accuracy, accessibility, and farmer-driven feature development.
-    </p>
-  </div>
-</div>
+    <!-- NAME -->
+    <div class="b-name fade">
+      <h1>ANSHU<br/><em>PRIYA</em></h1>
+      <p style="margin-top:1rem;">Software Developer building practical products through research, engineering, and real user feedback. From the Jharkhand–Odisha border.</p>
+    </div>
 
-<!-- STORY -->
-<div class="story-bg" id="story">
-  <div class="sec-wrap fade">
-    <div class="story-grid">
+    <!-- TAGLINE -->
+    <div class="b-tag fade">
       <div>
-        <div class="eyebrow-row"><div class="eyebrow-line"></div><span class="eyebrow-text">THE PROBLEM</span></div>
-        <div class="big-quote">Farmers don't lose money growing crops.<br/><em>They lose it selling them.</em></div>
-        <p class="sp">I visited farms across Odisha and Jharkhand. Sat with farmers. Asked where they sell, how much profit they make, whether they know a better price exists nearby.</p>
-        <p class="sp">Almost every farmer sells locally by default — not because it's best. Because they have <strong>no easy way to compare.</strong></p>
-        <p class="sp">Every harvest season, the same question came up at home — where should we sell? Different mandis offered different prices, but comparing them was difficult. AgroPredict started as an attempt to make that decision easier for my family and nearby farmers.</p>
+        <div class="tag-label">PRINCIPLE</div>
+        <div class="tag-text">"If a user needs a manual to understand my app, I have failed."</div>
       </div>
+      <div class="tag-bottom">FLUTTER · JAVA · SPRING BOOT · REACT</div>
+    </div>
+
+    <!-- STATS -->
+    <div class="b-stat b-stat-1 fade">
       <div>
-        <div class="eyebrow-row"><div class="eyebrow-line"></div><span class="eyebrow-text">FEEDBACK → FEATURE</span></div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--white);margin-bottom:1.2rem;">Every feature has a real origin.</h3>
-        <table class="feedback-table">
-          <thead><tr><th>Farmer Feedback</th><th>What I Built</th></tr></thead>
-          <tbody>
-            <tr><td>"Which variety?"</td><td>Added variety selector</td></tr>
-            <tr><td>"Padhne mein dikkat hota hai"</td><td>Started voice support</td></tr>
-            <tr><td>"Profit nahi hota"</td><td>Built transport profit calculator</td></tr>
-            <tr><td>Farmers compare markets</td><td>Added mandi comparison</td></tr>
-          </tbody>
-        </table>
+        <div class="s-num" style="color:var(--ag-green);">3</div>
+        <div class="s-label">FLAGSHIP PROJECTS</div>
+      </div>
+      <div class="s-sub">2 released · 1 actively evolving</div>
+    </div>
+    <div class="b-stat b-stat-2 fade">
+      <div>
+        <div class="s-num" style="color:var(--ag-gold);">10+</div>
+        <div class="s-label">FIELD CONVERSATIONS</div>
+      </div>
+      <div class="s-sub">Odisha & Jharkhand — still visiting, still learning</div>
+    </div>
+    <div class="b-stat b-stat-3 fade">
+      <div>
+        <div class="s-num" style="color:var(--rs-blue);">24h</div>
+        <div class="s-label">FEEDBACK → FEATURE CYCLE</div>
+      </div>
+      <div class="s-sub">Feedback turned into product features within 24 hours</div>
+    </div>
+
+    <!-- OPEN TO WORK -->
+    <div class="b-open fade">
+      <div class="pulse-dot"></div>
+      <div class="open-title">Open to Work</div>
+      <div class="open-sub">Flutter · Agritech · Fintech · Remote / Onsite</div>
+      <div class="open-links">
+        <a href="https://github.com/priya-codesdaily" target="_blank" class="open-link">GitHub</a>
+        <a href="https://linkedin.com/in/a-priya-dev" target="_blank" class="open-link">LinkedIn</a>
+        <a href="https://youtu.be/2PWweDEcCpc" target="_blank" class="open-link">Documentary</a>
       </div>
     </div>
+
+    <!-- PROJECT PREVIEWS -->
+    <a href="#agropredict" class="b-ag fade">
+      <div class="proj-chip chip-ag">AGRITECH · FLUTTER</div>
+      <div class="proj-title proj-title-ag">AgroPredict</div>
+      <div class="proj-desc">Helps farmers decide where and when to sell for better profit — live govt. price data, transport calculator, Hindi voice.</div>
+      <div class="proj-stack">
+        <span class="stack-tag">Flutter</span><span class="stack-tag">Dart</span><span class="stack-tag">AGMARKNET</span><span class="stack-tag">GPS</span><span class="stack-tag">TTS</span>
+      </div>
+    </a>
+    <a href="#repshield" class="b-rs fade">
+      <div class="proj-chip chip-rs">SAFETY · FLUTTER</div>
+      <div class="proj-title proj-title-rs">REPSHIELD</div>
+      <div class="proj-desc">One shake sends live GPS location to all trusted contacts. No unlock. No delay. Built for situations where seconds matter.</div>
+      <div class="proj-stack">
+        <span class="stack-tag">Flutter</span><span class="stack-tag">sensors_plus</span><span class="stack-tag">GPS</span><span class="stack-tag">SMS</span><span class="stack-tag">SHA-256</span>
+      </div>
+    </a>
+    <a href="#sentinelpay" class="b-sp fade">
+      <div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.8rem;">
+        <div class="proj-chip chip-sp" style="margin-bottom:0;">FINTECH · WEB</div>
+        <div class="proj-chip chip-wip" style="margin-bottom:0;">IN PROGRESS</div>
+      </div>
+      <div class="proj-title proj-title-sp">SentinelPay</div>
+      <div class="proj-desc">Real-time payment fraud detection engine — scores every transaction and explains exactly why it approved, flagged, or blocked it.</div>
+      <div class="proj-stack">
+        <span class="stack-tag">Java</span><span class="stack-tag">Spring Boot</span><span class="stack-tag">React</span><span class="stack-tag">PostgreSQL</span>
+      </div>
+    </a>
+
   </div>
 </div>
 
-<!-- FATHER PHOTO -->
-<div class="father-section fade">
-  <div class="father-inner">
-    <div class="father-photo">
-      <img src="father.jpeg" alt="My father in our mango farm"/>
-    </div>
-    <div>
-      <div class="eyebrow-row"><div class="eyebrow-line"></div><span class="eyebrow-text">WHERE IT STARTED</span></div>
-      <div class="father-caption">My father grows crops on our family farm. Observing harvest and selling decisions helped me identify the <em>market-information challenges</em> AgroPredict aims to address.</div>
-      <p class="father-desc">Every harvest season, the same question came up at home — where should we sell? Different mandis offered different prices, but comparing them was difficult. AgroPredict started as an attempt to make that decision easier for my family and nearby farmers.</p>
-      <div class="impact-box">
-        <div class="impact-label">BUILT FROM</div>
-        <div class="impact-items">
+<!-- SELECTED WORK -->
+<div style="padding:3rem 2.5rem 0;max-width:1200px;margin:0 auto;">
+  <div class="fade">
+    <p style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:#444;margin-bottom:0.4rem;">SELECTED WORK</p>
+    <p style="font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:0.3rem;">Real products built from field research, user feedback, and practical engineering.</p>
+    <div style="width:40px;height:1px;background:linear-gradient(90deg,var(--ag-green),var(--rs-blue));margin-top:0.8rem;"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     AGROPREDICT — FULL SECTION
+══════════════════════════════════════ -->
+<div class="full-section ag-section" id="agropredict">
+  <div class="sec-inner">
+    <p class="sec-eyebrow fade">01 — AGROPREDICT</p>
+    <h2 class="sec-title fade">Smart Crop Price<br/><em>Intelligence</em></h2>
+    <p class="sec-sub fade">A Flutter app that helps farmers decide <strong>where and when to sell</strong> for better profit — using live AGMARKNET government data, GPS-based mandi comparison, transport profit calculation, and Hindi voice support. <strong>Field-tested with 10+ farmers across Odisha and Jharkhand.</strong></p>
+
+    <!-- FATHER + STORY -->
+    <div class="ag-story fade">
+      <div>
+        <div class="ag-father-photo">
+          <img src="father.jpeg" alt="My father in our mango farm" onerror="this.style.background='#1A3A1A';this.style.display='block';"/>
+        </div>
+        <p class="ag-father-caption">My father grows crops on our family farm. Observing harvest and selling decisions helped me identify the market-information challenges AgroPredict aims to address.</p>
+      </div>
+      <div>
+        <div class="big-pull">Farmers don't lose money growing crops.<br/><em>They lose it selling them.</em></div>
+        <p class="story-p">I visited farms across Odisha and Jharkhand. Sat with farmers and suppliers. Almost every farmer sells locally by default — not because it's the best price, but because they have <strong>no easy way to compare alternatives or know if the trip is worth it.</strong></p>
+        <p class="story-p">Every harvest, the same question came up at home — where should we sell? Different mandis offered different prices, but comparing them was difficult. AgroPredict started as an attempt to make that decision easier for my family and nearby farmers.</p>
+        <div class="impact-box">
+          <div class="impact-label">BUILT FROM</div>
           <div class="impact-item"><span>✓</span> Family farming experience — Jharkhand–Odisha border</div>
-          <div class="impact-item"><span>✓</span> Farmer conversations across Odisha &amp; Jharkhand</div>
-          <div class="impact-item"><span>✓</span> AGMARKNET — Government of India mandi price data</div>
-          <div class="impact-item"><span>✓</span> Continuous user feedback — features shipped within 24 hours</div>
+          <div class="impact-item"><span>✓</span> Conversations with 10+ farmers and suppliers — still ongoing</div>
+          <div class="impact-item"><span>✓</span> AGMARKNET — Ministry of Agriculture, Govt. of India</div>
+          <div class="impact-item"><span>✓</span> Continuous feedback — features shipped within 24 hours</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEEDBACK TABLE -->
+    <div class="fade">
+      <p class="sec-eyebrow" style="margin-bottom:1rem;">FEEDBACK → FEATURE CYCLE</p>
+      <table class="fb-table">
+        <thead><tr><th>What a farmer said</th><th>What I built</th></tr></thead>
+        <tbody>
+          <tr><td>"Which variety?"</td><td>Crop variety selector — shipped in 24 hours</td></tr>
+          <tr><td>"Padhne mein dikkat hota hai"</td><td>Voice output — app reads advice aloud in Hindi</td></tr>
+          <tr><td>"Profit nahi hota, mehnat ka faal nahi milta"</td><td>Transport profit calculator</td></tr>
+          <tr><td>"Kitna kg mein?"</td><td>₹/quintal ↔ ₹/kg toggle</td></tr>
+          <tr><td>Farmers compare markets differently</td><td>Multi-mandi comparison with distance + BEST badge</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="fade">
+      <p class="sec-eyebrow" style="margin-bottom:1rem;">WHAT IT DOES</p>
+      <div class="feat-grid">
+        <div class="feat-card"><div class="fc-label">GPS MANDI</div><div class="fc-text">Nearest mandi detected from device location — distance and travel time estimated on-device</div></div>
+        <div class="feat-card"><div class="fc-label">PROFIT CALCULATOR</div><div class="fc-text">Net profit after transport cost — calculated before the farmer makes the trip, not after</div></div>
+        <div class="feat-card"><div class="fc-label">SELL / WAIT / MONITOR</div><div class="fc-text">Rule-based advice comparing current price against available mandi data — no ML model, transparent reasoning</div></div>
+        <div class="feat-card"><div class="fc-label">VOICE OUTPUT</div><div class="fc-text">flutter_tts reads advice aloud in Hindi — farmer hears without needing to read the screen</div></div>
+        <div class="feat-card"><div class="fc-label">CROP VARIETIES</div><div class="fc-text">Basmati vs Common vs Sona Masuri — because farmers think in varieties, not just crop categories</div></div>
+        <div class="feat-card"><div class="fc-label">HINDI UI + VOICE INPUT</div><div class="fc-text">speech_to_text with hi_IN locale — speak the crop name instead of typing it</div></div>
+      </div>
+    </div>
+
+    <!-- PROGRESS + LESSONS -->
+    <div class="two-col fade">
+      <div class="progress-box">
+        <div class="box-label">CURRENT PROGRESS</div>
+        <div class="check-item"><span class="ck">✓</span>Interviewed 10+ farmers and suppliers across Odisha and Jharkhand</div>
+        <div class="check-item"><span class="ck">✓</span>Built working Flutter prototype and published APK</div>
+        <div class="check-item"><span class="ck">✓</span>Integrated AGMARKNET government data API</div>
+        <div class="check-item"><span class="ck">✓</span>Implemented Hindi voice input and voice output</div>
+        <div class="check-item"><span class="ck">✓</span>Added mandi comparison and transport profit calculator</div>
+        <div class="check-item"><span class="ck">✓</span>Published field documentary on YouTube</div>
+      </div>
+      <div class="progress-box">
+        <div class="box-label">WHAT I LEARNED</div>
+        <div class="dot-item">User feedback is more valuable than assumptions about what users need</div>
+        <div class="dot-item">Profit matters more than price — the distinction changes the whole product</div>
+        <div class="dot-item">Accessibility is not a feature — it is the foundation</div>
+        <div class="dot-item">Simplicity beats complexity when users are non-technical</div>
+        <div class="dot-item">Voice reduces friction more than any UI redesign</div>
+      </div>
+    </div>
+
+    <!-- FARMER PHOTOS -->
+    <div class="fade">
+      <p class="sec-eyebrow" style="margin-bottom:1rem;">FIELD VISITS — JHARKHAND &amp; ODISHA</p>
+      <div class="photo-row photo-row-3" style="margin-bottom:0.8rem;">
+        <div class="ph"><img src="farmer5.jpg.jpeg" alt="Farmer Odisha"/><div class="ph-loc">📍 ODISHA</div></div>
+        <div class="ph"><img src="farmer6.jpg.jpeg" alt="Farmer Odisha"/><div class="ph-loc">📍 ODISHA</div></div>
+        <div class="ph"><img src="farmer7.jpg.jpeg" alt="Farmer Odisha"/><div class="ph-loc">📍 ODISHA</div></div>
+      </div>
+      <div class="photo-row photo-row-4">
+        <div class="ph"><img src="farmer1.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
+        <div class="ph"><img src="farmer2.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
+        <div class="ph"><img src="farmer3.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
+        <div class="ph"><img src="farmer4.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
+      </div>
+    </div>
+
+    <!-- AGROPREDICT SCREENSHOTS -->
+    <div class="fade" style="margin:2.5rem 0;">
+      <p class="sec-eyebrow" style="margin-bottom:1rem;">APP SCREENSHOTS</p>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:0.7rem;">
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#0F1A0F;border:1px solid #1E3A1E;display:flex;align-items:center;justify-content:center;">
+          <img src="screenshots/home.png" alt="Home screen" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#1E3A1E;text-align:center;padding:0.5rem;\'>home.png</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#0F1A0F;border:1px solid #1E3A1E;display:flex;align-items:center;justify-content:center;">
+          <img src="screenshots/advice.png" alt="Advice screen" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#1E3A1E;text-align:center;padding:0.5rem;\'>advice.png</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#0F1A0F;border:1px solid #1E3A1E;display:flex;align-items:center;justify-content:center;">
+          <img src="screenshots/profit.png" alt="Profit calculator" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#1E3A1E;text-align:center;padding:0.5rem;\'>profit.png</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#0F1A0F;border:1px solid #1E3A1E;display:flex;align-items:center;justify-content:center;">
+          <img src="screenshots/markets.png" alt="Markets tab" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#1E3A1E;text-align:center;padding:0.5rem;\'>markets.png</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#0F1A0F;border:1px solid #1E3A1E;display:flex;align-items:center;justify-content:center;">
+          <img src="screenshots/best_mandi.png" alt="Best mandi" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#1E3A1E;text-align:center;padding:0.5rem;\'>best_mandi.png</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#0F1A0F;border:1px solid #1E3A1E;display:flex;align-items:center;justify-content:center;">
+          <img src="screenshots/hindi.png" alt="Hindi UI" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#1E3A1E;text-align:center;padding:0.5rem;\'>hindi.png</span>'"/>
+        </div>
+      </div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#333;margin-top:0.6rem;letter-spacing:0.08em;">Upload 6 screenshots to screenshots/ folder in your portfolio repo</p>
+    </div>
+
+    <!-- PILLS + LINKS -->
+    <div class="fade">
+      <div class="pills">
+        <span class="pill">Flutter</span><span class="pill">Dart</span><span class="pill">AGMARKNET API</span>
+        <span class="pill">geolocator</span><span class="pill">flutter_tts</span><span class="pill">speech_to_text</span>
+        <span class="pill">fl_chart</span><span class="pill">shared_preferences</span><span class="pill">Hindi UI</span>
+        <span class="pill">Rule-based engine</span><span class="pill">Field tested</span>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/priya-codesdaily/agropredict" target="_blank" class="pl-primary pl-ag">GitHub →</a>
+        <a href="https://youtu.be/2PWweDEcCpc" target="_blank" class="pl-ghost">▶ Documentary</a>
+        <a href="https://github.com/priya-codesdaily/agropredict/blob/main/FIELD_RESEARCH.md" target="_blank" class="pl-ghost">📋 Field Research</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     REPSHIELD — FULL SECTION
+══════════════════════════════════════ -->
+<div class="full-section rs-section" id="repshield">
+  <div class="sec-inner">
+    <p class="sec-eyebrow fade">02 — REPSHIELD</p>
+    <h2 class="sec-title fade">Zero-friction<br/><em>Emergency Response</em></h2>
+    <p class="sec-sub fade">A personal safety app for situations where <strong>every second determines user safety</strong>. One shake sends live GPS location to all trusted contacts simultaneously — no unlock, no delay, no steps between danger and help.</p>
+
+    <div class="rs-grid fade">
+      <div class="rs-card">
+        <div class="rc-label rs-sos">SHAKE-TO-SOS</div>
+        <div class="rc-text">Accelerometer (sensors_plus) detects shake above threshold — fires SOS protocol instantly, bypassing lock-screen barriers entirely. No unlock required.</div>
+      </div>
+      <div class="rs-card">
+        <div class="rc-label rs-gps">LIVE GPS ALERT</div>
+        <div class="rc-text">Fetches device coordinates via geolocator, constructs a Google Maps link, and sends it via SMS to all trusted contacts simultaneously in a single trigger event.</div>
+      </div>
+      <div class="rs-card">
+        <div class="rc-label rs-stealth">STEALTH MODE</div>
+        <div class="rc-text">Discreet UI design for unsafe situations — the interface doesn't announce what the app is doing to anyone who might be nearby.</div>
+      </div>
+      <div class="rs-card">
+        <div class="rc-label rs-sha">SHA-256 EVIDENCE LOG</div>
+        <div class="rc-text">Tamper-evident incident records using SHA-256 hashing — each entry is verifiable and detectable if altered.</div>
+      </div>
+    </div>
+
+    <!-- REPSHIELD SCREENSHOTS -->
+    <div class="fade" style="margin:2rem 0;">
+      <p class="sec-eyebrow" style="margin-bottom:1rem;color:var(--rs-red);">APP SCREENSHOTS</p>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:0.7rem;">
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#070E1A;border:1px solid #0D1B2A;display:flex;align-items:center;justify-content:center;">
+          <img src="repshield/ss1.png" alt="REPSHIELD screen 1" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#0D1B2A;text-align:center;padding:0.5rem;\'>ss1.png</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#070E1A;border:1px solid #0D1B2A;display:flex;align-items:center;justify-content:center;">
+          <img src="repshield/ss2.png" alt="REPSHIELD screen 2" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#0D1B2A;text-align:center;padding:0.5rem;\'>ss2.png</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#070E1A;border:1px solid #0D1B2A;display:flex;align-items:center;justify-content:center;">
+          <img src="repshield/ss3.png" alt="REPSHIELD screen 3" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#0D1B2A;text-align:center;padding:0.5rem;\'>ss3.png</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#070E1A;border:1px solid #0D1B2A;display:flex;align-items:center;justify-content:center;">
+          <img src="repshield/ss4.png" alt="REPSHIELD screen 4" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#0D1B2A;text-align:center;padding:0.5rem;\'>ss4.png</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#070E1A;border:1px solid #0D1B2A;display:flex;align-items:center;justify-content:center;">
+          <img src="repshield/ss5.png" alt="REPSHIELD screen 5" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#0D1B2A;text-align:center;padding:0.5rem;\'>ss5.png</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:9/16;background:#070E1A;border:1px solid #0D1B2A;display:flex;align-items:center;justify-content:center;">
+          <img src="repshield/ss6.png" alt="REPSHIELD screen 6" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.55rem;color:#0D1B2A;text-align:center;padding:0.5rem;\'>ss6.png</span>'"/>
+        </div>
+      </div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#333;margin-top:0.6rem;letter-spacing:0.08em;">Upload 6 screenshots to repshield/ folder in your portfolio repo</p>
+    </div>
+
+    <div class="pills fade">
+      <span class="pill">Flutter</span><span class="pill">Dart</span><span class="pill">sensors_plus</span>
+      <span class="pill">geolocator</span><span class="pill">SMS alert</span><span class="pill">SHA-256</span>
+      <span class="pill">Stealth UI</span><span class="pill">Android NDK</span><span class="pill">v1.0.0 released</span>
+    </div>
+    <div class="proj-links fade">
+      <a href="https://github.com/priya-codesdaily/REPSHIELD" target="_blank" class="pl-primary pl-rs">GitHub →</a>
+      <a href="https://github.com/priya-codesdaily/REPSHIELD/releases/tag/v1.0.0" target="_blank" class="pl-ghost">Download APK</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SENTINELPAY — FULL SECTION
+══════════════════════════════════════ -->
+<div class="full-section sp-section" id="sentinelpay">
+  <div class="sec-inner">
+    <div style="display:flex;gap:0.8rem;align-items:center;margin-bottom:0.6rem;" class="fade">
+      <p class="sec-eyebrow" style="margin-bottom:0;">03 — SENTINELPAY</p>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;padding:0.2rem 0.6rem;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);border-radius:3px;color:var(--sp-amber);letter-spacing:0.08em;">IN PROGRESS</span>
+    </div>
+    <h2 class="sec-title fade">Real-time Payment<br/><em>Fraud Detection</em></h2>
+    <p class="sec-sub fade">A fraud detection engine that scores every payment transaction live against an <strong>explainable rules engine</strong> — checking amount, velocity, and device recognition — before approving, flagging, or blocking. Every decision includes a clear breakdown of exactly why, not a black-box verdict.</p>
+
+    <!-- WHY -->
+    <div class="fade" style="background:#0A0A0A;border:1px solid #1A1A1A;border-left:3px solid var(--sp-green);border-radius:0 8px 8px 0;padding:1.2rem 1.5rem;margin-bottom:2rem;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--sp-green);margin-bottom:0.5rem;">WHY I BUILT IT</p>
+      <p style="color:#555;font-size:0.9rem;line-height:1.7;">Most beginner payment projects are just forms that save data. I wanted to build something closer to what real fintech companies run internally — a system that actually <em style="color:#888;">reasons about risk</em>, not just processes transactions. I also built a live fraud attack simulator that fires a burst of rapid transactions and shows the engine's response escalating in real time.</p>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="fade">
+      <p class="sec-eyebrow" style="margin-bottom:1.5rem;">HOW IT WORKS</p>
+      <div class="sp-steps">
+        <div class="sp-step">
+          <div class="sp-step-num">01</div>
+          <div class="sp-step-title">Submit</div>
+          <div class="sp-step-desc">React frontend captures amount, payee, and device fingerprint</div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">02</div>
+          <div class="sp-step-title">Score</div>
+          <div class="sp-step-desc">Spring Boot runs independent fraud rules — amount, velocity, hour, device</div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">03</div>
+          <div class="sp-step-title">Explain</div>
+          <div class="sp-step-desc">Each triggered rule adds points + a plain-English reason</div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">04</div>
+          <div class="sp-step-title">Decide</div>
+          <div class="sp-step-desc">Total score → Approved / Flagged / Blocked verdict</div>
+        </div>
+        <div class="sp-step">
+          <div class="sp-step-num">05</div>
+          <div class="sp-step-title">Log</div>
+          <div class="sp-step-desc">Full decision saved to PostgreSQL — survives server restarts</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEMO WIDGET -->
+    <div class="sp-demo fade">
+      <div class="verdict">
+        <div class="v-label">EXAMPLE OUTCOME</div>
+        <div class="v-status v-approved">✓ APPROVED</div>
+        <div style="margin-top:0.8rem;border-top:1px solid #1A1A1A;padding-top:0.8rem;">
+          <div class="v-label">HIGH RISK</div>
+          <div class="v-status v-blocked">✗ BLOCKED</div>
+        </div>
+      </div>
+      <div class="score-bar-wrap">
+        <div class="score-label">RISK SCORE — LOW</div>
+        <div class="score-bar"><div class="score-fill fill-low"></div></div>
+        <div class="score-num">20 / 100</div>
+        <div style="margin-top:1rem;">
+          <div class="score-label">RISK SCORE — HIGH</div>
+          <div class="score-bar"><div class="score-fill fill-high"></div></div>
+          <div class="score-num">85 / 100</div>
+        </div>
+      </div>
+      <div class="reasons-box">
+        <div class="r-label">DECISION REASONS</div>
+        <div class="reason-item">No risk factors detected</div>
+        <div class="reason-item">Transaction from unrecognized device (+20)</div>
+        <div style="margin-top:0.8rem;border-top:1px solid #1A1A1A;padding-top:0.8rem;">
+          <div class="reason-item">High transaction amount (+30)</div>
+          <div class="reason-item">Unusual hour — 3AM (+25)</div>
+          <div class="reason-item">5 transactions in 60s — velocity (+30)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="sp-feat-grid fade">
+      <div class="sp-card"><div class="sc-label">EXPLAINABLE SCORING</div><div class="sc-text">Every decision includes the specific rules that triggered it — no black box</div></div>
+      <div class="sp-card"><div class="sc-label">FRAUD ATTACK SIMULATOR</div><div class="sc-text">Fires a burst of rapid transactions to demonstrate velocity-detection working live</div></div>
+      <div class="sp-card"><div class="sc-label">DEVICE FINGERPRINTING</div><div class="sc-text">Flags transactions from unrecognized devices as a risk signal</div></div>
+      <div class="sp-card"><div class="sc-label">LIVE DASHBOARD</div><div class="sc-text">Approval rate, blocked/flagged counts, and full transaction history in real time</div></div>
+      <div class="sp-card"><div class="sc-label">PERSISTENT STORAGE</div><div class="sc-text">All decisions logged to PostgreSQL — nothing lives only in memory</div></div>
+      <div class="sp-card"><div class="sc-label">REST API</div><div class="sc-text">Spring Boot backend exposes clean REST endpoints — React frontend consumes them</div></div>
+    </div>
+
+    <!-- SENTINELPAY SCREENSHOTS -->
+    <div class="fade" style="margin:2rem 0;">
+      <p class="sec-eyebrow" style="margin-bottom:1rem;color:var(--sp-green);">APP SCREENSHOTS</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.8rem;">
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:16/9;background:#0A0A0A;border:1px solid #1A1A1A;display:flex;align-items:center;justify-content:center;">
+          <img src="sentinelpay/ss1.png" alt="SentinelPay dashboard" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.6rem;color:#222;padding:1rem;\'>ss1.png — dashboard</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:16/9;background:#0A0A0A;border:1px solid #1A1A1A;display:flex;align-items:center;justify-content:center;">
+          <img src="sentinelpay/ss2.png" alt="SentinelPay approved" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.6rem;color:#222;padding:1rem;\'>ss2.png — approved</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:16/9;background:#0A0A0A;border:1px solid #1A1A1A;display:flex;align-items:center;justify-content:center;">
+          <img src="sentinelpay/ss3.png" alt="SentinelPay blocked" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.6rem;color:#222;padding:1rem;\'>ss3.png — blocked</span>'"/>
+        </div>
+        <div style="border-radius:10px;overflow:hidden;aspect-ratio:16/9;background:#0A0A0A;border:1px solid #1A1A1A;display:flex;align-items:center;justify-content:center;">
+          <img src="sentinelpay/ss4.png" alt="SentinelPay history" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentNode.innerHTML='<span style=\'font-family:JetBrains Mono,monospace;font-size:0.6rem;color:#222;padding:1rem;\'>ss4.png — history</span>'"/>
+        </div>
+      </div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:#333;margin-top:0.6rem;letter-spacing:0.08em;">Upload 4 screenshots to sentinelpay/ folder in your portfolio repo</p>
+    </div>
+
+    <!-- ROADMAP -->
+    <div class="fade">
+      <p class="sec-eyebrow" style="margin-bottom:1rem;">ROADMAP</p>
+      <div class="roadmap-strip">
+        <span class="rm-item rm-done">✓ Explainable rules engine</span>
+        <span class="rm-item rm-done">✓ Fraud attack simulator</span>
+        <span class="rm-item rm-done">✓ PostgreSQL persistence</span>
+        <span class="rm-item rm-done">✓ Device fingerprinting</span>
+        <span class="rm-item rm-next">→ Redis distributed rate limiting</span>
+        <span class="rm-item rm-next">→ Authentication</span>
+        <span class="rm-item rm-next">→ Docker deployment</span>
+        <span class="rm-item rm-next">→ ML-assisted risk layer</span>
+        <span class="rm-item rm-next">→ Mobile app</span>
+      </div>
+    </div>
+
+    <div class="pills fade">
+      <span class="pill">Java</span><span class="pill">Spring Boot</span><span class="pill">React</span>
+      <span class="pill">PostgreSQL</span><span class="pill">REST API</span><span class="pill">Device Fingerprinting</span>
+      <span class="pill">Velocity Detection</span><span class="pill">Explainable Risk Scoring</span>
+    </div>
+    <div class="proj-links fade">
+      <a href="https://github.com/priya-codesdaily/sentinelpay-web" target="_blank" class="pl-primary pl-sp">Frontend →</a>
+      <a href="https://github.com/priya-codesdaily/sentinelpay-backend" target="_blank" class="pl-ghost">Backend →</a>
+      <a href="https://youtu.be/pU54R6ApH4U" target="_blank" class="pl-ghost">▶ Watch Demo</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     ABOUT
+══════════════════════════════════════ -->
+<div class="about-section" id="about">
+  <div class="about-inner">
+    <div class="about-text fade">
+      <p class="sec-eyebrow" style="color:var(--ag-green);margin-bottom:0.8rem;">ABOUT ME</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:2.2rem;color:#fff;margin-bottom:1.5rem;line-height:1.1;">Who <em style="color:var(--ag-green);font-style:italic;">I Am</em></h2>
+      <p>Software developer from the <strong>Jharkhand–Odisha border</strong>. I research first, then build — field conversations, user testing, and honest iteration before writing a line of code.</p>
+      <p>AgroPredict came from watching my parents navigate crop-selling decisions every harvest. REPSHIELD from a gap in safety tools. SentinelPay from wanting to understand how real fintech systems reason about risk — not just process data.</p>
+      <p><strong>If someone can use it without asking for help, I got it right.</strong> That principle came from teaching English to young kids — and it hasn't changed.</p>
+      <div class="about-chips">
+        <span class="a-chip">Real problems</span>
+        <span class="a-chip">Field Research</span>
+        <span class="a-chip">User Feedback Driven</span>
+        <span class="a-chip">Real-World Testing</span>
+        <span class="a-chip">Hindi + Voice</span>
+        <span class="a-chip">Self-directed learning</span>
+      </div>
+    </div>
+    <div class="fade">
+      <div class="about-skills">
+        <div class="skills-label">FLUTTER / MOBILE</div>
+        <div class="skills-grid" style="margin-bottom:1rem;">
+          <div class="sk"><span class="sk-dot" style="background:var(--ag-green)"></span>Flutter</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--ag-green)"></span>Dart</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--ag-green)"></span>geolocator</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--ag-green)"></span>sensors_plus</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--ag-green)"></span>flutter_tts</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--ag-green)"></span>speech_to_text</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--ag-green)"></span>fl_chart</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--ag-green)"></span>Android Build</div>
+        </div>
+        <div class="skills-label">BACKEND / WEB</div>
+        <div class="skills-grid" style="margin-bottom:1rem;">
+          <div class="sk"><span class="sk-dot" style="background:var(--rs-blue)"></span>Java</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--rs-blue)"></span>Spring Boot</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--rs-blue)"></span>React</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--rs-blue)"></span>PostgreSQL</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--rs-blue)"></span>REST APIs</div>
+          <div class="sk"><span class="sk-dot" style="background:var(--rs-blue)"></span>Python</div>
+        </div>
+        <div class="skills-label">TOOLS</div>
+        <div class="skills-grid">
+          <div class="sk"><span class="sk-dot" style="background:#888"></span>Git & GitHub</div>
+          <div class="sk"><span class="sk-dot" style="background:#888"></span>Android Studio</div>
+          <div class="sk"><span class="sk-dot" style="background:#888"></span>VS Code</div>
+          <div class="sk"><span class="sk-dot" style="background:#888"></span>Gradle / NDK</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FARMER INSIGHTS -->
-<div style="background:var(--dark2);">
-  <div class="sec-wrap fade">
-    <div class="eyebrow-row"><div class="eyebrow-line"></div><span class="eyebrow-text">WHAT I LEARNED</span></div>
-    <h2 class="sec-title">What Farmers <em>Taught Me</em></h2>
-    <p class="sec-sub">Key insights from conversations — not assumptions, real observations.</p>
-    <div class="insights-grid">
-      <div class="insight-card"><span class="insight-icon">💰</span><div class="insight-text"><strong>Profit matters more than price</strong>Farmers care about take-home after transport — not just the mandi rate on a board.</div></div>
-      <div class="insight-card"><span class="insight-icon">🌾</span><div class="insight-text"><strong>Variety matters more than crop name</strong>"Rice" is not enough — Basmati, Sona Masuri, Common are completely different decisions.</div></div>
-      <div class="insight-card"><span class="insight-icon">🔊</span><div class="insight-text"><strong>Voice beats typing</strong>Many farmers prefer to speak the crop name rather than type — especially in Hindi.</div></div>
-      <div class="insight-card"><span class="insight-icon">📊</span><div class="insight-text"><strong>Information creates profit</strong>Knowing one better mandi exists can change the selling decision entirely.</div></div>
-      <div class="insight-card"><span class="insight-icon">🤝</span><div class="insight-text"><strong>Buyer discovery is harder than price discovery</strong>Finding who is buying at a good rate is often the bigger problem.</div></div>
-      <div class="insight-card"><span class="insight-icon">🏘️</span><div class="insight-text"><strong>Small farmers lack market connections</strong>Large farmers have agents. Small farmers rely on whoever shows up first.</div></div>
-    </div>
-    <a href="https://github.com/priya-codesdaily/agropredict/blob/main/FIELD_RESEARCH.md" target="_blank" class="read-more-link">📖 Read Full Field Research Notes →</a>
-  </div>
-</div>
-
-<!-- FARMER PHOTOS -->
-<div style="background:var(--dark);padding:4rem 3rem;" class="fade">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="eyebrow-row" style="margin-bottom:1rem;"><div class="eyebrow-line"></div><span class="eyebrow-text">BUILT WITH FARMER FEEDBACK</span></div>
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--white);margin-bottom:1.5rem;">Conversations across <em style="color:var(--gold);font-style:italic;">Jharkhand &amp; Odisha</em></h2>
-    <div class="photo-row-3">
-      <div class="ph"><img src="farmer5.jpg.jpeg" alt="Farmer Odisha"/><div class="ph-loc">📍 ODISHA</div></div>
-      <div class="ph"><img src="farmer6.jpg.jpeg" alt="Farmer Odisha"/><div class="ph-loc">📍 ODISHA</div></div>
-      <div class="ph"><img src="farmer7.jpg.jpeg" alt="Farmer Odisha"/><div class="ph-loc">📍 ODISHA</div></div>
-    </div>
-    <div style="margin-top:1rem;" class="photo-row-4">
-      <div class="ph"><img src="farmer1.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
-      <div class="ph"><img src="farmer2.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
-      <div class="ph"><img src="farmer3.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
-      <div class="ph"><img src="farmer4.jpg.jpeg" alt="Farmer Jharkhand"/><div class="ph-loc">📍 JHARKHAND</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- BUILDING IN PUBLIC -->
-<div style="background:var(--dark2);">
-  <div class="sec-wrap fade">
-    <div class="eyebrow-row"><div class="eyebrow-line"></div><span class="eyebrow-text">BUILDING IN PUBLIC</span></div>
-    <h2 class="sec-title">Everything is <em>Verifiable</em></h2>
-    <p class="sec-sub">All code, research, and progress is publicly available. Nothing to hide.</p>
-    <div class="public-grid">
-      <a href="https://youtu.be/2PWweDEcCpc" target="_blank" class="public-card">
-        <span class="public-icon">🎬</span>
-        <div class="public-title">Documentary</div>
-        <div class="public-desc">Real farmers. Real farms. Real problem — filmed across Jharkhand and Odisha.</div>
-        <span class="public-link">Watch on YouTube →</span>
-      </a>
-      <a href="https://github.com/priya-codesdaily/agropredict" target="_blank" class="public-card">
-        <span class="public-icon">⌥</span>
-        <div class="public-title">GitHub Repository</div>
-        <div class="public-desc">Full source code with commit history showing real iterative development.</div>
-        <span class="public-link">View on GitHub →</span>
-      </a>
-      <a href="https://github.com/priya-codesdaily/agropredict/blob/main/FIELD_RESEARCH.md" target="_blank" class="public-card">
-        <span class="public-icon">📋</span>
-        <div class="public-title">Research Notes</div>
-        <div class="public-desc">Field research notes from farmer conversations — findings that shaped every feature.</div>
-        <span class="public-link">Read Notes →</span>
-      </a>
-      <div class="public-card" style="cursor:default;">
-        <span class="public-icon">📱</span>
-        <div class="public-title">App Demo</div>
-        <div class="public-desc">Full app walkthrough — showing the complete farmer journey from crop to decision.</div>
-        <span class="public-link" style="color:var(--muted);">Coming Soon — fixing final screens</span>
+<!-- ══════════════════════════════════════
+     CONTACT
+══════════════════════════════════════ -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="fade">
+      <p class="sec-eyebrow" style="color:var(--ag-green);margin-bottom:0.8rem;">CONTACT</p>
+      <h2 class="contact-title">Let's Work<br/><em>Together.</em></h2>
+      <p class="contact-sub">Looking for a Flutter or backend developer role — internship, full-time, or remote. I care about building things that solve real problems for real people. If your team does that, let's talk.</p>
+      <div class="contact-links">
+        <a href="mailto:priyatech.logic@gmail.com" class="pl-primary pl-ag">Email Me →</a>
+        <a href="https://github.com/priya-codesdaily" target="_blank" class="pl-ghost">GitHub</a>
+        <a href="https://linkedin.com/in/a-priya-dev" target="_blank" class="pl-ghost">LinkedIn</a>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- DEMO -->
-<div style="background:var(--dark);" id="demo">
-  <div class="sec-wrap fade">
-    <div class="demo-grid">
-      <div>
-        <div class="eyebrow-row"><div class="eyebrow-line"></div><span class="eyebrow-text">DOCUMENTARY + APP DEMO</span></div>
-        <h2 class="sec-title">See the Problem.<br/><em>See the App.</em></h2>
-        <p style="color:var(--muted);line-height:1.9;margin-bottom:1.5rem;">The documentary shows the real problem — farmers speaking in their own words. The app demo shows what I built to solve it. Both are available publicly.</p>
-        <a href="https://youtu.be/2PWweDEcCpc" target="_blank" class="btn-gold">▶ Watch Documentary</a>
-        <p style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);margin-top:1rem;letter-spacing:0.05em;">App demo coming soon — currently fixing final screens before publishing.</p>
-      </div>
-      <a href="https://youtu.be/2PWweDEcCpc" target="_blank" class="demo-box">
-        <div class="demo-play">▶</div>
-        <div class="demo-box-label">FARMER DOCUMENTARY · JHARKHAND &amp; ODISHA</div>
-        <div class="demo-badge">APP DEMO COMING SOON</div>
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<div style="background:var(--dark2);" id="about">
-  <div class="sec-wrap fade">
-    <div class="eyebrow-row"><div class="eyebrow-line"></div><span class="eyebrow-text">ABOUT ME</span></div>
-    <h2 class="sec-title">Who <em>I Am</em></h2>
-    <div class="about-grid">
-      <div class="about-photo">
-        <img src="me.jpeg" alt="Anshu Priya"/>
-      </div>
-      <div>
-        <p class="about-p">I'm a self-taught Flutter developer and BCA student from the <strong>Jharkhand–Odisha border</strong>. I build mobile apps around real problems.</p>
-        <p class="about-p">AgroPredict came from watching my parents face the same decision every harvest — my father on the farm, my mother figuring out where to sell. I also built REPSHIELD — a safety app where one shake sends your live GPS location to trusted contacts. No unlock needed.</p>
-        <p class="about-p">I taught English for almost a year. Teaching kids who aren't technical taught me the same thing building for farmers did — <strong>if someone can use it without asking for help, you got it right.</strong></p>
-        <p class="about-p">Built through independent research, direct user conversations, and continuous iteration. Every improvement came from real feedback — not assumptions.</p>
-        <div class="about-chips">
-          <span class="chip">Real problems</span>
-          <span class="chip">Field Research</span>
-          <span class="chip">User Feedback Driven</span>
-          <span class="chip">Real-World Testing</span>
-          <span class="chip">Hindi + Voice</span>
-          <span class="chip">Self-directed learning</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PROJECTS -->
-<div style="background:var(--dark);" id="projects">
-  <div class="sec-wrap fade">
-    <div class="eyebrow-row"><div class="eyebrow-line"></div><span class="eyebrow-text">PROJECTS</span></div>
-    <h2 class="sec-title">What <em>I Built</em></h2>
-
-    <!-- AGROPREDICT -->
-    <div class="proj-card">
-      <div class="proj-top-g"></div>
-      <div class="proj-body">
-        <div class="proj-name-g">AgroPredict</div>
-        <div class="proj-sub">AGRITECH · FLUTTER · AGMARKNET API · GPS · HINDI + VOICE · FIELD TESTED</div>
-        <p class="proj-desc">A crop price decision-support app that helps farmers decide <strong>where and when to sell</strong> for better profit. Connects to India's AGMARKNET government data. Full Hindi interface. Built from real farmer feedback across Odisha and Jharkhand.</p>
-
-        <div class="feat-label">WHAT IT DOES</div>
-        <div class="feat-grid-3">
-          <div class="feat-item"><strong>GPS MANDI</strong>Nearest mandi with approximate distance and travel time</div>
-          <div class="feat-item"><strong>PROFIT CALC</strong>Net profit after estimated transport cost — before the trip</div>
-          <div class="feat-item"><strong>SELL / WAIT</strong>Rule-based advice with plain reasoning — no ML model</div>
-          <div class="feat-item"><strong>VOICE OUTPUT</strong>Reads advice aloud in Hindi — farmer hears without reading</div>
-          <div class="feat-item"><strong>VARIETIES</strong>Basmati vs Common — because farmers think in varieties</div>
-          <div class="feat-item"><strong>HINDI UI</strong>Full Hindi interface + ₹/quintal ↔ ₹/kg toggle</div>
-        </div>
-
-        <div class="two-col">
-          <div class="progress-box">
-            <div class="box-label">CURRENT PROGRESS</div>
-            <div class="progress-item"><span class="tick">✓</span>Interviewed farmers across Odisha and Jharkhand</div>
-            <div class="progress-item"><span class="tick">✓</span>Built working Flutter prototype</div>
-            <div class="progress-item"><span class="tick">✓</span>Integrated AGMARKNET government data</div>
-            <div class="progress-item"><span class="tick">✓</span>Implemented Hindi voice support</div>
-            <div class="progress-item"><span class="tick">✓</span>Added mandi comparison system</div>
-            <div class="progress-item"><span class="tick">✓</span>Added transport profit calculator</div>
-          </div>
-          <div class="progress-box">
-            <div class="box-label">WHAT I LEARNED</div>
-            <div class="lesson-item"><span class="dot"></span>User feedback is more valuable than assumptions</div>
-            <div class="lesson-item"><span class="dot"></span>Simplicity beats complexity for rural users</div>
-            <div class="lesson-item"><span class="dot"></span>Profit matters more than price to farmers</div>
-            <div class="lesson-item"><span class="dot"></span>Accessibility matters as much as functionality</div>
-            <div class="lesson-item"><span class="dot"></span>Voice reduces friction more than any UI improvement</div>
-          </div>
-        </div>
-
-        <div class="pills">
-          <span class="pill">AGMARKNET API</span><span class="pill">GPS</span>
-          <span class="pill">Profit Calculator</span><span class="pill">Hindi UI</span>
-          <span class="pill">Voice Output</span><span class="pill">Crop Varieties</span>
-          <span class="pill">Rule-based Engine</span><span class="pill">Price Date Shown</span>
-        </div>
-        <div class="proj-links">
-          <a href="https://github.com/priya-codesdaily/agropredict" target="_blank" class="pl-p">GitHub →</a>
-          <a href="https://youtu.be/2PWweDEcCpc" target="_blank" class="pl-o">▶ Documentary</a>
-          <a href="https://github.com/priya-codesdaily/agropredict/blob/main/FIELD_RESEARCH.md" target="_blank" class="pl-o">📋 Research Notes</a>
-          <a href="#roadmap" class="pl-o">V2 Roadmap</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- REPSHIELD — compact -->
-    <div class="repshield-card">
-      <div class="proj-top-r" style="grid-column:span 2;"></div>
-      <div class="repshield-left">
-        <div class="proj-name-r">REPSHIELD</div>
-        <div class="proj-sub">SAFETY APP · FLUTTER · v1.0.0</div>
-        <p class="proj-desc" style="font-size:0.92rem;">A personal safety app for situations where <strong>seconds matter</strong>. One shake sends your live GPS location to all trusted contacts — no unlock, no delay.</p>
-        <div class="proj-links">
-          <a href="https://github.com/priya-codesdaily/REPSHIELD" target="_blank" class="pl-p" style="font-size:0.68rem;padding:0.5rem 1rem;">GitHub →</a>
-          <a href="https://github.com/priya-codesdaily/REPSHIELD/releases/tag/v1.0.0" target="_blank" class="pl-o" style="font-size:0.68rem;padding:0.5rem 1rem;">Download APK</a>
-        </div>
-      </div>
-      <div class="repshield-right">
-        <div class="feat-label">HOW IT WORKS</div>
-        <div class="feat-grid-2">
-          <div class="feat-item"><strong>SHAKE-TO-SOS</strong>No unlock needed — accelerometer fires instantly</div>
-          <div class="feat-item"><strong>LIVE GPS</strong>Google Maps link sent via SMS to all contacts</div>
-          <div class="feat-item"><strong>STEALTH MODE</strong>Discreet UI for unsafe situations</div>
-          <div class="feat-item"><strong>SHA-256 LOG</strong>Tamper-evident incident journal</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ROADMAP -->
-<div style="background:var(--dark2);" id="roadmap">
-  <div class="sec-wrap fade">
-    <div class="eyebrow-row"><div class="eyebrow-line"></div><span class="eyebrow-text">AGROPREDICT V2</span></div>
-    <h2 class="sec-title">What's <em>Next</em></h2>
-    <p class="sec-sub">Every feature came from real farmer feedback — not a wishlist.</p>
-    <div class="rm-grid">
-      <div class="rm-card"><div class="rm-num">01</div><div class="rm-title">Price Date</div><div class="rm-desc">Show actual data date — not just "today"</div><span class="rm-status s-done">DONE ✓</span></div>
-      <div class="rm-card"><div class="rm-num">02</div><div class="rm-title">Voice Output</div><div class="rm-desc">Advice read aloud in Hindi on advice screen</div><span class="rm-status s-done">DONE ✓</span></div>
-      <div class="rm-card"><div class="rm-num">03</div><div class="rm-title">Selling Score</div><div class="rm-desc">🟢 Good · 🟡 Average · 🔴 Wait</div><span class="rm-status s-build">BUILDING</span></div>
-      <div class="rm-card"><div class="rm-num">04</div><div class="rm-title">Shared Transport</div><div class="rm-desc">Split cost between neighbouring farmers</div><span class="rm-status s-plan">PLANNED</span></div>
-      <div class="rm-card"><div class="rm-num">05</div><div class="rm-title">Price History</div><div class="rm-desc">30-day trend — rising or falling?</div><span class="rm-status s-plan">PLANNED</span></div>
-      <div class="rm-card"><div class="rm-num">06</div><div class="rm-title">Offline Mode</div><div class="rm-desc">Cache prices — works without internet</div><span class="rm-status s-plan">PLANNED</span></div>
-      <div class="rm-card"><div class="rm-num">07</div><div class="rm-title">Weather</div><div class="rm-desc">Rain + perishables = better timing advice</div><span class="rm-status s-plan">PLANNED</span></div>
-      <div class="rm-card"><div class="rm-num">08</div><div class="rm-title">Odia Support</div><div class="rm-desc">Hindi isn't first language for all in Odisha</div><span class="rm-status s-plan">PLANNED</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- SKILLS -->
-<div style="background:var(--dark);">
-  <div class="sec-wrap fade">
-    <div class="eyebrow-row"><div class="eyebrow-line"></div><span class="eyebrow-text">TECH STACK</span></div>
-    <h2 class="sec-title">Skills &amp; <em>Tools</em></h2>
-    <div class="skills-wrap">
-      <div class="sk"><span class="sk-dot" style="background:var(--bright)"></span>Flutter</div>
-      <div class="sk"><span class="sk-dot" style="background:var(--bright)"></span>Dart</div>
-      <div class="sk"><span class="sk-dot" style="background:#378ADD"></span>Python</div>
-      <div class="sk"><span class="sk-dot" style="background:var(--bright)"></span>Geolocator</div>
-      <div class="sk"><span class="sk-dot" style="background:var(--bright)"></span>sensors_plus</div>
-      <div class="sk"><span class="sk-dot" style="background:var(--bright)"></span>speech_to_text</div>
-      <div class="sk"><span class="sk-dot" style="background:var(--bright)"></span>flutter_tts</div>
-      <div class="sk"><span class="sk-dot" style="background:#378ADD"></span>REST APIs</div>
-      <div class="sk"><span class="sk-dot" style="background:#378ADD"></span>Firebase</div>
-      <div class="sk"><span class="sk-dot" style="background:#378ADD"></span>Git & GitHub</div>
-      <div class="sk"><span class="sk-dot" style="background:#378ADD"></span>Android Build</div>
-      <div class="sk"><span class="sk-dot" style="background:var(--gold)"></span>fl_chart</div>
-      <div class="sk"><span class="sk-dot" style="background:var(--gold)"></span>shared_prefs</div>
-      <div class="sk"><span class="sk-dot" style="background:#378ADD"></span>Gradle / NDK</div>
-      <div class="sk"><span class="sk-dot" style="background:var(--bright)"></span>State Mgmt</div>
-      <div class="sk"><span class="sk-dot" style="background:var(--gold)"></span>UI/UX Design</div>
-    </div>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<div style="background:var(--dark2);" id="contact">
-  <div class="sec-wrap fade">
-    <div class="contact-grid">
-      <div>
-        <div class="eyebrow-row"><div class="eyebrow-line"></div><span class="eyebrow-text">CONTACT</span></div>
-        <h2 class="contact-title">Let's Work<br/><em>Together.</em></h2>
-        <p class="contact-sub">Looking for a Flutter developer role — internship, full-time, or remote. I care about building things that reach people who actually need them. If your team does that, let's talk.</p>
-        <div class="contact-links">
-          <a href="mailto:priyatech.logic@gmail.com" class="btn-gold">Email Me →</a>
-          <a href="https://github.com/priya-codesdaily" target="_blank" class="btn-outline">GitHub</a>
-          <a href="https://linkedin.com/in/a-priya-dev" target="_blank" class="btn-outline">LinkedIn</a>
-        </div>
-      </div>
-      <div class="contact-info">
-        <div class="ci-row"><div class="ci-icon">✉️</div><div><div class="ci-label">EMAIL</div><div class="ci-value">priyatech.logic@gmail.com</div></div></div>
-        <div class="ci-row"><div class="ci-icon">📱</div><div><div class="ci-label">PHONE</div><div class="ci-value">7327950897</div></div></div>
-        <div class="ci-row"><div class="ci-icon">📍</div><div><div class="ci-label">LOCATION</div><div class="ci-value">Jharkhand–Odisha Border, India</div></div></div>
-        <div class="ci-row"><div class="ci-icon">💼</div><div><div class="ci-label">AVAILABILITY</div><div class="ci-value">Remote / Hybrid / Onsite — Open Now</div></div></div>
-        <div class="ci-row"><div class="ci-icon">🌐</div><div><div class="ci-label">PORTFOLIO</div><div class="ci-value">priya-codesdaily.github.io</div></div></div>
-      </div>
+    <div class="contact-info fade">
+      <div class="ci-row"><div class="ci-icon">✉️</div><div><div class="ci-label">EMAIL</div><div class="ci-value">priyatech.logic@gmail.com</div></div></div>
+      <div class="ci-row"><div class="ci-icon">📱</div><div><div class="ci-label">PHONE</div><div class="ci-value">7327950897</div></div></div>
+      <div class="ci-row"><div class="ci-icon">📍</div><div><div class="ci-label">LOCATION</div><div class="ci-value">Jharkhand–Odisha Border, India</div></div></div>
+      <div class="ci-row"><div class="ci-icon">💼</div><div><div class="ci-label">AVAILABILITY</div><div class="ci-value">Remote / Hybrid / Onsite — Open Now</div></div></div>
+      <div class="ci-row"><div class="ci-icon">🌐</div><div><div class="ci-label">PORTFOLIO</div><div class="ci-value">priya-codesdaily.github.io</div></div></div>
     </div>
   </div>
 </div>
 
 <footer>
   <p>© 2026 Anshu Priya · Flutter Developer · Jharkhand–Odisha Border, India</p>
-  <span class="open-dot">Open to Work</span>
+  <span class="footer-dot">Open to Work</span>
 </footer>
 
 <script>
-const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('in');});},{threshold:0.08});
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('in');});},{threshold:0.06});
 document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
 </script>
 </body>
