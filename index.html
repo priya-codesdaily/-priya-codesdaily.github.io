@@ -3,875 +3,946 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anshu Priya — Software Developer</title>
-<meta name="description" content="Anshu Priya — software developer. Real problems, real research, real products.">
+<title>ANSHU.OS — Anshu Priya</title>
+<meta name="description" content="Anshu Priya — software developer. An interactive portfolio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ivory:#F7F1DC; --ivory-deep:#EFE6C7; --white:#FFFFFF;
-    --charcoal:#14241B; --ink-soft:#26362B; --ink-faint:#8B9280;
-    --forest:#1E3B26; --forest-deep:#12281A;
-    --olive:#7C8F52; --olive-soft:#E9E8CE;
-    --gold:#C79A4E; --gold-soft:#F3E6C6;
-    --rose:#C98A7E; --rose-soft:#F1DFD9;
-    --red:#B24632; --red-soft:#F1DFDA;
-    --line:rgba(23,25,20,.13); --line-soft:rgba(23,25,20,.07);
+    --black:#0A0A0A; --near-black:#141414;
+    --cream:#F6F6F3; --cream-deep:#EAEAE6;
+    --white:#FFFFFF; --white-off:#FAFAFA;
+    --gray:#8A8A87; --gray-line:rgba(20,20,20,.12); --gray-line-onblack:rgba(255,255,255,.14);
+    --red:#7A6FE0;
+    --ink:#111110; --ink-cream:#F6F6F3;
     --serif:'DM Serif Display', serif; --sans:'Inter', sans-serif; --mono:'IBM Plex Mono', monospace;
-    --maxw:1080px; --ease:cubic-bezier(.22,1,.36,1);
+    --ease:cubic-bezier(.22,1,.36,1);
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.01ms !important; transition-duration:.01ms !important;} }
-  body{margin:0; background:var(--ivory); color:var(--charcoal); font-family:var(--sans); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased;}
-  body.locked, body.pv-open{overflow:hidden; height:100vh;}
+  html,body{height:100%; overflow:hidden;}
+  body{margin:0; background:var(--black); color:var(--ink); font-family:var(--sans); -webkit-font-smoothing:antialiased;}
   img{display:block; max-width:100%;}
-  a{color:inherit;} button{font-family:inherit;}
-  h1,h2,h3{font-family:var(--serif); font-weight:400; margin:0; letter-spacing:-0.01em;}
+  a{color:inherit;} button{font-family:inherit; cursor:pointer;}
+  h1,h2,h3{font-family:var(--serif); font-weight:400; margin:0;}
   p{margin:0;} ul{margin:0; padding:0; list-style:none;}
-  strong{color:var(--forest); font-weight:700;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
-  @media (max-width:640px){ .wrap{padding:0 20px;} }
-  .skip-link{position:absolute; left:-999px; top:0; background:var(--forest); color:#fff; padding:10px 16px; z-index:500; border-radius:0 0 6px 0;}
-  .skip-link:focus{left:0;}
-  a:focus-visible, button:focus-visible{outline:2px solid var(--forest); outline-offset:3px; border-radius:2px;}
+  @media (prefers-reduced-motion: reduce){ *{transition-duration:.01ms !important; animation-duration:.01ms !important;} }
+  a:focus-visible, button:focus-visible{outline:2px solid var(--red); outline-offset:3px;}
+  ::selection{background:var(--red); color:#fff;}
+
+  .dot{width:9px; height:9px; border-radius:50%; background:var(--red); display:inline-block; flex-shrink:0;}
   .mono{font-family:var(--mono);}
-  .eyebrow{font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:16px; display:block;}
-  .eyebrow .num{color:var(--forest); font-weight:600;}
-  .section-head{max-width:600px; margin-bottom:44px;}
-  .section-title{font-size:clamp(28px,4vw,38px); margin-bottom:12px;}
-  .section-sub{color:var(--ink-soft); font-size:16px; max-width:520px;}
-  .reveal{opacity:0; transform:translateY(16px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
-  .reveal.in{opacity:1; transform:translateY(0);}
-  section{padding:84px 0;}
-  @media (max-width:820px){ section{padding:58px 0;} }
-  .divider{border:none; border-top:1px solid var(--line); margin:0;}
-  .ghost-btn{font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.03em; text-decoration:none; color:var(--charcoal); border:1px solid var(--line); padding:11px 20px; border-radius:4px; display:inline-block; transition:border-color .2s var(--ease), background .2s var(--ease); background:none; cursor:pointer;}
-  .ghost-btn:hover{border-color:var(--forest); background:var(--olive-soft);}
-  .solid-btn{font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.03em; text-decoration:none; color:#fff; background:linear-gradient(180deg, #2C4E36 0%, var(--forest) 60%, var(--forest-deep) 100%); padding:11px 20px; border-radius:4px; display:inline-block; transition:box-shadow .25s var(--ease), transform .2s var(--ease); border:none; cursor:pointer; box-shadow:0 2px 5px rgba(18,40,26,.28), inset 0 1px 0 rgba(255,255,255,.12);}
-  .solid-btn:hover{box-shadow:0 4px 10px rgba(18,40,26,.32), inset 0 1px 0 rgba(255,255,255,.14); transform:translateY(-1px);}
 
-  /* ---------- GATE ---------- */
-  .gate{position:fixed; inset:0; z-index:600; background:var(--ivory); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; transition:opacity .8s var(--ease), visibility .8s var(--ease);}
-  body.entered .gate{opacity:0; visibility:hidden; pointer-events:none;}
-  .gate-role{font-family:var(--mono); font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); opacity:0; transform:translateY(10px); animation:gfade .8s var(--ease) forwards; animation-delay:.15s;}
-  .gate h1{font-size:clamp(48px,9vw,92px); line-height:1; margin:14px 0 20px; opacity:0; transform:translateY(14px); animation:gfade .9s var(--ease) forwards; animation-delay:.35s;}
-  .gate-tag{font-size:15px; color:var(--ink-soft); max-width:400px; opacity:0; transform:translateY(10px); animation:gfade .9s var(--ease) forwards; animation-delay:.55s; margin-bottom:6px;}
-  .gate-quote{font-family:var(--serif); font-style:italic; font-size:clamp(16px,2vw,19px); color:var(--rose); max-width:420px; opacity:0; animation:qcycle 4.5s var(--ease) forwards; animation-delay:.85s; min-height:28px;}
-  @keyframes qcycle{0%{opacity:0;} 10%{opacity:1;} 45%{opacity:1;} 55%{opacity:0;} 65%{opacity:1;} 100%{opacity:1;}}
-  .gate-line{width:0; height:1px; background:var(--forest); margin:30px 0; animation:gline .8s var(--ease) forwards; animation-delay:1.2s;}
-  @keyframes gfade{to{opacity:1; transform:translateY(0);}}
-  @keyframes gline{to{width:64px;}}
-  .gate-enter{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; background:none; border:1px solid var(--charcoal); color:var(--charcoal); padding:14px 30px; border-radius:30px; cursor:pointer; opacity:0; animation:gfade .8s var(--ease) forwards; animation-delay:1.5s; transition:background .25s var(--ease), color .25s var(--ease), transform .2s var(--ease);}
-  .gate-enter:hover{background:var(--forest); color:#fff; border-color:var(--forest); transform:translateY(-1px);}
-  @media (prefers-reduced-motion: reduce){ .gate-role,.gate h1,.gate-tag,.gate-quote,.gate-enter{animation:none; opacity:1; transform:none;} .gate-line{animation:none; width:64px;} }
-
-  /* ---------- NAV ---------- */
-  header.nav{position:sticky; top:0; z-index:150; background:rgba(245,243,236,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--line-soft); opacity:0; pointer-events:none; transition:opacity .6s var(--ease);}
-  body.entered header.nav{opacity:1; pointer-events:auto;}
-  .nav-inner{max-width:var(--maxw); margin:0 auto; padding:16px 32px; display:flex; align-items:center; justify-content:space-between;}
-  @media (max-width:640px){ .nav-inner{padding:14px 20px;} }
-  .logo{font-family:var(--serif); font-size:19px; text-decoration:none; color:var(--charcoal);}
-  .nav-links{display:flex; align-items:center; gap:24px;}
-  .nav-links a{text-decoration:none; font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.04em; color:var(--ink-soft); transition:color .2s var(--ease);}
-  .nav-links a:hover{color:var(--forest);}
-  .resume-btn{font-family:var(--mono); font-size:12px; font-weight:500; text-decoration:none; color:#fff; background:linear-gradient(180deg, #2C4E36 0%, var(--forest) 60%, var(--forest-deep) 100%); padding:9px 16px; border-radius:3px; letter-spacing:.03em; transition:box-shadow .2s var(--ease); white-space:nowrap; box-shadow:0 2px 4px rgba(18,40,26,.25), inset 0 1px 0 rgba(255,255,255,.1);}
-  .resume-btn:hover{box-shadow:0 3px 8px rgba(18,40,26,.3), inset 0 1px 0 rgba(255,255,255,.12);}
-  .nav-toggle{display:none; background:none; border:1px solid var(--line); border-radius:3px; padding:8px 10px; cursor:pointer;}
-  .nav-toggle svg{width:18px; height:18px;}
-  @media (max-width:760px){
-    .nav-links{position:absolute; top:100%; left:0; right:0; background:var(--white); flex-direction:column; align-items:flex-start; gap:0; border-bottom:1px solid var(--line); max-height:0; overflow:hidden; transition:max-height .3s var(--ease); box-shadow:0 12px 24px rgba(0,0,0,.05);}
-    .nav-links.open{max-height:400px;}
-    .nav-links a{display:block; padding:16px 20px; border-bottom:1px solid var(--line-soft); width:100%; text-align:left;}
-    .nav-toggle{display:inline-flex; align-items:center; justify-content:center;}
-    .resume-btn.desktop{display:none;}
-    .resume-btn.mobile{display:inline-block; margin:14px 20px 20px;}
+  /* ============ WORLD SYSTEM ============ */
+  .world{
+    position:fixed; inset:0; opacity:0; visibility:hidden; pointer-events:none;
+    transform:perspective(1600px) rotateY(-7deg) scale(.94); transform-origin:center;
+    transition:opacity .65s var(--ease), transform .65s var(--ease), visibility .65s;
+    overflow-y:auto; -webkit-overflow-scrolling:touch;
   }
-  .resume-btn.mobile{display:none;}
+  .world.active{opacity:1; visibility:visible; pointer-events:auto; transform:perspective(1600px) rotateY(0) scale(1); z-index:10;}
+  .world-inner{max-width:1000px; margin:0 auto; padding:64px 32px 90px; min-height:100%; display:flex; flex-direction:column;}
+  @media (max-width:640px){ .world-inner{padding:44px 20px 70px;} }
+  .world-black{background:var(--black); color:var(--cream);}
+  .world-cream{background:var(--cream); color:var(--ink);}
+  .world-white{background:var(--white-off); color:var(--ink);}
 
-  /* ---------- WORK ---------- */
-  .work-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
-  @media (max-width:700px){ .work-grid{grid-template-columns:1fr;} }
-  .work-card{background:var(--white); border:1px solid var(--line); border-radius:10px; padding:26px; cursor:pointer; text-align:left; width:100%; transition:transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease); display:flex; flex-direction:column; gap:10px; box-shadow:0 1px 2px rgba(20,30,20,.04), 0 8px 18px rgba(20,30,20,.05);}
-  .work-card:hover{transform:translateY(-4px); box-shadow:0 18px 30px rgba(23,24,21,.06); border-color:var(--forest);}
-  .wc-top{display:flex; align-items:center; gap:10px;}
-  .wc-emoji{font-size:24px;}
-  .wc-name{font-family:var(--serif); font-size:24px;}
-  .wc-tag{font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--forest);}
-  .wc-desc{font-size:14px; color:var(--ink-soft); line-height:1.6;}
-  .wc-cue{font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin-top:auto; padding-top:6px;}
-  .wc-chip{font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.06em; padding:3px 9px; border-radius:20px; background:var(--gold-soft); color:var(--gold); display:inline-block; text-transform:uppercase; width:fit-content;}
+  .top-corner{position:fixed; top:20px; left:24px; z-index:60; font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.06em; text-decoration:none; display:flex; align-items:center; gap:8px; opacity:0; pointer-events:none; transition:opacity .5s var(--ease);}
+  body.booted .top-corner{opacity:1; pointer-events:auto;}
+  .top-corner.on-black{color:var(--cream);}
+  .top-corner.on-light{color:var(--ink);}
+  .menu-toggle{position:fixed; top:18px; right:24px; z-index:60; background:none; border:1px solid; border-radius:20px; padding:8px 16px; font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.08em; display:flex; align-items:center; gap:8px; opacity:0; pointer-events:none; transition:opacity .5s var(--ease), background .2s var(--ease);}
+  body.booted .menu-toggle{opacity:1; pointer-events:auto;}
+  .menu-toggle.on-black{color:var(--cream); border-color:var(--gray-line-onblack);}
+  .menu-toggle.on-light{color:var(--ink); border-color:var(--gray-line);}
+  .menu-toggle:hover{background:var(--red); color:#fff !important; border-color:var(--red) !important;}
 
-  /* ---------- PROJECT DETAIL — FULL SCREEN TAKEOVER ---------- */
-  .pview{position:fixed; inset:0; z-index:400; background:var(--ivory); overflow-y:auto; opacity:0; visibility:hidden; transform:translateY(24px); transition:opacity .5s var(--ease), transform .5s var(--ease), visibility .5s var(--ease);}
-  .pview.open{opacity:1; visibility:visible; transform:translateY(0);}
-  .pview-bar{position:sticky; top:0; z-index:5; background:rgba(245,243,236,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line-soft); padding:16px 0;}
-  .pview-bar-inner{max-width:var(--maxw); margin:0 auto; padding:0 32px; display:flex; align-items:center; justify-content:space-between;}
-  @media (max-width:640px){ .pview-bar-inner{padding:0 20px;} }
-  .pview-back{font-family:var(--mono); font-size:12.5px; font-weight:600; color:var(--ink-soft); background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:8px; transition:color .2s var(--ease);}
-  .pview-back:hover{color:var(--forest);}
-  .pview-content{max-width:760px; margin:0 auto; padding:52px 32px 100px;}
-  @media (max-width:640px){ .pview-content{padding:36px 20px 70px;} }
-  .pv-tag{font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--forest); margin-bottom:14px;}
-  .pv-title{font-family:var(--serif); font-size:clamp(46px,9vw,84px); line-height:0.98; letter-spacing:0.01em; margin-bottom:8px;}
-  .pv-oneliner{font-size:16.5px; color:var(--ink-soft); max-width:520px; margin-bottom:36px; line-height:1.7;}
-  .pv-lead-photo{border-radius:10px; overflow:hidden; aspect-ratio:16/9; background:var(--olive-soft); border:1px solid var(--line); margin-bottom:40px;}
-  .pv-lead-photo.pv-lead-small{aspect-ratio:3/4; max-width:220px; margin-left:0; margin-right:auto;}
-  .pv-lead-photo img{width:100%; height:100%; object-fit:cover; transition:transform .4s var(--ease);}
-  .ph-fallback{font-family:var(--mono); font-size:11px; color:var(--ink-faint); text-align:center; padding:12px; display:block;}
-  .pv-block{margin-bottom:36px;}
-  .pv-block h4{font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;}
-  .pv-block p{font-size:15.5px; color:var(--ink-soft); line-height:1.8;}
-  .pv-block p strong{color:var(--forest);}
-  .pv-list{display:flex; flex-direction:column; gap:9px;}
-  .pv-list li{font-size:14.5px; color:var(--ink-soft); display:flex; gap:9px; line-height:1.55;}
-  .pv-list li::before{content:'→'; color:var(--forest); font-weight:700; flex-shrink:0;}
-  .pv-arch{font-family:var(--mono); font-size:13.5px; color:var(--charcoal); background:var(--white); border:1px solid var(--line); border-radius:6px; padding:18px 20px; line-height:2; white-space:pre-wrap;}
-  .pv-photos{display:flex; gap:14px; overflow-x:auto; padding-bottom:10px;}
-  .pv-photos .pv-ph{flex:0 0 auto; width:170px;}
-  .pv-photos .pv-ph-frame{aspect-ratio:3/4; border-radius:8px; overflow:hidden; background:var(--white); border:1px solid var(--line);}
-  .pv-photos .pv-ph-frame img{width:100%; height:100%; object-fit:cover;}
-  .pv-ph-cap{font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); margin-top:7px;}
-  .shot-strip{display:flex; gap:12px; overflow-x:auto; padding-bottom:10px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;}
-  .shot-strip::-webkit-scrollbar{height:6px;}
-  .shot-strip::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px;}
-  .shot-strip .shot{flex:0 0 auto; width:150px; aspect-ratio:9/16; border-radius:8px; overflow:hidden; background:var(--white); border:1px solid var(--line); scroll-snap-align:start; display:flex; align-items:center; justify-content:center;}
-  .shot-strip .shot.wide{width:260px; aspect-ratio:16/9;}
-  .shot-strip .shot img{width:100%; height:100%; object-fit:cover;}
-  .pv-pills{display:flex; flex-wrap:wrap; gap:8px;}
-  .pv-pill{font-family:var(--mono); font-size:12px; padding:6px 12px; border-radius:3px; border:1px solid var(--line); color:var(--ink-soft); background:var(--white);}
-  .pv-links{display:flex; gap:12px; flex-wrap:wrap; margin-top:6px;}
+  .eyebrow{font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; margin-bottom:18px; display:block; color:var(--gray);}
+  .back-link{font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.04em; background:none; border:none; display:inline-flex; align-items:center; gap:8px; margin-bottom:36px; opacity:.75; transition:opacity .2s var(--ease);}
+  .back-link:hover{opacity:1;}
 
-  /* youtube inline play */
-  .yt-trigger{display:inline-flex; align-items:center; gap:10px; background:var(--white); border:1px solid var(--line); border-radius:6px; padding:12px 18px; cursor:pointer; font-family:var(--mono); font-size:13px; font-weight:600; color:var(--charcoal); transition:border-color .2s var(--ease);}
-  .yt-trigger:hover{border-color:var(--red);}
-  .yt-trigger svg{width:20px; height:20px; fill:var(--red);}
-  .yt-embed-wrap{border-radius:10px; overflow:hidden; aspect-ratio:16/9; background:#000;}
-  .yt-embed-wrap iframe{width:100%; height:100%; border:0;}
+  /* ============ 00 — ENTRY ============ */
+  #world-entry{background:var(--black); color:var(--cream); z-index:100; transform:none; transition:opacity .9s var(--ease), transform .9s var(--ease);}
+  #world-entry.active{transform:none;}
+  body.booted #world-entry{opacity:0; visibility:hidden; pointer-events:none; transform:scale(1.06);}
+  .entry-inner{height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;}
+  .entry-name{font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase; opacity:.7; margin-bottom:10px;}
+  .entry-role{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; opacity:.5; margin-bottom:50px;}
+  .entry-tagline{font-family:var(--sans); font-weight:800; font-size:clamp(24px,4.6vw,44px); line-height:1.18; max-width:640px; letter-spacing:-.01em; margin-bottom:52px;}
+  .entry-enter{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; background:none; border:1px solid rgba(243,235,220,.4); color:var(--cream); padding:15px 34px; border-radius:30px; transition:background .25s var(--ease), border-color .25s var(--ease);}
+  .entry-enter:hover{background:var(--red); border-color:var(--red); color:#fff;}
+  .entry-dot{margin-top:56px;}
 
-  /* ---------- JOURNEY (scroll narrative) ---------- */
-  .jrny-timeline{position:relative; padding-left:36px;}
-  .jrny-spine{position:absolute; left:5px; top:8px; bottom:8px; width:1px; background:var(--line);}
-  .jrny-spine-fill{position:absolute; left:0; top:0; width:100%; height:0%; background:var(--gold); transition:height 1.4s var(--ease);}
-  .jrny-entry{position:relative; padding-bottom:64px;}
-  .jrny-entry:last-child{padding-bottom:0;}
-  .jrny-dot{position:absolute; left:-36px; top:4px; width:11px; height:11px; border-radius:50%; background:var(--ivory); border:2px solid var(--olive); transition:border-color .4s var(--ease), background .4s var(--ease);}
-  .jrny-entry.active .jrny-dot{border-color:var(--forest); background:var(--forest);}
-  .jrny-date{font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.06em; color:var(--gold); margin-bottom:8px;}
-  .jrny-title{font-family:var(--serif); font-size:24px; margin-bottom:12px; color:var(--charcoal);}
-  .jrny-body{color:var(--ink-soft); font-size:15px; line-height:1.8; max-width:560px;}
-  .jrny-body p{margin-bottom:12px;}
-  .jrny-body p:last-child{margin-bottom:0;}
-  .jrny-sub{background:var(--white); border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin-top:14px; max-width:480px;}
-  .jrny-sub-name{font-weight:700; font-size:14px; color:var(--charcoal); margin-bottom:2px;}
-  .jrny-sub-meta{font-family:var(--mono); font-size:11.5px; color:var(--ink-faint);}
-  .jrny-pull{font-family:var(--serif); font-size:19px; color:var(--forest); border-left:2px solid var(--forest); padding-left:16px; margin-top:18px; max-width:460px; line-height:1.5;}
-  .jrny-photos{display:flex; gap:14px; margin-top:20px; flex-wrap:wrap;}
-  .jrny-photo{width:240px;}
-  @media (max-width:480px){ .jrny-photo{width:100%;} }
-  .jrny-photo-frame{aspect-ratio:4/3; border-radius:6px; overflow:hidden; background:var(--white); border:1px solid var(--line);}
-  .jrny-photo-frame img{width:100%; height:100%; object-fit:cover;}
-  .jrny-photo-cap{font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); margin-top:7px; line-height:1.5;}
-  .jrny-bloom-trigger{font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.06em; color:#fff; background:var(--forest); border:none; border-radius:22px; padding:10px 20px; cursor:pointer; margin-top:18px; display:inline-flex; align-items:center; gap:8px; transition:background .2s var(--ease);}
-  .jrny-bloom-trigger:hover{background:var(--forest-deep);}
-  .jrny-bloom{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; max-height:0; overflow:hidden; transition:max-height .5s var(--ease);}
-  .jrny-bloom.open{max-height:200px;}
-  .jrny-bloom-tag{font-family:var(--mono); font-size:12px; padding:7px 13px; border-radius:20px; border:1px solid var(--line); background:var(--white); color:var(--ink-soft); opacity:0; transform:scale(.9); transition:opacity .35s var(--ease), transform .35s var(--ease); transition-delay:calc(var(--bi,0) * 40ms);}
-  .jrny-bloom.open .jrny-bloom-tag{opacity:1; transform:scale(1);}
-  .jrny-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
-  .jrny-tag{font-family:var(--mono); font-size:12px; padding:6px 13px; border-radius:20px; border:1px solid var(--line); background:var(--white); color:var(--ink-soft);}
+  /* ============ 01 — HOME ============ */
+  #world-home{background:var(--white-off); color:var(--ink);}
+  .home-inner{height:100%; min-height:100%; display:flex; flex-direction:column; justify-content:center; padding:100px 40px; max-width:1040px; margin:0 auto;}
+  @media (max-width:640px){ .home-inner{padding:90px 22px 50px;} }
+  .home-role{font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gray); margin-bottom:16px;}
+  .home-name{font-family:var(--sans); font-weight:900; font-size:clamp(44px,8vw,88px); line-height:.95; letter-spacing:-.02em; margin-bottom:26px;}
+  .home-tagline{font-size:clamp(16px,1.8vw,19px); color:var(--gray); max-width:460px; margin-bottom:14px; line-height:1.6;}
+  .home-dot-row{display:flex; align-items:center; gap:10px; margin-bottom:52px;}
+  .home-objects{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:700px){ .home-objects{grid-template-columns:1fr;} }
+  .home-obj{
+    background:var(--black); color:var(--cream); border-radius:12px; padding:30px 26px; text-align:left;
+    border:none; transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+    box-shadow:0 10px 26px rgba(0,0,0,.14);
+  }
+  .home-obj:hover{transform:translateY(-8px) rotate(-.6deg); box-shadow:0 20px 40px rgba(0,0,0,.22);}
+  .home-obj:nth-child(2){background:var(--cream-deep); color:var(--ink);}
+  .home-obj:nth-child(3){background:var(--red); color:#fff;}
+  .home-obj-label{font-family:var(--mono); font-size:11px; letter-spacing:.14em; opacity:.7; margin-bottom:10px;}
+  .home-obj-title{font-family:var(--serif); font-size:26px; margin-bottom:8px;}
+  .home-obj-desc{font-size:13px; opacity:.85; line-height:1.5;}
 
-  /* ---------- ABOUT ---------- */
-  .about-intro{max-width:600px; margin-bottom:44px;}
-  .about-intro p{color:var(--ink-soft); font-size:16px; line-height:1.85; margin-bottom:14px;}
-  .about-pillars{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:44px;}
-  @media (max-width:760px){ .about-pillars{grid-template-columns:1fr;} }
-  .pillar-card{background:var(--white); border:1px solid var(--line); border-radius:10px; padding:26px; transition:transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease); box-shadow:0 1px 2px rgba(20,30,20,.04), 0 8px 18px rgba(20,30,20,.05);}
-  .pillar-card:hover{transform:translateY(-4px); border-color:var(--rose); box-shadow:0 4px 8px rgba(20,30,20,.06), 0 14px 26px rgba(20,30,20,.08);}
-  .pillar-icon{font-size:24px; margin-bottom:14px; display:block;}
-  .pillar-card h3{font-size:19px; color:var(--forest); margin-bottom:8px;}
-  .pillar-lead{font-weight:700; font-size:14.5px; color:var(--charcoal); margin-bottom:8px;}
-  .pillar-body{font-size:13.5px; color:var(--ink-soft); line-height:1.6;}
-  .about-two{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
-  @media (max-width:700px){ .about-two{grid-template-columns:1fr;} }
-  .about-list-label{font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;}
-  .about-list{display:flex; flex-direction:column; gap:9px;}
-  .about-list li{font-size:14.5px; color:var(--ink-soft); line-height:1.5;}
+  /* ============ RADIAL MENU ============ */
+  .radial-overlay{position:fixed; inset:0; z-index:200; background:rgba(10,10,10,.92); opacity:0; visibility:hidden; pointer-events:none; transition:opacity .4s var(--ease), visibility .4s var(--ease); display:flex; align-items:center; justify-content:center;}
+  .radial-overlay.open{opacity:1; visibility:visible; pointer-events:auto;}
+  .radial-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px 56px; align-items:center; justify-items:center; text-align:center;}
+  @media (max-width:600px){ .radial-grid{grid-template-columns:1fr; gap:22px;} }
+  .radial-item{font-family:var(--mono); font-size:14px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--cream); background:none; border:1px solid rgba(243,235,220,.25); padding:16px 26px; border-radius:30px; transition:background .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease);}
+  .radial-item:hover{background:var(--red); border-color:var(--red); transform:translateY(-2px);}
+  .radial-center{font-family:var(--serif); font-size:22px; color:var(--red);}
+  .radial-close{position:absolute; top:24px; right:28px; background:none; border:1px solid rgba(243,235,220,.3); color:var(--cream); border-radius:50%; width:38px; height:38px;}
 
-  /* ---------- PROOF ---------- */
-  .proof-groups{display:flex; flex-direction:column; gap:36px;}
-  .proof-group-label{font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;}
-  .proof-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
-  @media (max-width:680px){ .proof-grid{grid-template-columns:1fr;} }
-  .proof-card{background:var(--white); border:1px solid var(--line); border-radius:8px; padding:18px 20px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; opacity:0; transform:translateY(14px); transition:opacity .5s var(--ease), transform .5s var(--ease); box-shadow:0 1px 2px rgba(20,30,20,.04), 0 6px 14px rgba(20,30,20,.04);}
-  .proof-card.in{opacity:1; transform:translateY(0);}
-  .proof-name{font-size:14.5px; font-weight:700; color:var(--charcoal); margin-bottom:4px;}
-  .proof-meta{font-family:var(--mono); font-size:11.5px; color:var(--ink-faint);}
-  .proof-view{font-family:var(--mono); font-size:11.5px; color:var(--forest); background:none; border:none; text-decoration:none; white-space:nowrap; border-bottom:1px solid var(--forest); padding-bottom:1px; flex-shrink:0; cursor:pointer;}
-  .proof-note{font-family:var(--mono); font-size:11.5px; color:var(--ink-faint); margin-bottom:6px;}
+  /* ============ WORK WORLD ============ */
+  #world-work{background:var(--near-black); color:var(--cream);}
+  .work-title{font-family:var(--sans); font-weight:900; font-size:clamp(30px,5vw,52px); margin-bottom:8px; letter-spacing:-.01em;}
+  .work-sub{color:var(--gray); font-size:15px; max-width:460px; margin-bottom:48px;}
+  .work-objects{display:flex; flex-direction:column; gap:20px;}
+  .work-obj{
+    background:rgba(243,235,220,.04); border:1px solid rgba(243,235,220,.12); border-radius:14px; padding:32px;
+    display:grid; grid-template-columns:110px 1fr auto; gap:26px; align-items:center; text-align:left;
+    transition:background .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease); width:100%;
+  }
+  .work-obj:hover{background:rgba(243,235,220,.08); border-color:rgba(214,72,60,.5); transform:translateX(6px);}
+  @media (max-width:640px){ .work-obj{grid-template-columns:1fr; text-align:left;} }
+  .work-obj-num{font-family:var(--mono); font-size:34px; color:rgba(243,235,220,.25);}
+  .work-obj-name{font-family:var(--serif); font-size:28px; color:var(--cream); margin-bottom:6px;}
+  .work-obj-tag{font-family:var(--mono); font-size:11.5px; color:var(--red); letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px;}
+  .work-obj-desc{font-size:13.5px; color:var(--gray); line-height:1.5;}
+  .work-obj-cue{font-family:var(--mono); font-size:12px; color:var(--gray);}
+
+  /* ============ PROJECT SUB-STATE STEPPER (shared) ============ */
+  .stage-bar{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:44px;}
+  .stage-btn{font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; padding:9px 16px; border-radius:20px; border:1px solid; background:none; transition:background .2s var(--ease), color .2s var(--ease);}
+  .stage-panel{display:none;}
+  .stage-panel.active{display:block; animation:stagein .5s var(--ease);}
+  @keyframes stagein{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
+
+  /* ---- AgroPredict (cream) ---- */
+  #world-agropredict{background:var(--cream); color:var(--ink);}
+  .agro-num{font-family:var(--mono); font-size:14px; color:var(--gray); margin-bottom:6px;}
+  .agro-title{font-family:var(--sans); font-weight:900; font-size:clamp(32px,6vw,58px); letter-spacing:-.02em; line-height:1; margin-bottom:6px;}
+  .agro-sub{font-family:var(--serif); font-style:italic; font-size:20px; color:var(--red); margin-bottom:40px;}
+  .stage-btn.agro{border-color:rgba(17,17,16,.18); color:var(--ink);}
+  .stage-btn.agro.on{background:var(--ink); color:var(--cream); border-color:var(--ink);}
+  .agro-father{max-width:230px; margin-bottom:24px;}
+  .agro-father-frame{aspect-ratio:3/4; border-radius:8px; overflow:hidden; background:var(--cream-deep); border:1px solid rgba(17,17,16,.12);}
+  .agro-father-frame img{width:100%; height:100%; object-fit:cover;}
+  .field-photo-row{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:20px 0;}
+  @media (max-width:700px){ .field-photo-row{grid-template-columns:repeat(2,1fr);} }
+  .field-photo{border-radius:8px; overflow:hidden; aspect-ratio:4/3; background:var(--cream-deep); border:1px solid rgba(17,17,16,.12); position:relative;}
+  .field-photo img{width:100%; height:100%; object-fit:cover;}
+  .field-photo-loc{position:absolute; bottom:6px; left:6px; font-family:var(--mono); font-size:9.5px; background:rgba(243,235,220,.92); padding:2px 7px; border-radius:3px; letter-spacing:.05em;}
+  .app-shot-row{display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin:20px 0;}
+  @media (max-width:700px){ .app-shot-row{grid-template-columns:repeat(3,1fr);} }
+  .app-shot{border-radius:8px; overflow:hidden; aspect-ratio:9/16; background:var(--white); border:1px solid rgba(17,17,16,.12);}
+  .app-shot img{width:100%; height:100%; object-fit:cover;}
+  .arch-box{font-family:var(--mono); font-size:13.5px; background:var(--white); border:1px solid rgba(17,17,16,.14); border-radius:8px; padding:20px 22px; line-height:2; white-space:pre-wrap; display:inline-block;}
+  .ph-fallback{font-family:var(--mono); font-size:10px; text-align:center; padding:8px; display:block; color:var(--gray);}
+
+  /* ---- REPSHIELD (black) ---- */
+  #world-repshield{background:var(--black); color:var(--cream);}
+  .rep-num{font-family:var(--mono); font-size:14px; color:rgba(243,235,220,.4); margin-bottom:6px;}
+  .rep-title{font-family:var(--sans); font-weight:900; font-size:clamp(32px,6vw,58px); letter-spacing:-.02em; line-height:1; margin-bottom:6px;}
+  .rep-sub{font-family:var(--serif); font-style:italic; font-size:20px; color:var(--red); margin-bottom:44px;}
+  .stack-deck{position:relative; height:280px; margin-bottom:20px; display:flex; align-items:center; justify-content:center;}
+  .stack-item{position:absolute; width:130px; aspect-ratio:9/16; border-radius:8px; overflow:hidden; border:1px solid rgba(243,235,220,.25); box-shadow:0 12px 28px rgba(0,0,0,.4); transition:transform .6s var(--ease); background:var(--near-black);}
+  .stack-item img{width:100%; height:100%; object-fit:cover;}
+  .stack-deck.spread .stack-item{position:relative;}
+  .spread-row{display:none; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:20px;}
+  .spread-row.active{display:flex;}
+  .spread-row .stack-item-flat{width:120px; aspect-ratio:9/16; border-radius:8px; overflow:hidden; border:1px solid rgba(243,235,220,.2); background:var(--near-black);}
+  .spread-row .stack-item-flat img{width:100%; height:100%; object-fit:cover;}
+  .spread-toggle{font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.06em; background:none; border:1px solid rgba(243,235,220,.3); color:var(--cream); padding:10px 20px; border-radius:20px; margin-bottom:36px; transition:background .2s var(--ease);}
+  .spread-toggle:hover{background:var(--red); border-color:var(--red);}
+  .chain-row{display:flex; align-items:center; flex-wrap:wrap; gap:0; font-family:var(--mono); font-size:13px; letter-spacing:.04em; margin:30px 0;}
+  .chain-step{background:rgba(243,235,220,.06); border:1px solid rgba(243,235,220,.16); padding:10px 18px; border-radius:20px; color:var(--cream);}
+  .chain-arrow{color:var(--red); margin:0 10px; font-weight:700;}
+
+  /* ---- SentinelPay (white/engineered) ---- */
+  #world-sentinelpay{background:var(--white); color:var(--ink);}
+  .sent-num{font-family:var(--mono); font-size:14px; color:var(--gray); margin-bottom:6px;}
+  .sent-title{font-family:var(--sans); font-weight:900; font-size:clamp(32px,6vw,58px); letter-spacing:-.02em; line-height:1; margin-bottom:6px;}
+  .sent-sub{font-family:var(--serif); font-style:italic; font-size:20px; color:var(--red); margin-bottom:40px;}
+  .horiz-shot-row{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:20px 0 34px;}
+  @media (max-width:600px){ .horiz-shot-row{grid-template-columns:1fr;} }
+  .horiz-shot{border-radius:8px; overflow:hidden; aspect-ratio:16/9; background:var(--white-off); border:1px solid var(--gray-line);}
+  .horiz-shot img{width:100%; height:100%; object-fit:cover;}
+  .txn-card{background:var(--near-black); color:#fff; border-radius:12px; padding:28px; cursor:pointer; max-width:420px; margin-bottom:8px; transition:transform .3s var(--ease);}
+  .txn-card:hover{transform:translateY(-3px);}
+  .txn-amt{font-family:var(--mono); font-size:22px; font-weight:600; margin-bottom:14px;}
+  .txn-row{display:flex; justify-content:space-between; font-family:var(--mono); font-size:12px; color:#aaa; margin-bottom:6px;}
+  .txn-row b{color:var(--red);}
+  .txn-score{font-family:var(--mono); font-size:34px; font-weight:700; margin:14px 0 6px;}
+  .txn-verdict{display:flex; gap:8px; font-family:var(--mono); font-size:11px; letter-spacing:.06em;}
+  .txn-verdict span{padding:4px 10px; border-radius:12px; background:rgba(255,255,255,.08); color:#888;}
+  .txn-verdict span.active{background:var(--red); color:#fff;}
+  .txn-hint{font-family:var(--mono); font-size:11px; color:var(--gray); margin-bottom:36px;}
+  .pipeline-row{display:none; flex-wrap:wrap; gap:0; font-family:var(--mono); font-size:12.5px; margin:20px 0 36px;}
+  .pipeline-row.active{display:flex;}
+  .pipe-step{background:var(--white-off); border:1px solid var(--gray-line); padding:9px 15px; border-radius:6px;}
+  .pipe-arrow{color:var(--red); margin:0 8px; align-self:center; font-weight:700;}
+
+  /* shared bits for project worlds */
+  .tech-pills{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px;}
+  .tech-pill{font-family:var(--mono); font-size:11.5px; padding:6px 13px; border-radius:3px; border:1px solid; opacity:.85;}
+  .proj-links{display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;}
+  .proj-link{font-family:var(--mono); font-size:12.5px; font-weight:600; padding:10px 18px; border-radius:4px; text-decoration:none; border:1px solid; transition:background .2s var(--ease), color .2s var(--ease);}
+  .block-label{font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--red); margin-bottom:12px; display:block;}
+  .block-text{font-size:15px; line-height:1.75; max-width:560px; margin-bottom:30px; opacity:.85;}
+
+  /* ============ JOURNEY WORLD ============ */
+  #world-journey{background:var(--cream); color:var(--ink);}
+  .journey-drag{display:flex; gap:0; overflow-x:auto; cursor:grab; padding-bottom:20px; margin-bottom:8px; -webkit-overflow-scrolling:touch; scroll-snap-type:x proximity;}
+  .journey-drag.dragging{cursor:grabbing; scroll-snap-type:none;}
+  .journey-node{flex:0 0 auto; width:220px; padding:0 18px; border-left:2px solid rgba(17,17,16,.15); scroll-snap-align:start;}
+  .journey-node:first-child{border-left:none;}
+  .jn-btn{background:none; border:none; text-align:left; width:100%; padding:0;}
+  .jn-year{font-family:var(--mono); font-size:12px; font-weight:600; color:var(--red); margin-bottom:8px;}
+  .jn-title{font-family:var(--serif); font-size:21px; margin-bottom:6px;}
+  .jn-tag{font-size:12.5px; color:var(--gray);}
+  .journey-hint{font-family:var(--mono); font-size:11px; color:var(--gray); margin-bottom:30px;}
+  .journey-detail{display:none; background:var(--white); border-radius:10px; padding:30px; margin-top:10px;}
+  .journey-detail.active{display:block; animation:stagein .4s var(--ease);}
+  .jd-body{font-size:15px; line-height:1.8; color:var(--ink); max-width:560px; margin-bottom:18px; opacity:.85;}
+  .jd-body p{margin-bottom:12px;}
+  .jd-photos{display:flex; gap:14px; flex-wrap:wrap;}
+  .jd-photo{width:220px;}
+  .jd-photo-frame{aspect-ratio:4/3; border-radius:8px; overflow:hidden; background:var(--cream-deep); border:1px solid rgba(17,17,16,.1);}
+  .jd-photo-frame img{width:100%; height:100%; object-fit:cover;}
+  .jd-photo-cap{font-family:var(--mono); font-size:10.5px; color:var(--gray); margin-top:7px;}
+
+  /* ============ LAB WORLD ============ */
+  #world-lab{background:var(--black); color:var(--cream);}
+  .lab-title{font-family:var(--sans); font-weight:900; font-size:clamp(30px,5vw,52px); margin-bottom:44px;}
+  .lab-grid{display:flex; flex-wrap:wrap; gap:20px;}
+  .lab-card{background:rgba(243,235,220,.05); border:1px solid rgba(243,235,220,.14); border-radius:14px; padding:28px; width:260px; text-align:left; transition:transform .3s var(--ease), border-color .3s var(--ease);}
+  .lab-card:not(.secret):hover{transform:rotate(-1.5deg) translateY(-4px); border-color:var(--red);}
+  .lab-card-label{font-family:var(--mono); font-size:11px; color:var(--red); letter-spacing:.08em; margin-bottom:10px; text-transform:uppercase;}
+  .lab-card-title{font-family:var(--serif); font-size:24px; margin-bottom:10px;}
+  .lab-card-desc{font-size:13px; color:var(--gray); line-height:1.55;}
+  .lab-card.secret{background:repeating-linear-gradient(135deg, rgba(243,235,220,.05) 0 10px, rgba(243,235,220,.09) 10px 20px);}
+  .secret-block{font-family:var(--mono); font-size:12px; letter-spacing:.05em; color:rgba(243,235,220,.35); line-height:1.9; filter:blur(.4px);}
+  .secret-tag{font-family:var(--mono); font-size:10.5px; color:var(--red); margin-top:14px; letter-spacing:.08em;}
+  .lab-detail{display:none; background:rgba(243,235,220,.05); border:1px solid rgba(243,235,220,.14); border-radius:14px; padding:30px; margin-top:24px; max-width:600px;}
+  .lab-detail.active{display:block; animation:stagein .4s var(--ease);}
+
+  /* ============ ABOUT WORLD ============ */
+  #world-about{background:var(--black); color:var(--cream);}
+  .about-stage{min-height:60vh; display:flex; align-items:center; justify-content:center; text-align:center; cursor:pointer;}
+  .about-line{font-family:var(--sans); font-weight:800; font-size:clamp(24px,5vw,46px); line-height:1.25; max-width:720px; letter-spacing:-.01em;}
+  .about-progress{display:flex; gap:6px; justify-content:center; margin-top:40px;}
+  .about-dot{width:6px; height:6px; border-radius:50%; background:rgba(243,235,220,.25); transition:background .3s var(--ease);}
+  .about-dot.on{background:var(--red);}
+  .about-tap-hint{font-family:var(--mono); font-size:11px; color:rgba(243,235,220,.4); text-align:center; margin-top:20px; letter-spacing:.05em;}
+  .about-full{display:none; padding-top:20px;}
+  .about-full.active{display:block; animation:stagein .5s var(--ease);}
+  .pillars-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:30px 0 40px;}
+  @media (max-width:700px){ .pillars-3{grid-template-columns:1fr;} }
+  .pillar3{background:rgba(243,235,220,.05); border:1px solid rgba(243,235,220,.14); border-radius:10px; padding:22px;}
+  .pillar3 b{display:block; font-family:var(--serif); font-size:19px; color:var(--red); margin-bottom:8px;}
+  .pillar3 span{font-size:13px; color:var(--gray); line-height:1.55;}
+  .focus-status{margin-top:36px;}
+  .focus-row{display:flex; align-items:center; gap:14px; margin-bottom:10px; font-family:var(--mono); font-size:12.5px;}
+  .focus-row .flabel{width:150px; flex-shrink:0; color:rgba(243,235,220,.7);}
+  .focus-bar-track{flex:1; height:6px; background:rgba(243,235,220,.1); border-radius:3px; overflow:hidden;}
+  .focus-bar-fill{height:100%; background:var(--red); border-radius:3px;}
+  .focus-note{font-family:var(--mono); font-size:10.5px; color:rgba(243,235,220,.4); margin-top:14px;}
+
+  /* ============ PROOF WORLD ============ */
+  #world-proof{background:var(--white-off); color:var(--ink);}
+  .proof-groups2{display:flex; flex-direction:column; gap:34px; margin-bottom:20px;}
+  .pg-label{font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--red); margin-bottom:14px;}
+  .pg-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  @media (max-width:640px){ .pg-grid{grid-template-columns:1fr;} }
+  .pg-card{background:var(--white); border:1px solid var(--gray-line); border-radius:8px; padding:17px 19px;}
+  .pg-name{font-weight:700; font-size:14px; margin-bottom:3px;}
+  .pg-meta{font-family:var(--mono); font-size:11px; color:var(--gray);}
+  .cert-grid2{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  @media (max-width:640px){ .cert-grid2{grid-template-columns:1fr;} }
+  .cert-card2{background:var(--near-black); color:#fff; border-radius:10px; padding:24px; cursor:pointer; text-align:center; transition:transform .4s var(--ease); perspective:800px;}
+  .cert-card2:hover{transform:translateY(-4px) scale(1.02);}
+  .cert-card2-name{font-size:13.5px; font-weight:700; margin-top:10px;}
+  .cert-card2-view{font-family:var(--mono); font-size:10.5px; color:var(--red); margin-top:8px; letter-spacing:.05em;}
+  .fr-block{margin-top:8px;}
+  .fr-dots{position:relative; height:200px; margin:20px 0 10px;}
+  .fr-dot{position:absolute; width:14px; height:14px; border-radius:50%; background:var(--red); border:none; opacity:.75; transition:opacity .2s var(--ease), transform .2s var(--ease);}
+  .fr-dot:hover{opacity:1; transform:scale(1.3);}
+  .fr-note{display:none; background:var(--white); border-radius:8px; padding:16px 18px; margin-bottom:16px; font-style:italic; font-family:var(--serif); font-size:16px; max-width:440px;}
+  .fr-note.active{display:block; animation:stagein .3s var(--ease);}
+  .fr-chain{display:flex; align-items:center; flex-wrap:wrap; font-family:var(--mono); font-size:12.5px; margin-top:10px;}
+
+  /* ============ CONTACT WORLD ============ */
+  #world-contact{background:var(--white); color:var(--ink);}
+  .contact-inner2{height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:40px;}
+  .contact-headline{font-family:var(--sans); font-weight:900; font-size:clamp(34px,7vw,66px); line-height:1.05; letter-spacing:-.02em; max-width:760px; margin-bottom:40px;}
+  .contact-links2{display:flex; gap:22px; flex-wrap:wrap; justify-content:center; margin-bottom:44px;}
+  .contact-links2 a{font-family:var(--mono); font-size:14px; font-weight:600; letter-spacing:.05em; text-decoration:none; border-bottom:2px solid var(--ink); padding-bottom:2px; transition:color .2s var(--ease), border-color .2s var(--ease);}
+  .contact-links2 a:hover{color:var(--red); border-color:var(--red);}
+  .contact-sig{font-family:var(--mono); font-size:11.5px; color:var(--gray); letter-spacing:.05em; margin-top:8px;}
 
   /* certificate lightbox */
-  .clbx-overlay{position:fixed; inset:0; z-index:450; background:rgba(23,25,20,.7); display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; pointer-events:none; transition:opacity .3s var(--ease);}
-  .clbx-overlay.open{opacity:1; pointer-events:auto;}
-  .clbx-panel{background:var(--white); border-radius:10px; padding:20px; max-width:520px; width:100%; text-align:center; transform:scale(.96); transition:transform .3s var(--ease);}
-  .clbx-overlay.open .clbx-panel{transform:scale(1);}
-  .clbx-img-frame{aspect-ratio:4/3; background:var(--ivory-deep); border-radius:6px; overflow:hidden; margin-bottom:14px; display:flex; align-items:center; justify-content:center;}
-  .clbx-img-frame img{width:100%; height:100%; object-fit:contain;}
-  .clbx-name{font-weight:700; font-size:15px; margin-bottom:16px;}
-  .clbx-close{font-family:var(--mono); font-size:12px; font-weight:600; background:var(--forest); color:#fff; border:none; padding:9px 18px; border-radius:4px; cursor:pointer;}
-
-  /* ---------- FOCUS ---------- */
-  .focus-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:36px;}
-  @media (max-width:700px){ .focus-grid{grid-template-columns:1fr;} }
-  .focus-item{background:var(--white); border:1px solid var(--line); border-radius:8px; padding:16px 18px; box-shadow:0 1px 2px rgba(20,30,20,.04), 0 6px 14px rgba(20,30,20,.04);}
-  .focus-item b{display:block; font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--forest); margin-bottom:6px;}
-  .focus-item span{font-size:13.5px; color:var(--ink-soft); line-height:1.55;}
-  .focus-direction{background:var(--olive-soft); border-radius:8px; padding:20px 22px; margin-bottom:36px; font-family:var(--mono); font-size:13.5px; color:var(--forest-deep); text-align:center; letter-spacing:.02em;}
-  .focus-goal{border-left:3px solid var(--gold); padding-left:22px; max-width:520px;}
-  .focus-goal-label{font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;}
-  .focus-goal p{font-size:15.5px; color:var(--ink-soft); line-height:1.8; margin-bottom:8px;}
-  .focus-goal p:last-child{margin-bottom:0;}
-
-  /* ---------- CONTACT ---------- */
-  .contact-block{max-width:600px;}
-  .contact-title{font-size:clamp(30px,5vw,42px); margin-bottom:16px;}
-  .contact-sub{color:var(--ink-soft); font-size:16.5px; max-width:480px; margin-bottom:36px; line-height:1.8;}
-  .contact-find-label{font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;}
-  .contact-links{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px;}
-  .open-to-label{font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;}
-  .open-to-list{display:flex; flex-wrap:wrap; gap:9px; margin-bottom:40px;}
-  .open-to-tag{font-family:var(--mono); font-size:12.5px; padding:7px 14px; border-radius:20px; border:1px solid var(--line); background:var(--white); color:var(--ink-soft);}
-  .contact-final-line{font-family:var(--serif); font-size:clamp(20px,3vw,26px); color:var(--charcoal); line-height:1.5; margin-bottom:28px;}
-  .contact-final-line em{font-style:normal; color:var(--forest);}
-
-  footer{border-top:1px solid var(--line); padding:32px 0;}
-  .foot-inner{display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap;}
-  .foot-name{font-family:var(--serif); font-size:17px; margin-bottom:3px;}
-  .foot-role{font-family:var(--mono); font-size:11px; color:var(--ink-faint); margin-bottom:6px;}
-  .foot-tag{font-size:12.5px; color:var(--ink-faint); font-style:italic; font-family:var(--serif);}
-  .foot-meta{text-align:right; font-family:var(--mono); font-size:11px; color:var(--ink-faint); line-height:1.8;}
-  @media (max-width:600px){ .foot-inner{flex-direction:column; align-items:flex-start;} .foot-meta{text-align:left;} }
+  .clbx2-overlay{position:fixed; inset:0; z-index:300; background:rgba(10,10,10,.85); display:flex; align-items:center; justify-content:center; padding:24px; opacity:0; pointer-events:none; transition:opacity .35s var(--ease);}
+  .clbx2-overlay.open{opacity:1; pointer-events:auto;}
+  .clbx2-panel{background:#fff; border-radius:10px; padding:22px; max-width:520px; width:100%; text-align:center; transform:rotateY(90deg) scale(.9); transition:transform .5s var(--ease);}
+  .clbx2-overlay.open .clbx2-panel{transform:rotateY(0) scale(1);}
+  .clbx2-frame{aspect-ratio:4/3; background:var(--white-off); border-radius:6px; overflow:hidden; margin-bottom:14px; display:flex; align-items:center; justify-content:center;}
+  .clbx2-frame img{width:100%; height:100%; object-fit:contain;}
+  .clbx2-name{font-weight:700; margin-bottom:14px; color:var(--ink);}
+  .clbx2-close{font-family:var(--mono); font-size:12px; font-weight:600; background:var(--ink); color:#fff; border:none; padding:9px 18px; border-radius:4px;}
 </style>
 </head>
-<body class="locked">
-<a href="#main" class="skip-link">Skip to content</a>
+<body>
 
-<!-- ============ GATE ============ -->
-<div class="gate" id="gate">
-  <span class="gate-role">Software Developer · Builder · Learner</span>
-  <h1>Anshu Priya</h1>
-  <p class="gate-tag">I build software for problems that matter in the real world.</p>
-  <p class="gate-quote" id="gateQuote">"I didn't start with a plan."</p>
-  <div class="gate-line"></div>
-  <button class="gate-enter" id="gateEnter">Enter</button>
+<!-- ============ ENTRY ============ -->
+<div class="world world-entry active" id="world-entry">
+  <div class="entry-inner">
+    <div class="entry-name">ANSHU PRIYA</div>
+    <div class="entry-role mono">SOFTWARE DEVELOPER · FLUTTER · JAVA · FULL-STACK</div>
+    <div class="entry-tagline">I BUILD SOFTWARE FROM REAL PROBLEMS TO WORKING PRODUCTS.</div>
+    <button class="entry-enter" id="enterBtn">ENTER</button>
+    <div class="entry-dot"><span class="dot"></span></div>
+  </div>
 </div>
 
-<header class="nav">
-  <div class="nav-inner">
-    <a href="#top" class="logo">ANSHU</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-    <ul class="nav-links" id="navLinks" style="list-style:none;margin:0;padding:0;">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#journey">Journey</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#proof">Proof</a></li>
-      <li><a href="#focus">Focus</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="https://github.com/priya-codesdaily/priya-codesdaily/raw/main/Anshu_Priya_Resume.pdf" target="_blank" rel="noopener" class="resume-btn mobile">Resume ↗</a></li>
-    </ul>
-    <a href="https://github.com/priya-codesdaily/priya-codesdaily/raw/main/Anshu_Priya_Resume.pdf" target="_blank" rel="noopener" class="resume-btn desktop">Resume ↗</a>
+<a href="#" class="top-corner on-light" id="topCorner">ANSHU</a>
+<button class="menu-toggle on-light" id="menuToggle"><span class="dot"></span> MENU</button>
+
+<!-- ============ HOME ============ -->
+<div class="world world-white" id="world-home">
+  <div class="home-inner">
+    <div class="home-role">SOFTWARE DEVELOPER</div>
+    <h1 class="home-name">ANSHU<br>PRIYA</h1>
+    <p class="home-tagline">I build software from real problems to working products.</p>
+    <div class="home-dot-row"><span class="dot"></span></div>
+    <div class="home-objects">
+      <button class="home-obj" data-goto="work"><div class="home-obj-label">01</div><div class="home-obj-title">Work</div><div class="home-obj-desc">Three shipped products, built from real research.</div></button>
+      <button class="home-obj" data-goto="journey"><div class="home-obj-label">02</div><div class="home-obj-title">Journey</div><div class="home-obj-desc">2024 to now — drag through it.</div></button>
+      <button class="home-obj" data-goto="lab"><div class="home-obj-label">03</div><div class="home-obj-title">Lab</div><div class="home-obj-desc">AI, games, and what's still in development.</div></button>
+    </div>
   </div>
-</header>
+</div>
 
-<main id="main">
-  <div class="wrap" id="top" style="height:1px;"></div>
-
-  <!-- ============ WORK ============ -->
-  <div class="wrap" id="work">
-    <section>
-      <div class="section-head reveal">
-        <span class="eyebrow"><span class="num">01</span> Selected Work</span>
-        <h2 class="section-title">Things I've built, shipped, and kept improving</h2>
-        <p class="section-sub">I build around real problems — not just technologies. Tap a project to open the full story.</p>
-      </div>
-      <div class="work-grid reveal" id="workGrid"></div>
-    </section>
+<!-- ============ WORK WORLD ============ -->
+<div class="world world-black" id="world-work">
+  <div class="world-inner">
+    <button class="back-link" data-goto="home">← Home</button>
+    <div class="work-title">Selected Work</div>
+    <p class="work-sub">Three products. Their natural shape is part of the story.</p>
+    <div class="work-objects">
+      <button class="work-obj" data-goto="agropredict">
+        <div class="work-obj-num">01</div>
+        <div><div class="work-obj-tag">Agritech · Flutter</div><div class="work-obj-name">AgroPredict</div><div class="work-obj-desc">Farmer price intelligence — field research to working product.</div></div>
+        <div class="work-obj-cue">Enter →</div>
+      </button>
+      <button class="work-obj" data-goto="repshield">
+        <div class="work-obj-num">02</div>
+        <div><div class="work-obj-tag">Safety · Flutter</div><div class="work-obj-name">REPSHIELD</div><div class="work-obj-desc">Discreet personal safety for the first critical hour.</div></div>
+        <div class="work-obj-cue">Enter →</div>
+      </button>
+      <button class="work-obj" data-goto="sentinelpay">
+        <div class="work-obj-num">03</div>
+        <div><div class="work-obj-tag">Fintech · Web</div><div class="work-obj-name">SentinelPay</div><div class="work-obj-desc">Real-time fraud detection, fully explainable.</div></div>
+        <div class="work-obj-cue">Enter →</div>
+      </button>
+    </div>
   </div>
+</div>
 
-  <hr class="divider">
+<!-- ============ AGROPREDICT WORLD ============ -->
+<div class="world world-cream" id="world-agropredict">
+  <div class="world-inner">
+    <button class="back-link" data-goto="work">← Work</button>
+    <div class="agro-num">01</div>
+    <div class="agro-title">AGROPREDICT</div>
+    <div class="agro-sub">Farmer Price Intelligence</div>
 
-  <!-- ============ JOURNEY ============ -->
-  <div class="wrap" id="journey">
-    <section>
-      <div class="section-head reveal">
-        <span class="eyebrow"><span class="num">02</span> My Journey</span>
-        <h2 class="section-title">I didn't have a clear plan. I figured it out by trying things.</h2>
+    <div class="stage-bar" id="agroStageBar">
+      <button class="stage-btn agro on" data-stage="why">Why</button>
+      <button class="stage-btn agro" data-stage="research">Research</button>
+      <button class="stage-btn agro" data-stage="build">Build</button>
+      <button class="stage-btn agro" data-stage="engineering">Engineering</button>
+      <button class="stage-btn agro" data-stage="proof">Proof</button>
+    </div>
+
+    <div class="stage-panel active" data-panel="why">
+      <div class="agro-father"><div class="agro-father-frame"><img src="father.jpeg" alt="My father in our farm" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>father.jpeg</span>'"></div></div>
+      <p class="block-text">Farmers often can't tell which nearby mandi offers the best price, and comparing options against travel cost is hard without data. Every harvest, my own family faced the same question — where should we sell?</p>
+    </div>
+
+    <div class="stage-panel" data-panel="research">
+      <span class="block-label">10+ Farmer &amp; Supplier Interviews · Odisha × Jharkhand</span>
+      <p class="block-text">I visited farms across Odisha and Jharkhand and sat with farmers and suppliers, listening to how they actually decide where to sell.</p>
+      <div class="field-photo-row">
+        <div class="field-photo"><img src="farmer1.jpg.jpeg" alt="Jharkhand" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>farmer1.jpg.jpeg</span>'"><div class="field-photo-loc">JHARKHAND</div></div>
+        <div class="field-photo"><img src="farmer2.jpg.jpeg" alt="Jharkhand" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>farmer2.jpg.jpeg</span>'"><div class="field-photo-loc">JHARKHAND</div></div>
+        <div class="field-photo"><img src="farmer3.jpg.jpeg" alt="Jharkhand" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>farmer3.jpg.jpeg</span>'"><div class="field-photo-loc">JHARKHAND</div></div>
+        <div class="field-photo"><img src="farmer4.jpg.jpeg" alt="Jharkhand" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>farmer4.jpg.jpeg</span>'"><div class="field-photo-loc">JHARKHAND</div></div>
+        <div class="field-photo"><img src="farmer5.jpg.jpeg" alt="Odisha" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>farmer5.jpg.jpeg</span>'"><div class="field-photo-loc">ODISHA</div></div>
+        <div class="field-photo"><img src="farmer6.jpg.jpeg" alt="Odisha" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>farmer6.jpg.jpeg</span>'"><div class="field-photo-loc">ODISHA</div></div>
+        <div class="field-photo"><img src="farmer7.jpg.jpeg" alt="Odisha" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>farmer7.jpg.jpeg</span>'"><div class="field-photo-loc">ODISHA</div></div>
       </div>
-      <div class="jrny-timeline" id="jrnyTimeline">
-        <div class="jrny-spine"><div class="jrny-spine-fill" id="jrnySpineFill"></div></div>
+    </div>
+
+    <div class="stage-panel" data-panel="build">
+      <span class="block-label">What I Built</span>
+      <p class="block-text">Live AGMARKNET price data, GPS-based mandi comparison, a transport profit calculator, sell/wait/monitor advice, and Hindi voice input &amp; output.</p>
+      <div class="app-shot-row">
+        <div class="app-shot"><img src="agro.1.jpeg" alt="AgroPredict screen" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>agro.1.jpeg</span>'"></div>
+        <div class="app-shot"><img src="agro.2.jpeg" alt="AgroPredict screen" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>agro.2.jpeg</span>'"></div>
+        <div class="app-shot"><img src="agro.3.jpeg" alt="AgroPredict screen" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>agro.3.jpeg</span>'"></div>
+        <div class="app-shot"><img src="agro.4.jpeg" alt="AgroPredict screen" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>agro.4.jpeg</span>'"></div>
+        <div class="app-shot"><img src="agro.5.jpeg" alt="AgroPredict screen" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>agro.5.jpeg</span>'"></div>
+        <div class="app-shot"><img src="agro.6.jpeg" alt="AgroPredict screen" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>agro.6.jpeg</span>'"></div>
       </div>
-    </section>
+    </div>
+
+    <div class="stage-panel" data-panel="engineering">
+      <span class="block-label">How It Works</span>
+      <div class="arch-box">Flutter
+   ↓
+API
+   ↓
+AGMARKNET
+   ↓
+Market Data
+
+
+GPS
+ ↓
+Distance
+ ↓
+Transport Cost
+ ↓
+Profit</div>
+      <div class="tech-pills" style="margin-top:24px;">
+        <span class="tech-pill" style="border-color:rgba(17,17,16,.2);">Flutter</span>
+        <span class="tech-pill" style="border-color:rgba(17,17,16,.2);">Dart</span>
+        <span class="tech-pill" style="border-color:rgba(17,17,16,.2);">AGMARKNET API</span>
+        <span class="tech-pill" style="border-color:rgba(17,17,16,.2);">geolocator</span>
+        <span class="tech-pill" style="border-color:rgba(17,17,16,.2);">flutter_tts</span>
+      </div>
+    </div>
+
+    <div class="stage-panel" data-panel="proof">
+      <span class="block-label">Results</span>
+      <p class="block-text">Field-tested with 10+ farmers; features shipped within 24 hours of feedback. Working APK published, along with a field documentary.</p>
+      <div class="proj-links">
+        <a href="https://github.com/priya-codesdaily/agropredict" target="_blank" rel="noopener" class="proj-link" style="border-color:var(--ink); color:var(--ink);">GitHub →</a>
+        <button class="proj-link" style="border-color:var(--ink); color:var(--ink); background:none;" id="agroYtBtn">▶ Documentary</button>
+        <a href="https://github.com/priya-codesdaily/agropredict/blob/main/FIELD_RESEARCH.md" target="_blank" rel="noopener" class="proj-link" style="border-color:var(--ink); color:var(--ink);">Field Research →</a>
+      </div>
+      <div id="agroYtSlot" style="margin-top:20px; max-width:480px;"></div>
+    </div>
   </div>
+</div>
 
-  <hr class="divider">
+<!-- ============ REPSHIELD WORLD ============ -->
+<div class="world world-black" id="world-repshield">
+  <div class="world-inner">
+    <button class="back-link" data-goto="work">← Work</button>
+    <div class="rep-num">02</div>
+    <div class="rep-title">REPSHIELD</div>
+    <div class="rep-sub">Discreet Personal Safety</div>
 
-  <!-- ============ ABOUT ============ -->
-  <div class="wrap" id="about">
-    <section>
-      <div class="section-head reveal">
-        <span class="eyebrow"><span class="num">03</span> About</span>
-        <h2 class="section-title">More than my job title</h2>
+    <p class="block-text" style="color:var(--cream); opacity:.75;">The first few minutes after an incident can be critical — most safety apps ask for too many steps when someone is under stress.</p>
+
+    <div class="stack-deck" id="repDeck">
+      <div class="stack-item" style="transform:rotate(-8deg) translateX(-90px);"><img src="rep.1.jpeg" alt="REPSHIELD" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot; style=&quot;color:#888&quot;>rep.1.jpeg</span>'"></div>
+      <div class="stack-item" style="transform:rotate(-4deg) translateX(-45px);"><img src="rep.2.jpeg" alt="REPSHIELD" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot; style=&quot;color:#888&quot;>rep.2.jpeg</span>'"></div>
+      <div class="stack-item" style="transform:rotate(0deg);"><img src="rep.3.jpeg" alt="REPSHIELD" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot; style=&quot;color:#888&quot;>rep.3.jpeg</span>'"></div>
+      <div class="stack-item" style="transform:rotate(4deg) translateX(45px);"><img src="rep.4.jpeg" alt="REPSHIELD" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot; style=&quot;color:#888&quot;>rep.4.jpeg</span>'"></div>
+      <div class="stack-item" style="transform:rotate(8deg) translateX(90px);"><img src="rep.5.jpeg" alt="REPSHIELD" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot; style=&quot;color:#888&quot;>rep.5.jpeg</span>'"></div>
+      <div class="stack-item" style="transform:rotate(12deg) translateX(135px);"><img src="rep.6.jpeg" alt="REPSHIELD" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot; style=&quot;color:#888&quot;>rep.6.jpeg</span>'"></div>
+    </div>
+    <button class="spread-toggle" id="repSpreadBtn">Spread the panels</button>
+
+    <div class="chain-row" id="repChain" style="opacity:0; max-height:0; overflow:hidden; transition:opacity .5s var(--ease);">
+      <span class="chain-step">SHAKE</span><span class="chain-arrow">→</span>
+      <span class="chain-step">SOS</span><span class="chain-arrow">→</span>
+      <span class="chain-step">GPS</span><span class="chain-arrow">→</span>
+      <span class="chain-step">SMS</span><span class="chain-arrow">→</span>
+      <span class="chain-step">INCIDENT LOG</span><span class="chain-arrow">→</span>
+      <span class="chain-step">SHA-256</span>
+    </div>
+
+    <div style="margin-top:36px;">
+      <div class="tech-pills">
+        <span class="tech-pill" style="border-color:rgba(243,235,220,.25); color:var(--cream);">Flutter</span>
+        <span class="tech-pill" style="border-color:rgba(243,235,220,.25); color:var(--cream);">sensors_plus</span>
+        <span class="tech-pill" style="border-color:rgba(243,235,220,.25); color:var(--cream);">geolocator</span>
+        <span class="tech-pill" style="border-color:rgba(243,235,220,.25); color:var(--cream);">SHA-256</span>
       </div>
-      <div class="about-intro reveal">
-        <p>I'm a BCA student and software developer who likes learning by building. My path wasn't a straight line — I moved from short-term work and customer support to teaching, then eventually found my way into software development. Each stage gave me something I still use today.</p>
+      <div class="proj-links">
+        <a href="https://github.com/priya-codesdaily/REPSHIELD" target="_blank" rel="noopener" class="proj-link" style="border-color:var(--cream); color:var(--cream);">GitHub →</a>
+        <a href="https://github.com/priya-codesdaily/REPSHIELD/releases/tag/v1.0.0" target="_blank" rel="noopener" class="proj-link" style="border-color:var(--cream); color:var(--cream);">Download APK</a>
       </div>
-      <div class="about-pillars reveal">
-        <div class="pillar-card">
-          <span class="pillar-icon">👩‍🏫</span>
-          <h3>Teaching</h3>
-          <p class="pillar-lead">Teaching taught me to simplify.</p>
-          <p class="pillar-body">Working with children taught me that knowing something isn't enough — you need to communicate it.</p>
-        </div>
-        <div class="pillar-card">
-          <span class="pillar-icon">🌾</span>
-          <h3>Farming</h3>
-          <p class="pillar-lead">Growing up around farming made real-world problems impossible to ignore.</p>
-          <p class="pillar-body">It shaped the kind of software I want to build — practical tools that can actually help someone outside a tech bubble.</p>
-        </div>
-        <div class="pillar-card">
-          <span class="pillar-icon">💻</span>
-          <h3>Building</h3>
-          <p class="pillar-lead">Building gives me the freedom to turn questions into experiments.</p>
-          <p class="pillar-body">I don't want to build projects just to fill a portfolio. I want to understand problems deeply enough to build something useful.</p>
-        </div>
-      </div>
-      <div class="about-two reveal">
-        <div>
-          <div class="about-list-label">How I Think</div>
-          <ul class="about-list">
-            <li>Curious enough to explore.</li>
-            <li>Practical enough to test.</li>
-            <li>Honest enough to change direction.</li>
-            <li>Persistent enough to keep going.</li>
-          </ul>
-        </div>
-        <div>
-          <div class="about-list-label">What I Value</div>
-          <ul class="about-list">
-            <li>Learning over pretending.</li>
-            <li>Useful products over unnecessary complexity.</li>
-            <li>People over assumptions.</li>
-            <li>Progress over perfection.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    </div>
   </div>
+</div>
 
-  <hr class="divider">
+<!-- ============ SENTINELPAY WORLD ============ -->
+<div class="world world-white" id="world-sentinelpay">
+  <div class="world-inner">
+    <button class="back-link" data-goto="work">← Work</button>
+    <div class="sent-num">03</div>
+    <div class="sent-title">SENTINELPAY</div>
+    <div class="sent-sub">Real-Time Payment Fraud Detection</div>
 
-  <!-- ============ PROOF ============ -->
-  <div class="wrap" id="proof">
-    <section>
-      <div class="section-head reveal">
-        <span class="eyebrow"><span class="num">04</span> Proof of Work</span>
-        <h2 class="section-title">Not everything I've learned has a certificate</h2>
-        <p class="section-sub">Some of it has a GitHub repository. Some of it has a classroom. Some of it has a working application.</p>
+    <div class="horiz-shot-row">
+      <div class="horiz-shot"><img src="pay.1.jpeg" alt="SentinelPay dashboard" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>pay.1.jpeg</span>'"></div>
+      <div class="horiz-shot"><img src="pay.2.jpeg" alt="SentinelPay approved" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>pay.2.jpeg</span>'"></div>
+      <div class="horiz-shot"><img src="pay.3.jpeg" alt="SentinelPay blocked" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>pay.3.jpeg</span>'"></div>
+      <div class="horiz-shot"><img src="pay.4.jpeg" alt="SentinelPay history" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>pay.4.jpeg</span>'"></div>
+    </div>
+
+    <div class="txn-card" id="txnCard">
+      <div class="txn-amt">₹48,500</div>
+      <div class="txn-row"><span>VELOCITY</span><b>HIGH</b></div>
+      <div class="txn-row"><span>DEVICE</span><b>UNKNOWN</b></div>
+      <div class="txn-score">87</div>
+      <div class="txn-verdict">
+        <span>Approved</span><span>Flagged</span><span class="active">Blocked</span>
       </div>
-      <p class="proof-note reveal">Only genuine, verifiable documents are listed here.</p>
+    </div>
+    <div class="txn-hint">Click the transaction to see the pipeline →</div>
 
-      <div class="proof-groups">
-        <div>
-          <div class="proof-group-label">Education</div>
-          <div class="proof-grid">
-            <div class="proof-card"><div><div class="proof-name">BCA — Amity University Online</div><div class="proof-meta">Bachelor of Computer Applications · In progress</div></div></div>
-          </div>
-        </div>
-        <div>
-          <div class="proof-group-label">Experience</div>
-          <div class="proof-grid">
-            <div class="proof-card"><div><div class="proof-name">Sri Aurobindo High School</div><div class="proof-meta">Full-time Teacher · June 2025 – April 2026</div></div></div>
-            <div class="proof-card"><div><div class="proof-name">Androma International Academy</div><div class="proof-meta">Student Guide / Teaching · Tamil Nadu · 2025</div></div></div>
-            <div class="proof-card"><div><div class="proof-name">Aapna</div><div class="proof-meta">KYC / Customer Support · 2024</div></div></div>
-          </div>
-        </div>
-        <div>
-          <div class="proof-group-label">Certificates</div>
-          <div class="proof-grid" id="certGrid"></div>
-        </div>
-        <div>
-          <div class="proof-group-label">Hackathons &amp; Participation</div>
-          <div class="proof-grid">
-            <div class="proof-card"><div><div class="proof-name">Atlas — AI Financial Assistant</div><div class="proof-meta">Humanity Foundation Hackathon</div></div><button class="proof-view" data-open="atlas">Project →</button></div>
-          </div>
-        </div>
-        <div>
-          <div class="proof-group-label">Achievements</div>
-          <div class="proof-grid">
-            <div class="proof-card"><div><div class="proof-name">REPSHIELD v1.0.0 released</div><div class="proof-meta">Public GitHub release</div></div></div>
-            <div class="proof-card"><div><div class="proof-name">AgroPredict field-tested</div><div class="proof-meta">10+ farmers · Odisha &amp; Jharkhand</div></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="pipeline-row" id="pipelineRow">
+      <span class="pipe-step">REQUEST</span><span class="pipe-arrow">→</span>
+      <span class="pipe-step">VALIDATION</span><span class="pipe-arrow">→</span>
+      <span class="pipe-step">RULES</span><span class="pipe-arrow">→</span>
+      <span class="pipe-step">RISK</span><span class="pipe-arrow">→</span>
+      <span class="pipe-step">DECISION</span><span class="pipe-arrow">→</span>
+      <span class="pipe-step">DATABASE</span><span class="pipe-arrow">→</span>
+      <span class="pipe-step">DASHBOARD</span>
+    </div>
+
+    <div class="tech-pills">
+      <span class="tech-pill" style="border-color:var(--gray-line);">Java</span>
+      <span class="tech-pill" style="border-color:var(--gray-line);">Spring Boot</span>
+      <span class="tech-pill" style="border-color:var(--gray-line);">React</span>
+      <span class="tech-pill" style="border-color:var(--gray-line);">PostgreSQL</span>
+    </div>
+    <div class="proj-links">
+      <a href="https://github.com/priya-codesdaily/sentinelpay-web" target="_blank" rel="noopener" class="proj-link" style="border-color:var(--ink); color:var(--ink);">Frontend →</a>
+      <a href="https://github.com/priya-codesdaily/sentinelpay-backend" target="_blank" rel="noopener" class="proj-link" style="border-color:var(--ink); color:var(--ink);">Backend →</a>
+      <button class="proj-link" style="border-color:var(--ink); color:var(--ink); background:none;" id="sentYtBtn">▶ Watch Demo</button>
+    </div>
+    <div id="sentYtSlot" style="margin-top:20px; max-width:480px;"></div>
   </div>
+</div>
 
-  <hr class="divider">
+<!-- ============ JOURNEY WORLD ============ -->
+<div class="world world-cream" id="world-journey">
+  <div class="world-inner">
+    <button class="back-link" data-goto="home">← Home</button>
+    <div class="agro-title" style="font-size:clamp(26px,5vw,42px);">MY JOURNEY</div>
+    <p class="journey-hint">Drag sideways, or tap a stop.</p>
+    <div class="journey-drag" id="journeyDrag">
+      <div class="journey-node"><button class="jn-btn" data-jd="17"><div class="jn-year">17 · AFTER 12TH</div><div class="jn-title">Figuring it out</div><div class="jn-tag">No roadmap yet</div></button></div>
+      <div class="journey-node"><button class="jn-btn" data-jd="2024"><div class="jn-year">2024</div><div class="jn-title">Aapna</div><div class="jn-tag">KYC · Customer Support</div></button></div>
+      <div class="journey-node"><button class="jn-btn" data-jd="2025"><div class="jn-year">2025</div><div class="jn-title">Tamil Nadu</div><div class="jn-tag">Androma International Academy</div></button></div>
+      <div class="journey-node"><button class="jn-btn" data-jd="2025-26"><div class="jn-year">2025–26</div><div class="jn-title">Hyderabad</div><div class="jn-tag">Sri Aurobindo — Full-time Teacher</div></button></div>
+      <div class="journey-node"><button class="jn-btn" data-jd="2026"><div class="jn-year">2026</div><div class="jn-title">The Shift</div><div class="jn-tag">Started coding seriously</div></button></div>
+      <div class="journey-node"><button class="jn-btn" data-jd="now"><div class="jn-year">NOW</div><div class="jn-title">Software Engineer</div><div class="jn-tag">Still becoming</div></button></div>
+    </div>
 
-  <!-- ============ FOCUS ============ -->
-  <div class="wrap" id="focus">
-    <section>
-      <div class="section-head reveal">
-        <span class="eyebrow"><span class="num">05</span> Focus</span>
-        <h2 class="section-title">What I'm building now</h2>
-        <p class="section-sub">This is where my attention is going right now.</p>
+    <div class="journey-detail" data-jdp="17"><div class="jd-body"><p>I finished school without really knowing what I wanted to become. No clear roadmap, no one telling me which path to take. So I started experimenting.</p></div></div>
+    <div class="journey-detail" data-jdp="2024"><div class="jd-body"><p>I was introduced to Aapna through people I met while still figuring out what to do. I explored affiliate marketing and later worked around KYC and customer support — short-term and target-driven, but it taught me that work is different when someone depends on you to deliver.</p></div></div>
+    <div class="journey-detail" data-jdp="2025">
+      <div class="jd-body"><p>I travelled to Tamil Nadu after a referral and completed training before working across two schools — Vivek Ananda School and Kalvi Karpagam School. It wasn't where I expected my career to go, but it taught me confidence, responsibility and how to work with people.</p></div>
+      <div class="jd-photos">
+        <div class="jd-photo"><div class="jd-photo-frame"><img src="vivek-ananda.jpeg" alt="Vivek Ananda School" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>vivek-ananda.jpeg</span>'"></div><div class="jd-photo-cap">VIVEK ANANDA SCHOOL</div></div>
+        <div class="jd-photo"><div class="jd-photo-frame"><img src="kalvi-karpagam.jpeg" alt="Kalvi Karpagam School" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>kalvi-karpagam.jpeg</span>'"></div><div class="jd-photo-cap">KALVI KARPAGAM SCHOOL</div></div>
       </div>
-      <div class="focus-grid reveal">
-        <div class="focus-item"><b>AI</b><span>Exploring how AI can become part of useful products — not just another chatbot.</span></div>
-        <div class="focus-item"><b>Flutter</b><span>Building practical mobile applications from idea to working product.</span></div>
-        <div class="focus-item"><b>Backend</b><span>Learning how products work beyond the interface — APIs, databases, authentication, system logic.</span></div>
-        <div class="focus-item"><b>DSA</b><span>Strengthening problem-solving fundamentals, one problem at a time.</span></div>
-        <div class="focus-item"><b>System Design</b><span>Learning how individual features become reliable systems.</span></div>
-        <div class="focus-item"><b>Open Source</b><span>Learning how real developers collaborate, review code and build together.</span></div>
+    </div>
+    <div class="journey-detail" data-jdp="2025-26">
+      <div class="jd-body"><p>Full-time Teacher, LKG–Grade 5, June 2025 – April 2026 at Sri Aurobindo High School. Teaching changed the way I think about software — if something is difficult to understand, I don't immediately blame the user, I ask how I can make it clearer.</p></div>
+      <div class="jd-photos">
+        <div class="jd-photo"><div class="jd-photo-frame"><img src="sri-aurobindo.jpeg" alt="Sri Aurobindo School" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>sri-aurobindo.jpeg</span>'"></div><div class="jd-photo-cap">SRI AUROBINDO SCHOOL, HYDERABAD</div></div>
       </div>
-      <div class="focus-direction reveal">LEARN → BUILD → TEST → DOCUMENT → IMPROVE <span style="color:var(--ink-faint); display:block; margin-top:6px; font-size:11.5px;">— not Learn → Collect Certificate → Move On</span></div>
-      <div class="focus-goal reveal">
-        <div class="focus-goal-label">The Big Goal</div>
-        <p>I want to become a strong software engineer. Google is one of the places I want to reach.</p>
-        <p>It may be ambitious. That's okay. I'm not treating it as a guarantee — I'm treating it as a direction.</p>
-      </div>
-    </section>
+    </div>
+    <div class="journey-detail" data-jdp="2026"><div class="jd-body"><p>In February 2026 I started exploring software development more intentionally. I realised I didn't just enjoy coding — I enjoyed understanding a problem, designing a solution, and turning an idea into something people could use.</p></div></div>
+    <div class="journey-detail" data-jdp="now"><div class="jd-body"><p>BCA · Software Development · Product Building. Still learning, still building — and continuing.</p></div></div>
   </div>
+</div>
 
-  <!-- ============ CONTACT ============ -->
-  <div class="wrap" id="contact">
-    <section>
-      <div class="contact-block reveal">
-        <span class="eyebrow"><span class="num">06</span> Contact</span>
-        <h2 class="contact-title">Let's build something useful</h2>
-        <p class="contact-sub">If you're working on a meaningful product, building a team, researching an idea, or looking for someone who learns by doing — I'd love to hear about it.</p>
-
-        <div class="contact-find-label">Find Me Here</div>
-        <div class="contact-links">
-          <a href="https://github.com/priya-codesdaily" target="_blank" rel="noopener" class="ghost-btn">GitHub</a>
-          <a href="https://linkedin.com/in/a-priya-dev" target="_blank" rel="noopener" class="ghost-btn">LinkedIn</a>
-          <a href="mailto:priyatech.logic@gmail.com" class="ghost-btn">Email</a>
-          <a href="https://github.com/priya-codesdaily/priya-codesdaily/raw/main/Anshu_Priya_Resume.pdf" target="_blank" rel="noopener" class="ghost-btn">Resume</a>
-        </div>
-
-        <div class="open-to-label">Open To</div>
-        <div class="open-to-list">
-          <span class="open-to-tag">Software Development Internships</span>
-          <span class="open-to-tag">Junior Developer Roles</span>
-          <span class="open-to-tag">Frontend / Flutter Opportunities</span>
-          <span class="open-to-tag">AI / AgriTech / FinTech Projects</span>
-          <span class="open-to-tag">Hackathons &amp; Research</span>
-          <span class="open-to-tag">Open Source Collaboration</span>
-        </div>
-
-        <p class="contact-final-line">I started without a roadmap. <em>I'm building one now.</em></p>
-        <button class="solid-btn" id="letsTalkBtn" type="button">Let's Talk →</button>
+<!-- ============ LAB WORLD ============ -->
+<div class="world world-black" id="world-lab">
+  <div class="world-inner">
+    <button class="back-link" data-goto="home">← Home</button>
+    <div class="lab-title">THE LAB</div>
+    <div class="lab-grid">
+      <button class="lab-card" data-lab="atlas">
+        <div class="lab-card-label">AI · Telegram · Hackathon</div>
+        <div class="lab-card-title">Atlas</div>
+        <div class="lab-card-desc">AI financial assistant — Humanity Foundation.</div>
+      </button>
+      <button class="lab-card" data-lab="jagga">
+        <div class="lab-card-label">AI · Game</div>
+        <div class="lab-card-title">Jagga Jasoos</div>
+        <div class="lab-card-desc">A fun interactive game, built with AI.</div>
+      </button>
+      <div class="lab-card secret">
+        <div class="lab-card-label">Current Builds</div>
+        <div class="secret-block">████████ ██████<br>████ ████████████<br>██████ ██ ████████</div>
+        <div class="secret-tag">AI · GAMES · COMMUNICATION — NOT READY YET</div>
       </div>
-    </section>
+    </div>
+    <div class="lab-detail" data-labp="atlas">
+      <div class="agro-sub" style="color:var(--red); margin-bottom:14px;">Atlas — AI Financial Assistant</div>
+      <p class="block-text" style="color:var(--cream); opacity:.8;">Participated in an AI-focused hackathon/initiative with Humanity Foundation, exploring what a genuinely useful financial assistant needs beyond a chatbot: natural conversation, market information, watchlists, news, reasoning, and proactive alerts.</p>
+    </div>
+    <div class="lab-detail" data-labp="jagga">
+      <div class="agro-sub" style="color:var(--red); margin-bottom:14px;">Jagga Jasoos</div>
+      <p class="block-text" style="color:var(--cream); opacity:.8;">Not every idea needs to become a startup. Some ideas need to be built simply to learn what's possible. Demo video coming soon.</p>
+    </div>
   </div>
-</main>
+</div>
 
-<footer id="siteFooter">
-  <div class="wrap">
-    <div class="foot-inner">
+<!-- ============ ABOUT WORLD ============ -->
+<div class="world world-black" id="world-about">
+  <div class="world-inner" style="justify-content:center;">
+    <button class="back-link" data-goto="home" style="position:absolute; top:20px; left:24px;">← Home</button>
+    <div class="about-stage" id="aboutStage">
       <div>
-        <div class="foot-name">Anshu Priya</div>
-        <div class="foot-role">Software Developer · BCA Student</div>
-        <div class="foot-tag">Built with curiosity, code and a lot of experiments.</div>
+        <div class="about-line" id="aboutLine">I DIDN'T START WITH SOFTWARE.</div>
+        <div class="about-progress" id="aboutProgress"></div>
+        <div class="about-tap-hint">Tap to continue</div>
       </div>
-      <div class="foot-meta">GitHub · LinkedIn · Email · Resume<br>© 2026 Anshu Priya</div>
+    </div>
+    <div class="about-full" id="aboutFull">
+      <div class="pillars-3">
+        <div class="pillar3"><b>Teaching</b><span>Teaching taught me to simplify. Knowing something isn't enough — you need to communicate it.</span></div>
+        <div class="pillar3"><b>Farming</b><span>Growing up around farming made real-world problems impossible to ignore.</span></div>
+        <div class="pillar3"><b>Building</b><span>Building gives me the freedom to turn questions into experiments.</span></div>
+      </div>
+      <div class="focus-status">
+        <div class="block-label" style="color:var(--red);">Currently Focused On</div>
+        <div class="focus-row"><span class="flabel">AI</span><div class="focus-bar-track"><div class="focus-bar-fill" style="width:70%"></div></div></div>
+        <div class="focus-row"><span class="flabel">Backend</span><div class="focus-bar-track"><div class="focus-bar-fill" style="width:60%"></div></div></div>
+        <div class="focus-row"><span class="flabel">Flutter</span><div class="focus-bar-track"><div class="focus-bar-fill" style="width:80%"></div></div></div>
+        <div class="focus-row"><span class="flabel">DSA</span><div class="focus-bar-track"><div class="focus-bar-fill" style="width:50%"></div></div></div>
+        <div class="focus-row"><span class="flabel">System Design</span><div class="focus-bar-track"><div class="focus-bar-fill" style="width:40%"></div></div></div>
+        <div class="focus-note">Not skill scores — just where attention is going right now. Going deeper rather than learning everything at once. Google is one of the places I want to reach; a direction, not a guarantee.</div>
+      </div>
+      <button class="back-link" data-goto="proof" style="margin-top:30px;">See the Proof →</button>
     </div>
   </div>
-</footer>
-
-<!-- ============ PROJECT DETAIL FULL-SCREEN VIEW ============ -->
-<div class="pview" id="pview">
-  <div class="pview-bar">
-    <div class="pview-bar-inner">
-      <button class="pview-back" id="pviewBack">← Back to Work</button>
-    </div>
-  </div>
-  <div class="pview-content" id="pviewContent"></div>
 </div>
+
+<!-- ============ PROOF WORLD ============ -->
+<div class="world world-white" id="world-proof">
+  <div class="world-inner">
+    <button class="back-link" data-goto="home">← Home</button>
+    <div class="agro-title" style="font-size:clamp(26px,5vw,42px); color:var(--ink);">PROOF</div>
+    <p class="block-text">Not everything I've learned has a certificate. Some of it has a GitHub repository. Some of it has a classroom.</p>
+
+    <div class="proof-groups2">
+      <div>
+        <div class="pg-label">Education</div>
+        <div class="pg-grid"><div class="pg-card"><div class="pg-name">BCA — Amity University Online</div><div class="pg-meta">Bachelor of Computer Applications · In progress</div></div></div>
+      </div>
+      <div>
+        <div class="pg-label">Experience</div>
+        <div class="pg-grid">
+          <div class="pg-card"><div class="pg-name">Sri Aurobindo High School</div><div class="pg-meta">Full-time Teacher · Jun 2025 – Apr 2026</div></div>
+          <div class="pg-card"><div class="pg-name">Androma International Academy</div><div class="pg-meta">Teaching · Tamil Nadu · 2025</div></div>
+          <div class="pg-card"><div class="pg-name">Aapna</div><div class="pg-meta">KYC / Customer Support · 2024</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="pg-label">Certifications</div>
+        <div class="cert-grid2" id="certGrid2"></div>
+      </div>
+      <div>
+        <div class="pg-label">Hackathons</div>
+        <div class="pg-grid"><div class="pg-card"><div class="pg-name">Atlas — AI Financial Assistant</div><div class="pg-meta">Humanity Foundation Hackathon</div></div></div>
+      </div>
+      <div class="fr-block">
+        <div class="pg-label">Field Research</div>
+        <p class="block-text" style="margin-bottom:14px;">10+ farmers, Odisha × Jharkhand. Tap a point.</p>
+        <div class="fr-dots" id="frDots"></div>
+        <div id="frNoteSlot"></div>
+        <div class="fr-chain">
+          <span class="chain-step" style="border:1px solid var(--gray-line); background:var(--white); color:var(--ink);">TALK</span><span class="chain-arrow">→</span>
+          <span class="chain-step" style="border:1px solid var(--gray-line); background:var(--white); color:var(--ink);">UNDERSTAND</span><span class="chain-arrow">→</span>
+          <span class="chain-step" style="border:1px solid var(--gray-line); background:var(--white); color:var(--ink);">BUILD</span><span class="chain-arrow">→</span>
+          <span class="chain-step" style="border:1px solid var(--gray-line); background:var(--white); color:var(--ink);">TEST</span><span class="chain-arrow">→</span>
+          <span class="chain-step" style="border:1px solid var(--gray-line); background:var(--white); color:var(--ink);">IMPROVE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONTACT WORLD ============ -->
+<div class="world world-white" id="world-contact">
+  <div class="contact-inner2">
+    <button class="back-link" data-goto="home" style="position:absolute; top:20px; left:24px;">← Home</button>
+    <div class="contact-headline">HAVE A PROBLEM<br>WORTH BUILDING?</div>
+    <div class="contact-links2">
+      <a href="https://github.com/priya-codesdaily" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/a-priya-dev" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:priyatech.logic@gmail.com">Email</a>
+      <a href="https://github.com/priya-codesdaily/priya-codesdaily/raw/main/Anshu_Priya_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+    <span class="dot"></span>
+    <div class="contact-sig">ANSHU PRIYA · SOFTWARE DEVELOPER · BCA STUDENT · BUILDER</div>
+  </div>
+</div>
+
+<!-- ============ RADIAL MENU ============ -->
+<div class="radial-overlay" id="radialOverlay">
+  <button class="radial-close" id="radialClose">✕</button>
+  <div class="radial-grid">
+    <button class="radial-item" data-goto="work">Work</button>
+    <span></span>
+    <button class="radial-item" data-goto="lab">Lab</button>
+    <div class="radial-item" style="border:none; cursor:default;" >—</div>
+    <div class="radial-center">ANSHU</div>
+    <button class="radial-item" data-goto="journey">Journey</button>
+    <button class="radial-item" data-goto="about">About</button>
+    <div style="border:none;"></div>
+    <button class="radial-item" data-goto="proof">Proof</button>
+  </div>
+</div>
+<div style="position:fixed; bottom:26px; left:50%; transform:translateX(-50%); z-index:210;" id="radialContactWrap"></div>
 
 <!-- ============ CERTIFICATE LIGHTBOX ============ -->
-<div class="clbx-overlay" id="clbxOverlay">
-  <div class="clbx-panel">
-    <div class="clbx-img-frame" id="clbxImgFrame"></div>
-    <div class="clbx-name" id="clbxName"></div>
-    <button class="clbx-close" id="clbxClose">Close</button>
+<div class="clbx2-overlay" id="clbx2Overlay">
+  <div class="clbx2-panel">
+    <div class="clbx2-frame" id="clbx2Frame"></div>
+    <div class="clbx2-name" id="clbx2Name"></div>
+    <button class="clbx2-close" id="clbx2Close">Close</button>
   </div>
 </div>
 
 <script>
 /* ============================================================
-   GATE
-=============================================================== */
-const gateQuoteEl = document.getElementById('gateQuote');
-setTimeout(() => { gateQuoteEl.textContent = '"I started by trying things."'; }, 3300);
-document.getElementById('gateEnter').addEventListener('click', () => {
-  document.body.classList.add('entered');
-  document.body.classList.remove('locked');
-});
-
-const letsTalkBtn = document.getElementById('letsTalkBtn');
-if(letsTalkBtn){
-  letsTalkBtn.addEventListener('click', () => {
-    document.getElementById('siteFooter').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-}
-
-/* ============================================================
-   MOBILE NAV
-=============================================================== */
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
-navToggle.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('open');
-  navToggle.setAttribute('aria-expanded', open);
-});
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  navLinks.classList.remove('open');
-  navToggle.setAttribute('aria-expanded', 'false');
-}));
-
-/* ============================================================
-   SCROLL REVEAL
-=============================================================== */
-const ro = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
-
-/* ============================================================
    HELPERS
 =============================================================== */
+function fb(name){ return `<span class="ph-fallback">${name}</span>`; }
 function handleImgErr(imgEl){
   const span = document.createElement('span');
   span.className = 'ph-fallback';
   span.textContent = imgEl.getAttribute('data-fb') || '';
   imgEl.replaceWith(span);
 }
-const imgOr = (src, alt) => `<img src="${src}" alt="${alt}" data-fb="${src}" onerror="handleImgErr(this)">`;
-function ytEmbed(id, title){
-  return `<button class="yt-trigger" data-yt="${id}" data-title="${title}">
-    <svg viewBox="0 0 24 24"><path d="M23 12s0-3.6-.46-5.3a2.9 2.9 0 0 0-2-2C18.9 4.2 12 4.2 12 4.2s-6.9 0-8.54.5a2.9 2.9 0 0 0-2 2C1 8.4 1 12 1 12s0 3.6.46 5.3a2.9 2.9 0 0 0 2 2c1.64.5 8.54.5 8.54.5s6.9 0 8.54-.5a2.9 2.9 0 0 0 2-2C23 15.6 23 12 23 12zM9.8 15.5v-7l6.2 3.5z" fill="#fff"/></svg>
-    Watch on YouTube
-  </button>`;
+
+/* ============================================================
+   WORLD NAVIGATION
+=============================================================== */
+const worldColorMode = {
+  home:'light', work:'dark', agropredict:'light', repshield:'dark', sentinelpay:'light',
+  journey:'light', lab:'dark', about:'dark', proof:'light', contact:'light'
+};
+function goTo(id){
+  document.querySelectorAll('.world').forEach(w => w.classList.remove('active'));
+  const target = document.getElementById('world-' + id);
+  if(target) target.classList.add('active');
+  const mode = worldColorMode[id] || 'light';
+  document.getElementById('topCorner').className = 'top-corner on-' + mode;
+  document.getElementById('menuToggle').className = 'menu-toggle on-' + mode;
+  document.getElementById('radialOverlay').classList.remove('open');
+  target.scrollTop = 0;
 }
 document.addEventListener('click', e => {
-  const yt = e.target.closest('[data-yt]');
-  if(yt){
-    const id = yt.getAttribute('data-yt');
-    const wrap = document.createElement('div');
-    wrap.className = 'yt-embed-wrap';
-    wrap.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" title="${yt.getAttribute('data-title')}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-    yt.replaceWith(wrap);
-  }
+  const g = e.target.closest('[data-goto]');
+  if(g){ e.preventDefault(); goTo(g.getAttribute('data-goto')); }
 });
 
 /* ============================================================
-   PROJECT DATA
+   ENTRY → BOOT
 =============================================================== */
-const projects = [
-  {
-    id:'agropredict', emoji:'🌾', name:'AGROPREDICT', accent:'forest', tag:'Agritech · Flutter',
-    oneliner:'Helping farmers make better selling decisions using live mandi prices, location and practical calculations.',
-    leadPhoto:'father.jpeg', leadAlt:'My father in our farm', leadSmall:true,
-    problem:`Farmers often can't tell which nearby mandi offers the best price, and comparing options against travel cost is hard without data. Every harvest, my own family faced the same question — where should we sell?`,
-    research:`I visited farms across Odisha and Jharkhand and sat with 10+ farmers and suppliers, listening to how they actually decide where to sell.`,
-    researchPhotos:[['farmer1.jpg.jpeg','Jharkhand'],['farmer2.jpg.jpeg','Jharkhand'],['farmer3.jpg.jpeg','Jharkhand'],['farmer4.jpg.jpeg','Jharkhand'],['farmer5.jpg.jpeg','Odisha'],['farmer6.jpg.jpeg','Odisha'],['farmer7.jpg.jpeg','Odisha']],
-    built:['Live AGMARKNET government price data by crop and market','GPS-based nearest-mandi detection and distance comparison','Transport profit calculator — net gain before making the trip','Sell / wait / monitor advice from a transparent rule-based engine','Hindi voice input and output for low-literacy, low-connectivity use'],
-    howItWorks:'Device GPS\n   ↓\nAGMARKNET Price Data\n   ↓\nComparison + Profit Engine\n   ↓\nVoice Output (Hindi)',
-    stack:['Flutter','Dart','AGMARKNET API','geolocator','flutter_tts','speech_to_text','fl_chart'],
-    resultsText:`Field-tested with 10+ farmers; features shipped within 24 hours of feedback. Working APK published, along with a field documentary.`,
-    shots:[['agro.1.jpeg',false],['agro.2.jpeg',false],['agro.3.jpeg',false],['agro.4.jpeg',false],['agro.5.jpeg',false],['agro.6.jpeg',false]],
-    learned:`User feedback is worth more than assumptions about what people need. Profit matters more than price — that distinction changed the whole product. Accessibility isn't a feature, it's the foundation.`,
-    next:`Expand mandi coverage, add more crop varieties, and refine offline support for low-connectivity areas.`,
-    yt:'2PWweDEcCpc', ytLabel:'AgroPredict Documentary',
-    links:[['GitHub','https://github.com/priya-codesdaily/agropredict'],['Field Research','https://github.com/priya-codesdaily/agropredict/blob/main/FIELD_RESEARCH.md']]
-  },
-  {
-    id:'repshield', emoji:'🔐', name:'REPSHIELD', accent:'red', tag:'Safety · Flutter',
-    oneliner:'A personal safety system designed around the first critical hour after an incident.',
-    leadPhoto:'rep.1.jpeg', leadAlt:'REPSHIELD app',
-    problem:`The first few minutes after an incident can be critical, and most safety apps require too many steps when someone is under stress.`,
-    research:`I thought through real emergency scenarios and what friction actually costs in seconds, and looked at what existing safety apps get wrong — too many taps, no offline fallback.`,
-    researchPhotos:[],
-    built:['SOS — one tap alerts every trusted contact at once','Shake-to-trigger — accelerometer fires SOS instantly, no unlock required','Live GPS location shared as a map link via SMS','Secure, tamper-evident evidence vault with SHA-256 hashing','Incident journal, stealth mode, and a no-signal safety timer'],
-    howItWorks:'Shake / SOS Trigger\n   ↓\nGPS + SMS → Trusted Contacts\n   ↓\nEvidence Vault (SHA-256 hashed)',
-    stack:['Flutter','Dart','sensors_plus','geolocator','SMS alert','SHA-256'],
-    resultsText:`v1.0.0 released and publicly downloadable, with the full source on GitHub.`,
-    shots:[['rep.1.jpeg',false],['rep.2.jpeg',false],['rep.3.jpeg',false],['rep.4.jpeg',false],['rep.5.jpeg',false],['rep.6.jpeg',false]],
-    learned:`Under stress, interface friction is the real enemy. The hardest engineering problem was making the critical path reliable with as few taps as possible.`,
-    next:`Offline SMS fallback for no-signal zones, expanded trusted-contact groups, and exploring wearable integration.`,
-    yt:null,
-    links:[['GitHub','https://github.com/priya-codesdaily/REPSHIELD'],['Download APK','https://github.com/priya-codesdaily/REPSHIELD/releases/tag/v1.0.0']]
-  },
-  {
-    id:'sentinelpay', emoji:'💳', name:'SENTINELPAY', accent:'forest', tag:'Fintech · Web · In progress',
-    oneliner:'A transaction fraud-detection system that explains why a transaction is considered risky.',
-    leadPhoto:'pay.1.jpeg', leadAlt:'SentinelPay dashboard',
-    problem:`How can a payment system flag suspicious transactions without becoming a black box that no one — including its own team — can explain?`,
-    research:`I studied how real fintech companies reason about risk internally, rather than just building a form that saves data.`,
-    researchPhotos:[],
-    built:['Explainable rule engine — amount, velocity, device recognition','A live fraud-attack simulator showing escalating risk in real time','Device fingerprinting to flag unrecognized devices','Full decision history persisted to PostgreSQL','A clean REST API consumed by a React dashboard'],
-    howItWorks:'React Frontend\n   ↓\nREST API\n   ↓\nSpring Boot\n   ↓\nFraud Engine\n   ↓\nPostgreSQL',
-    stack:['Java','Spring Boot','React','PostgreSQL','REST API'],
-    resultsText:`Explainable scoring is live end-to-end. Next: Redis-based rate limiting, an authentication layer, Docker deployment, and an ML-assisted risk layer.`,
-    shots:[['pay.1.jpeg',true],['pay.2.jpeg',true],['pay.3.jpeg',true],['pay.4.jpeg',true]],
-    learned:`Explainability changes the design, not just the output — every rule had to be something a human reviewer could read and defend.`,
-    next:`Redis-based rate limiting, an authentication layer, Docker deployment, and an ML-assisted risk layer.`,
-    yt:'pU54R6ApH4U', ytLabel:'SentinelPay Demo',
-    links:[['Frontend','https://github.com/priya-codesdaily/sentinelpay-web'],['Backend','https://github.com/priya-codesdaily/sentinelpay-backend']]
-  },
-  {
-    id:'atlas', emoji:'🤖', name:'ATLAS', accent:'gold', tag:'AI · Telegram · Hackathon',
-    oneliner:'An AI financial assistant built for natural conversations, market information, memory and connected services.',
-    leadPhoto:'', leadAlt:'',
-    problem:`Most AI assistants forget everything between conversations, so financial advice ends up generic instead of grounded in a person's situation.`,
-    research:`Participated in an AI-focused hackathon/initiative with Humanity Foundation, exploring what a genuinely useful financial assistant would need beyond a chatbot.`,
-    researchPhotos:[],
-    built:['Natural conversation','Financial research and market information','Watchlists and news','Reasoning and proactive alerts'],
-    howItWorks:'Telegram\n   ↓\nPython Bot\n   ↓\nMemory Store\n   ↓\nLLM + Live Data APIs',
-    stack:['Python','AI / LLM APIs','Telegram Bot API'],
-    resultsText:`Built during the Humanity Foundation hackathon window.`,
-    shots:[],
-    learned:`Memory is a product decision, not just a technical one — what to remember and how to surface it mattered as much as retrieval.`,
-    next:`Persistent long-term memory and document analysis features.`,
-    yt:null,
-    links:[]
-  },
-  {
-    id:'jagga', emoji:'🎮', name:'JAGGA JASOOS', accent:'gold', tag:'AI · Game',
-    oneliner:'A fun interactive game I created using AI as part of my exploration of creative software building.',
-    leadPhoto:'', leadAlt:'',
-    problem:`Not every idea needs to become a startup. Some ideas need to be built simply to learn what's possible.`,
-    research:'', researchPhotos:[],
-    built:[], howItWorks:'', stack:[],
-    resultsText:`Demo video coming soon.`,
-    shots:[], learned:'', next:'',
-    yt:null, links:[]
-  }
-];
+document.getElementById('enterBtn').addEventListener('click', () => {
+  document.body.classList.add('booted');
+  goTo('home');
+});
+document.getElementById('topCorner').addEventListener('click', e => { e.preventDefault(); goTo('home'); });
 
 /* ============================================================
-   WORK GRID
+   RADIAL MENU
 =============================================================== */
-const workGrid = document.getElementById('workGrid');
-projects.forEach(p => {
-  const card = document.createElement('button');
-  card.className = 'work-card';
-  card.setAttribute('data-open', p.id);
-  card.innerHTML = `
-    <div class="wc-top"><span class="wc-emoji">${p.emoji}</span><span class="wc-name">${p.name.charAt(0)}${p.name.slice(1).toLowerCase()}</span></div>
-    <span class="wc-tag">${p.tag}</span>
-    <p class="wc-desc">${p.oneliner}</p>
-    <span class="wc-cue">Tap to open the full story →</span>
-  `;
-  workGrid.appendChild(card);
-});
+const radialOverlay = document.getElementById('radialOverlay');
+document.getElementById('menuToggle').addEventListener('click', () => radialOverlay.classList.add('open'));
+document.getElementById('radialClose').addEventListener('click', () => radialOverlay.classList.remove('open'));
+radialOverlay.addEventListener('click', e => { if(e.target === radialOverlay) radialOverlay.classList.remove('open'); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') radialOverlay.classList.remove('open'); });
+/* add contact + about into radial grid programmatically since layout above is partial */
+const radialGrid = document.querySelector('.radial-grid');
+const contactBtn = document.createElement('button');
+contactBtn.className = 'radial-item';
+contactBtn.setAttribute('data-goto','contact');
+contactBtn.textContent = 'Contact';
+radialGrid.appendChild(contactBtn);
 
 /* ============================================================
-   PROJECT FULL-SCREEN VIEW
+   AGROPREDICT STAGE SWITCHER
 =============================================================== */
-const pview = document.getElementById('pview');
-const pviewContent = document.getElementById('pviewContent');
-
-function block(label, html){ return html ? `<div class="pv-block"><h4>${label}</h4>${html}</div>` : ''; }
-
-function renderProjectView(id){
-  const p = projects.find(x => x.id === id);
-  if(!p) return;
-  const leadHtml = p.leadPhoto ? `<div class="pv-lead-photo${p.leadSmall ? ' pv-lead-small' : ''}">${imgOr(p.leadPhoto, p.leadAlt)}</div>` : '';
-  const problemHtml = block('The Problem', `<p>${p.problem}</p>`);
-  const researchPhotosHtml = p.researchPhotos.length ? `<div class="pv-photos" style="margin-top:16px;">${p.researchPhotos.map(([src,cap])=>`<div class="pv-ph"><div class="pv-ph-frame">${imgOr(src,cap)}</div><div class="pv-ph-cap">${cap}</div></div>`).join('')}</div>` : '';
-  const researchHtml = p.research ? block('Field Research', `<p>${p.research}</p>${researchPhotosHtml}`) : '';
-  const builtHtml = p.built.length ? block('What I Built', `<ul class="pv-list">${p.built.map(b=>`<li>${b}</li>`).join('')}</ul>`) : '';
-  const howHtml = p.howItWorks ? block('How It Works', `<div class="pv-arch">${p.howItWorks}</div>`) : '';
-  const stackHtml = p.stack.length ? block('Tech Stack', `<div class="pv-pills">${p.stack.map(t=>`<span class="pv-pill">${t}</span>`).join('')}</div>`) : '';
-  const shotsHtml = p.shots.length ? block('Results &amp; Impact', `<p style="margin-bottom:16px;">${p.resultsText}</p><div class="shot-strip">${p.shots.map(([s,wide])=>`<div class="shot${wide?' wide':''}">${imgOr(s,'screenshot')}</div>`).join('')}</div>`) : (p.resultsText ? block('Results &amp; Impact', `<p>${p.resultsText}</p>`) : '');
-  const learnedHtml = p.learned ? block('What I Learned', `<p>${p.learned}</p>`) : '';
-  const nextHtml = p.next ? block("What's Next", `<p>${p.next}</p>`) : '';
-  const ytHtml = p.yt ? `<div class="pv-block">${ytEmbed(p.yt, p.ytLabel)}</div>` : '';
-  const linksHtml = p.links.length ? `<div class="pv-links">${p.links.map(([label,url])=>`<a href="${url}" target="_blank" rel="noopener" class="ghost-btn">${label} →</a>`).join('')}</div>` : '';
-
-  pviewContent.innerHTML = `
-    <div class="pv-tag">${p.tag}</div>
-    <h1 class="pv-title">${p.emoji} ${p.name}</h1>
-    <p class="pv-oneliner">${p.oneliner}</p>
-    ${leadHtml}
-    ${problemHtml}
-    ${researchHtml}
-    ${builtHtml}
-    ${howHtml}
-    ${stackHtml}
-    ${shotsHtml}
-    ${ytHtml}
-    ${learnedHtml}
-    ${nextHtml}
-    ${linksHtml}
-  `;
-}
-
-document.addEventListener('click', e => {
-  const trigger = e.target.closest('[data-open]');
-  if(trigger){
-    renderProjectView(trigger.getAttribute('data-open'));
-    pview.classList.add('open');
-    document.body.classList.add('pv-open');
-    pview.scrollTop = 0;
-  }
-});
-document.getElementById('pviewBack').addEventListener('click', () => {
-  pview.classList.remove('open');
-  document.body.classList.remove('pv-open');
-});
-document.addEventListener('keydown', e => { if(e.key === 'Escape' && pview.classList.contains('open')){ pview.classList.remove('open'); document.body.classList.remove('pv-open'); } });
-
-/* ============================================================
-   JOURNEY DATA + RENDERING (scroll narrative)
-=============================================================== */
-const journeyEntries = [
-  {
-    date:'17 · AFTER 12TH', title:'Figuring it out myself',
-    body:[`I finished school without really knowing what I wanted to become. No clear roadmap, no one telling me which path to take.`,
-           `So I started experimenting. That became the beginning of a journey I didn't understand at the time.`]
-  },
-  {
-    date:'2024 · FIRST EXPERIENCES', title:'Aapna · KYC & Customer Support',
-    body:[`I was introduced to Aapna through people I met while I was still figuring out what to do. I explored affiliate marketing, attended training sessions, and later worked around KYC and customer support.`,
-           `It was short-term and target-driven, but it taught me something important: work is very different when someone is depending on you to deliver.`]
-  },
-  {
-    date:'2025 · TAMIL NADU', title:'Androma International Academy',
-    body:[`I travelled to Tamil Nadu after receiving a referral and completed training before working across two schools.`],
-    subs:[['Vivek Ananda School','Student guidance · Activities · Creativity · English · Classes 1–5'],['Kalvi Karpagam School','Student guidance · Activities · Creativity · English · Classes 1–5']],
-    pull:`It wasn't where I expected my career to go. But it taught me confidence, responsibility and how to work with people.`,
-    photos:[['vivek-ananda.jpeg','VIVEK ANANDA SCHOOL'],['kalvi-karpagam.jpeg','KALVI KARPAGAM SCHOOL']]
-  },
-  {
-    date:'2025–2026 · HYDERABAD', title:'Sri Aurobindo High School',
-    body:[`Full-time Teacher, LKG–Grade 5, June 2025 – April 2026. What started through a connection from my Tamil Nadu experience became my first full-time job.`,
-           `For nearly a year, I taught young students, planned activities, communicated with parents and learned how to explain difficult ideas simply.`],
-    pull:`Teaching changed the way I think about software. If something is difficult to understand, I don't immediately blame the user — I ask how I can make it clearer.`,
-    photos:[['sri-aurobindo.jpeg','SRI AUROBINDO SCHOOL, HYDERABAD']]
-  },
-  {
-    date:'2026 · THE SHIFT', title:'I started coding seriously',
-    body:[`In February 2026, I started exploring software development more intentionally. At first I was learning technologies. Then I started building products — that changed everything.`,
-           `I realised I didn't just enjoy coding. I enjoyed understanding a problem, designing a solution, and turning an idea into something people could actually use. That's when software engineering stopped being "another career option" and became the direction I wanted to pursue.`],
-    bloom:['Flutter','Dart','Firebase','REST APIs','Python','Java','Git / GitHub','DSA','Backend fundamentals','AI / API integration']
-  },
-  {
-    date:'NOW', title:'Software Engineer, Still Becoming',
-    body:[`BCA · Software Development · Product Building.`],
-    tags:['AI','Flutter','Backend','APIs','DSA','System Design','Open Source'],
-    pull:`And continuing to build.`
-  }
-];
-
-const jrnyTimeline = document.getElementById('jrnyTimeline');
-journeyEntries.forEach((n, idx) => {
-  const entry = document.createElement('div');
-  entry.className = 'jrny-entry';
-  entry.setAttribute('data-idx', idx);
-
-  let subsHtml = n.subs ? n.subs.map(([name,meta])=>`<div class="jrny-sub"><div class="jrny-sub-name">${name}</div><div class="jrny-sub-meta">${meta}</div></div>`).join('') : '';
-  let pullHtml = n.pull ? `<p class="jrny-pull">${n.pull}</p>` : '';
-  let photosHtml = n.photos ? `<div class="jrny-photos">${n.photos.map(([src,cap])=>`<div class="jrny-photo"><div class="jrny-photo-frame">${imgOr(src,cap)}</div><div class="jrny-photo-cap">${cap}</div></div>`).join('')}</div>` : '';
-  let bloomHtml = '';
-  if(n.bloom){
-    bloomHtml = `<button class="jrny-bloom-trigger" data-bloom-trigger="${idx}"><span class="plus">＋</span> Tap to see the stack</button>
-      <div class="jrny-bloom" id="bloom-${idx}">${n.bloom.map((t,i)=>`<span class="jrny-bloom-tag" style="--bi:${i}">${t}</span>`).join('')}</div>`;
-  }
-  let tagsHtml = n.tags ? `<div class="jrny-tags">${n.tags.map(t=>`<span class="jrny-tag">${t}</span>`).join('')}</div>` : '';
-
-  entry.innerHTML = `
-    <span class="jrny-dot"></span>
-    <div class="jrny-date">${n.date}</div>
-    <h3 class="jrny-title">${n.title}</h3>
-    <div class="jrny-body">${n.body.map(b=>`<p>${b}</p>`).join('')}${subsHtml}</div>
-    ${pullHtml}
-    ${bloomHtml}
-    ${tagsHtml}
-    ${photosHtml}
-  `;
-  jrnyTimeline.appendChild(entry);
-});
-
-document.addEventListener('click', e => {
-  const bt = e.target.closest('[data-bloom-trigger]');
-  if(bt){
-    const idx = bt.getAttribute('data-bloom-trigger');
-    const cluster = document.getElementById('bloom-' + idx);
-    const open = cluster.classList.toggle('open');
-    bt.classList.toggle('open', open);
-    bt.querySelector('.plus').nextSibling.textContent = open ? ' Hide the stack' : ' Tap to see the stack';
-  }
-});
-
-/* journey spine fill + active dots via scroll */
-const jrnySpineFill = document.getElementById('jrnySpineFill');
-const jrnyEntries = document.querySelectorAll('.jrny-entry');
-const jrnyObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      e.target.classList.add('active');
-      let done = 0;
-      jrnyEntries.forEach(el => { if(el.classList.contains('active')) done++; });
-      jrnySpineFill.style.height = (done / jrnyEntries.length * 100) + '%';
-    }
+document.querySelectorAll('#agroStageBar .stage-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#agroStageBar .stage-btn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    const stage = btn.getAttribute('data-stage');
+    document.querySelectorAll('#world-agropredict .stage-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`#world-agropredict [data-panel="${stage}"]`).classList.add('active');
   });
-}, { threshold: 0.35 });
-jrnyEntries.forEach(el => jrnyObs.observe(el));
+});
+document.getElementById('agroYtBtn').addEventListener('click', () => {
+  document.getElementById('agroYtSlot').innerHTML = `<div style="border-radius:8px; overflow:hidden; aspect-ratio:16/9;"><iframe style="width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/2PWweDEcCpc?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen title="AgroPredict Documentary"></iframe></div>`;
+});
+document.getElementById('sentYtBtn').addEventListener('click', () => {
+  document.getElementById('sentYtSlot').innerHTML = `<div style="border-radius:8px; overflow:hidden; aspect-ratio:16/9;"><iframe style="width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/pU54R6ApH4U?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen title="SentinelPay Demo"></iframe></div>`;
+});
 
 /* ============================================================
-   PROOF: certificates grid + lightbox
+   REPSHIELD — spread the stack
 =============================================================== */
-const certs = [
-  { name:'Certificate Course in Basics of AI', meta:'Amity University · 15 June 2026', img:'cert-ai.jpg' },
-  { name:'Cybersecurity — Beginner Course', meta:'Completed', img:'cert-cybersecurity.jpg' },
-  { name:'Advanced Excel', meta:'Amity University', img:'cert-excel.jpg' },
-  { name:'Teaching Experience Certificate', meta:'Sri Aurobindo High School', img:'cert-sri-aurobindo.jpg' }
-];
-const certGrid = document.getElementById('certGrid');
-certs.forEach((c,i) => {
-  const card = document.createElement('div');
-  card.className = 'proof-card';
-  card.innerHTML = `<div><div class="proof-name">${c.name}</div><div class="proof-meta">${c.meta}</div></div><button class="proof-view" data-cert="${i}">View →</button>`;
-  certGrid.appendChild(card);
-});
-const clbxOverlay = document.getElementById('clbxOverlay');
-const clbxImgFrame = document.getElementById('clbxImgFrame');
-const clbxName = document.getElementById('clbxName');
-document.addEventListener('click', e => {
-  const ct = e.target.closest('[data-cert]');
-  if(ct){
-    const c = certs[ct.getAttribute('data-cert')];
-    clbxImgFrame.innerHTML = imgOr(c.img, c.name);
-    clbxName.textContent = c.name;
-    clbxOverlay.classList.add('open');
+let repSpread = false;
+document.getElementById('repSpreadBtn').addEventListener('click', () => {
+  repSpread = !repSpread;
+  const items = document.querySelectorAll('#repDeck .stack-item');
+  const chain = document.getElementById('repChain');
+  if(repSpread){
+    items.forEach((it,i) => { it.style.transform = `translateX(${(i-2.5)*95}px) rotate(0deg) translateY(-6px)`; });
+    chain.style.opacity = '1'; chain.style.maxHeight = '200px';
+    document.getElementById('repSpreadBtn').textContent = 'Stack the panels';
+  } else {
+    const rot = [-8,-4,0,4,8,12], tx = [-90,-45,0,45,90,135];
+    items.forEach((it,i) => { it.style.transform = `rotate(${rot[i]}deg) translateX(${tx[i]}px)`; });
+    chain.style.opacity = '0'; chain.style.maxHeight = '0';
+    document.getElementById('repSpreadBtn').textContent = 'Spread the panels';
   }
 });
-document.getElementById('clbxClose').addEventListener('click', () => clbxOverlay.classList.remove('open'));
-clbxOverlay.addEventListener('click', e => { if(e.target === clbxOverlay) clbxOverlay.classList.remove('open'); });
 
-/* proof card reveal */
-const proofObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); proofObs.unobserve(e.target); } });
-}, { threshold: 0.15 });
-document.querySelectorAll('.proof-card').forEach((el,i) => {
-  el.style.transitionDelay = (i % 6) * 55 + 'ms';
-  proofObs.observe(el);
+/* ============================================================
+   SENTINELPAY — transaction → pipeline
+=============================================================== */
+document.getElementById('txnCard').addEventListener('click', () => {
+  document.getElementById('pipelineRow').classList.toggle('active');
+});
+
+/* ============================================================
+   JOURNEY — drag scroll + node detail
+=============================================================== */
+const jDrag = document.getElementById('journeyDrag');
+let isDown = false, startX, scrollLeft;
+jDrag.addEventListener('mousedown', e => { isDown = true; jDrag.classList.add('dragging'); startX = e.pageX - jDrag.offsetLeft; scrollLeft = jDrag.scrollLeft; });
+document.addEventListener('mouseup', () => { isDown = false; jDrag.classList.remove('dragging'); });
+jDrag.addEventListener('mousemove', e => {
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - jDrag.offsetLeft;
+  jDrag.scrollLeft = scrollLeft - (x - startX) * 1.4;
+});
+document.querySelectorAll('.jn-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.getAttribute('data-jd');
+    document.querySelectorAll('.journey-detail').forEach(d => d.classList.remove('active'));
+    document.querySelector(`.journey-detail[data-jdp="${key}"]`).classList.add('active');
+  });
+});
+
+/* ============================================================
+   LAB — atlas / jagga detail toggle
+=============================================================== */
+document.querySelectorAll('[data-lab]').forEach(card => {
+  card.addEventListener('click', () => {
+    const key = card.getAttribute('data-lab');
+    document.querySelectorAll('.lab-detail').forEach(d => d.classList.remove('active'));
+    document.querySelector(`.lab-detail[data-labp="${key}"]`).classList.add('active');
+  });
+});
+
+/* ============================================================
+   ABOUT — click-through sequence
+=============================================================== */
+const aboutLines = [
+  "I DIDN'T START WITH SOFTWARE.",
+  "I STARTED BY FIGURING THINGS OUT.",
+  "TEACHING TAUGHT ME TO SIMPLIFY.",
+  "FIELD RESEARCH TAUGHT ME TO LISTEN.",
+  "BUILDING TAUGHT ME TO TEST.",
+  "SOFTWARE GAVE ME A WAY TO TURN THAT INTO SOMETHING."
+];
+let aboutIdx = 0;
+const aboutLineEl = document.getElementById('aboutLine');
+const aboutProgress = document.getElementById('aboutProgress');
+aboutLines.forEach((_, i) => {
+  const d = document.createElement('span');
+  d.className = 'about-dot' + (i === 0 ? ' on' : '');
+  aboutProgress.appendChild(d);
+});
+document.getElementById('aboutStage').addEventListener('click', () => {
+  aboutIdx++;
+  if(aboutIdx >= aboutLines.length){
+    document.getElementById('aboutStage').style.display = 'none';
+    document.getElementById('aboutFull').classList.add('active');
+    return;
+  }
+  aboutLineEl.textContent = aboutLines[aboutIdx];
+  document.querySelectorAll('.about-dot').forEach((d,i) => d.classList.toggle('on', i === aboutIdx));
+});
+
+/* ============================================================
+   PROOF — certificates + field research dots
+=============================================================== */
+const certs2 = [
+  { name:'TATA GenAI Powered Data Analytics', meta:'Forage · July 2026', img:'cert-tata-genai.jpg' },
+  { name:'Commonwealth Bank Software Engineering', meta:'Forage Virtual Experience · June 2026', img:'cert-commonwealth.jpg' },
+  { name:'AI Fundamentals Certificate', meta:'Amity University · 2026', img:'cert-ai-fundamentals.jpg' }
+];
+const certGrid2 = document.getElementById('certGrid2');
+certs2.forEach((c,i) => {
+  const card = document.createElement('button');
+  card.className = 'cert-card2';
+  card.innerHTML = `<div style="font-family:var(--mono); font-size:22px;">📄</div><div class="cert-card2-name">${c.name}</div><div class="cert-card2-view">${c.meta}<br>View →</div>`;
+  card.addEventListener('click', () => {
+    document.getElementById('clbx2Frame').innerHTML = `<img src="${c.img}" alt="${c.name}" data-fb="${c.img}" onerror="handleImgErr(this)">`;
+    document.getElementById('clbx2Name').textContent = c.name;
+    document.getElementById('clbx2Overlay').classList.add('open');
+  });
+  certGrid2.appendChild(card);
+});
+document.getElementById('clbx2Close').addEventListener('click', () => document.getElementById('clbx2Overlay').classList.remove('open'));
+document.getElementById('clbx2Overlay').addEventListener('click', e => { if(e.target.id === 'clbx2Overlay') document.getElementById('clbx2Overlay').classList.remove('open'); });
+
+const fieldNotes = [
+  '"Which variety?" — became the crop variety selector.',
+  '"Padhne mein dikkat hota hai" — became Hindi voice output.',
+  '"Profit nahi hota" — became the transport profit calculator.',
+  '"Kitna kg mein?" — became the ₹/quintal ↔ ₹/kg toggle.',
+  'Farmers compare markets differently — became multi-mandi comparison.',
+  'Distance matters as much as price.',
+  'Trust in government data varies by region.',
+  'Voice matters more than any redesign.',
+  'Some farmers wait days for a better price.',
+  'Transport cost changes the whole decision.'
+];
+const frDots = document.getElementById('frDots');
+const frPositions = [[8,30],[20,65],[34,15],[46,55],[58,25],[70,60],[15,80],[80,40],[62,10],[38,85]];
+fieldNotes.forEach((note,i) => {
+  const [top,left] = frPositions[i % frPositions.length];
+  const d = document.createElement('button');
+  d.className = 'fr-dot';
+  d.style.top = top + '%'; d.style.left = left + '%';
+  d.addEventListener('click', () => {
+    document.getElementById('frNoteSlot').innerHTML = `<div class="fr-note active">${note}</div>`;
+  });
+  frDots.appendChild(d);
 });
 </script>
 
