@@ -564,14 +564,14 @@ Profit</div>
     <div class="journey-detail" data-jdp="2025">
       <div class="jd-body"><p>I travelled to Tamil Nadu after a referral and completed training before working across two schools — Vivek Ananda School and Kalvi Karpagam School. It wasn't where I expected my career to go, but it taught me confidence, responsibility and how to work with people.</p></div>
       <div class="jd-photos">
-        <div class="jd-photo"><div class="jd-photo-frame"><img src="vivek-ananda.jpeg" alt="Vivek Ananda School" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>vivek-ananda.jpeg</span>'"></div><div class="jd-photo-cap">VIVEK ANANDA SCHOOL</div></div>
-        <div class="jd-photo"><div class="jd-photo-frame"><img src="kalvi-karpagam.jpeg" alt="Kalvi Karpagam School" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>kalvi-karpagam.jpeg</span>'"></div><div class="jd-photo-cap">KALVI KARPAGAM SCHOOL</div></div>
+        <div class="jd-photo"><div class="jd-photo-frame"><img src="vivek-ananda.jpeg.jpeg" alt="Vivek Ananda School" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>vivek-ananda.jpeg.jpeg</span>'"></div><div class="jd-photo-cap">VIVEK ANANDA SCHOOL</div></div>
+        <div class="jd-photo"><div class="jd-photo-frame"><img src="kalvi-karpagam.jpeg.jpeg" alt="Kalvi Karpagam School" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>kalvi-karpagam.jpeg.jpeg</span>'"></div><div class="jd-photo-cap">KALVI KARPAGAM SCHOOL</div></div>
       </div>
     </div>
     <div class="journey-detail" data-jdp="2025-26">
       <div class="jd-body"><p>Full-time Teacher, LKG–Grade 5, June 2025 – April 2026 at Sri Aurobindo High School. Teaching changed the way I think about software — if something is difficult to understand, I don't immediately blame the user, I ask how I can make it clearer.</p></div>
       <div class="jd-photos">
-        <div class="jd-photo"><div class="jd-photo-frame"><img src="sri-aurobindo.jpeg" alt="Sri Aurobindo School" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>sri-aurobindo.jpeg</span>'"></div><div class="jd-photo-cap">SRI AUROBINDO SCHOOL, HYDERABAD</div></div>
+        <div class="jd-photo"><div class="jd-photo-frame"><img src="sri-aurobindo.jpeg.jpeg" alt="Sri Aurobindo School" onerror="this.parentNode.innerHTML='<span class=&quot;ph-fallback&quot;>sri-aurobindo.jpeg.jpeg</span>'"></div><div class="jd-photo-cap">SRI AUROBINDO SCHOOL, HYDERABAD</div></div>
       </div>
     </div>
     <div class="journey-detail" data-jdp="2026"><div class="jd-body"><p>In February 2026 I started exploring software development more intentionally. I realised I didn't just enjoy coding — I enjoyed understanding a problem, designing a solution, and turning an idea into something people could use.</p></div></div>
@@ -901,19 +901,17 @@ document.getElementById('aboutStage').addEventListener('click', () => {
    PROOF — certificates + field research dots
 =============================================================== */
 const certs2 = [
-  { name:'TATA GenAI Powered Data Analytics', meta:'Forage · July 2026', img:'cert-tata-genai.jpg' },
-  { name:'Commonwealth Bank Software Engineering', meta:'Forage Virtual Experience · June 2026', img:'cert-commonwealth.jpg' },
-  { name:'AI Fundamentals Certificate', meta:'Amity University · 2026', img:'cert-ai-fundamentals.jpg' }
+  { name:'TATA GenAI Powered Data Analytics', meta:'Forage · July 2026', file:'cert-tata-genai.jpg.pdf' },
+  { name:'Commonwealth Bank Software Engineering', meta:'Forage Virtual Experience · June 2026', file:'cert-commonwealth.jpg.pdf' },
+  { name:'AI Fundamentals Certificate', meta:'Amity University · 2026', file:'cert-ai-fundamentals.jpg.pdf' }
 ];
 const certGrid2 = document.getElementById('certGrid2');
 certs2.forEach((c,i) => {
   const card = document.createElement('button');
   card.className = 'cert-card2';
-  card.innerHTML = `<div style="font-family:var(--mono); font-size:22px;">📄</div><div class="cert-card2-name">${c.name}</div><div class="cert-card2-view">${c.meta}<br>View →</div>`;
+  card.innerHTML = `<div style="font-family:var(--mono); font-size:22px;">📄</div><div class="cert-card2-name">${c.name}</div><div class="cert-card2-view">${c.meta}<br>View PDF →</div>`;
   card.addEventListener('click', () => {
-    document.getElementById('clbx2Frame').innerHTML = `<img src="${c.img}" alt="${c.name}" data-fb="${c.img}" onerror="handleImgErr(this)">`;
-    document.getElementById('clbx2Name').textContent = c.name;
-    document.getElementById('clbx2Overlay').classList.add('open');
+    window.open(c.file, '_blank', 'noopener');
   });
   certGrid2.appendChild(card);
 });
